@@ -18,6 +18,8 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
+    private String uuid;
     @NotEmpty(message = "This field is not empty")
     private String name;
     @Column(unique = true)
