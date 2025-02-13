@@ -1,4 +1,7 @@
 package repository;
 
-public class ClientRepository {
+import model.entity.Client;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }
