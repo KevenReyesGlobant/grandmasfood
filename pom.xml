@@ -17,9 +17,9 @@
     <packaging>pom</packaging>
 
 <modules>
-    <module>clients/clients</module>
-    <module>orders/orders</module>
-    <module>products/products</module>
+    <module>clients</module>
+    <module>orders</module>
+    <module>products</module>
 </modules>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
