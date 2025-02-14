@@ -6,6 +6,6 @@ import jakarta.validation.Valid;
 
 
 public interface IProductsServies {
-    Products createClient(@Valid ProductsDTO productsDTO);
+    Products createProduct(@Valid ProductsDTO productsDTO);
 
 }

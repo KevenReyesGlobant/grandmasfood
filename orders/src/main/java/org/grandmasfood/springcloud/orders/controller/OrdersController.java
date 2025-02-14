@@ -22,15 +22,13 @@ public class OrdersController {
     private OrdersService ordersService;
 
     @PostMapping
-    public ResponseEntity<?> createClient(@RequestBody @Valid OrdersDTO orderDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> createOrders(@RequestBody @Valid OrdersDTO orderDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(ordersService.createOrders(orderDTO));
     }
-
-
 
     @GetMapping
     public ResponseEntity<?> message() {

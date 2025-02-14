@@ -31,7 +31,7 @@ public class Products {
 
     @NotNull(message = "Price cannot be null")
     @Positive(message = "Price must be positive")
-    private double price;
+    private float price;
 
     private boolean available;
 }
