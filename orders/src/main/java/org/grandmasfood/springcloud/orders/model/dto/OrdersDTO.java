@@ -24,7 +24,13 @@ public record OrdersDTO(
         double tax,
         @Positive(message = "Grand total must be positive")
         double grand_total,
-        boolean delivered,
-        String delivery_date
+        Boolean delivered,
+        String delivery_date,
+        Boolean active
 ) {
+    public OrdersDTO {
+        delivered = delivered == null ? false : delivered;
+        active = active == null ? true : active;
+
+    }
 }

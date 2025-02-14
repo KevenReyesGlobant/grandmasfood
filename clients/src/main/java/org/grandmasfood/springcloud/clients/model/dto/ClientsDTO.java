@@ -1,7 +1,6 @@
 package org.grandmasfood.springcloud.clients.model.dto;
 
 
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -25,8 +24,15 @@ public record ClientsDTO(
         String phone,
 
         @NotBlank(message = "Delivery address cannot be empty")
-        String deliveryAddress
+        String deliveryAddress,
+
+        Boolean active
+
+
 ) {
+    public ClientsDTO {
+        active = active == null ? true : active;
+    }
 
 
 }

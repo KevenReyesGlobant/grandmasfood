@@ -6,6 +6,8 @@ import org.grandmasfood.springcloud.clients.model.dto.ClientsDTO;
 import org.grandmasfood.springcloud.clients.model.entity.Clients;
 import org.grandmasfood.springcloud.clients.repository.ClientsReposity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +26,13 @@ public class ClientsService implements IClientServices {
         client.setDocument(clientDTO.document());
         client.setPhone(clientDTO.phone());
         client.setDeliveryAddress(clientDTO.deliveryAddress());
+        client.setActive(clientDTO.active());
         return clientsReposity.save(client);
 
+    }
+
+    @Override
+    public Page<Clients> getAllClients(Pageable pageable) {
+        return null;
     }
 }

@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "products")
 @Data
@@ -34,4 +36,11 @@ public class Products {
     private float price;
 
     private boolean available;
+
+    private Boolean active;
+
+    public Optional<Products> setInactiveProducts() {
+        active = false;
+        return Optional.empty();
+    }
 }

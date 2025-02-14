@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "client")
 @NoArgsConstructor
@@ -38,5 +40,13 @@ public class Clients {
 
     @NotBlank(message = "Delivery address cannot be empty")
     private String deliveryAddress;
+
+    private Boolean active;
+
+    public Optional<Clients> setInactiveClient() {
+        active = false;
+        return Optional.empty();
+    }
+
 
 }

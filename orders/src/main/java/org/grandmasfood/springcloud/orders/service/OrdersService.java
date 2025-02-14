@@ -30,6 +30,7 @@ public class OrdersService implements IOrdersServices {
         orders.setGrand_total(ordersDTO.grand_total());
         orders.setDelivered(ordersDTO.delivered());
         orders.setDelivery_date(ordersDTO.delivery_date());
+        orders.setActive(ordersDTO.active());
 
         return ordersRepository.save(orders);
 

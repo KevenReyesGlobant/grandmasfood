@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @Table(name = "orders")
@@ -50,4 +51,11 @@ public class Orders {
     private boolean delivered;
 
     private String delivery_date;
+
+    private Boolean active;
+
+    public Optional<Orders> setInactiveOrders() {
+        active = false;
+        return Optional.empty();
+    }
 }

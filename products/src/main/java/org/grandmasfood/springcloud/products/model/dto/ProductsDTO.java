@@ -19,6 +19,13 @@ public record ProductsDTO(
         @Positive(message = "Price must be positive")
         float price,
         @NotNull(message = "Available cannot be null")
-        boolean available
+        Boolean available,
+
+        Boolean active
 ) {
+        public  ProductsDTO{
+                active = active == null ? true : active;
+                available = available == null ? true : available;
+
+        }
 }

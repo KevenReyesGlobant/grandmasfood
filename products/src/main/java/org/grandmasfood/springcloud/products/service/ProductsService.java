@@ -26,6 +26,7 @@ public class ProductsService implements IProductsServies {
         products.setCategory(productsDTO.category());
         products.setPrice(productsDTO.price());
         products.setAvailable(productsDTO.available());
+        products.setActive(productsDTO.active());
 
 
         return productsRepositoy.save(products);
