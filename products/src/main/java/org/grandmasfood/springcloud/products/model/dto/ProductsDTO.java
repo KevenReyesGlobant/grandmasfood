@@ -5,10 +5,11 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.util.UUID;
+
 public record ProductsDTO(
 
-        @NotEmpty(message = "UUID cannot be empty")
-        String uuid,
+
         @NotEmpty(message = "Fantasy name cannot be empty")
         String fantasy_name,
         @NotEmpty(message = "Category cannot be empty")
@@ -23,9 +24,13 @@ public record ProductsDTO(
 
         Boolean active
 ) {
-        public  ProductsDTO{
-                active = active == null ? true : active;
-                available = available == null ? true : available;
 
-        }
+
+    public ProductsDTO {
+        active = active == null ? true : active;
+        available = available == null ? true : available;
+
+    }
+
+
 }

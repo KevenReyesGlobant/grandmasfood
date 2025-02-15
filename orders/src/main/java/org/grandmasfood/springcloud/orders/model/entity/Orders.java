@@ -1,5 +1,6 @@
 package org.grandmasfood.springcloud.orders.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
@@ -20,10 +22,11 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
-    @NotEmpty(message = "UUID cannot be empty")
-    private String uuid;
+    @NotNull(message = " UuId cannot be null")
+    private UUID uuid;
 
     @NotNull(message = "Creation date and time cannot be null")
     private LocalDateTime creation_date_time;
@@ -51,7 +54,7 @@ public class Orders {
     private boolean delivered;
 
     private String delivery_date;
-
+    @JsonIgnore
     private Boolean active;
 
     public Optional<Orders> setInactiveOrders() {

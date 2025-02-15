@@ -1,5 +1,6 @@
 package org.grandmasfood.springcloud.products.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Entity
 @Table(name = "products")
@@ -18,10 +20,11 @@ import java.util.Optional;
 public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
-    @NotEmpty(message = "UUID cannot be empty")
-    private String uuid;
+    @NotNull(message = "UUID cannot be empty")
+    private UUID uuid;
 
     @NotEmpty(message = "Fantasy name cannot be empty")
     private String fantasy_name;
@@ -37,6 +40,7 @@ public class Products {
 
     private boolean available;
 
+    @JsonIgnore
     private Boolean active;
 
     public Optional<Products> setInactiveProducts() {

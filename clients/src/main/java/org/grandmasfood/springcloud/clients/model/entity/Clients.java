@@ -1,5 +1,6 @@
 package org.grandmasfood.springcloud.clients.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Entity
 @Table(name = "client")
@@ -19,10 +21,11 @@ public class Clients {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
-    @NotEmpty(message = "UUID cannot be empty")
-    private String uuid;
+    //    @NotEmpty(message = "UUID cannot be empty")
+    private UUID uuid;
 
     @NotEmpty(message = "Name cannot be empty")
     private String name;
@@ -40,7 +43,7 @@ public class Clients {
 
     @NotBlank(message = "Delivery address cannot be empty")
     private String deliveryAddress;
-
+    @JsonIgnore
     private Boolean active;
 
     public Optional<Clients> setInactiveClient() {

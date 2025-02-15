@@ -2,6 +2,7 @@ package org.grandmasfood.springcloud.clients.service;
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.config.interfaces.IClientServices;
+import org.grandmasfood.springcloud.clients.config.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.clients.model.dto.ClientsDTO;
 import org.grandmasfood.springcloud.clients.model.entity.Clients;
 import org.grandmasfood.springcloud.clients.repository.ClientsReposity;
@@ -16,11 +17,14 @@ public class ClientsService implements IClientServices {
     @Autowired
     private ClientsReposity clientsReposity;
 
+    @Autowired
+    private GeneratedUuId generatedUuId;
+
     @Transactional
     @Override
     public Clients createClient(@Valid ClientsDTO clientDTO) {
         Clients client = new Clients();
-        client.setUuid(clientDTO.uuid());
+        client.setUuid(generatedUuId.generateUuid());
         client.setName(clientDTO.name());
         client.setEmail(clientDTO.email());
         client.setDocument(clientDTO.document());

@@ -2,6 +2,7 @@ package org.grandmasfood.springcloud.orders.service;
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.orders.config.interfaces.IOrdersServices;
+import org.grandmasfood.springcloud.orders.config.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 import org.grandmasfood.springcloud.orders.model.entity.Orders;
 import org.grandmasfood.springcloud.orders.repository.OrdersRepository;
@@ -15,11 +16,14 @@ public class OrdersService implements IOrdersServices {
     @Autowired
     private OrdersRepository ordersRepository;
 
+    @Autowired
+    private GeneratedUuId generatedUuId;
+
 
     @Override
     public Orders createOrders(@Valid OrdersDTO ordersDTO) {
         Orders orders = new Orders();
-        orders.setUuid(ordersDTO.uuid());
+        orders.setUuid(generatedUuId.generateUuid());
         orders.setCreation_date_time(ordersDTO.creation_date_time());
         orders.setClient_document(ordersDTO.client_document());
         orders.setProduct_uuid(ordersDTO.product_uuid());

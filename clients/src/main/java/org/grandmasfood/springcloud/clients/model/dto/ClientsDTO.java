@@ -7,8 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 
 
 public record ClientsDTO(
-        @NotEmpty(message = "UUID cannot be empty")
-        String uuid,
+
 
         @NotEmpty(message = "Name cannot be empty")
         String name,

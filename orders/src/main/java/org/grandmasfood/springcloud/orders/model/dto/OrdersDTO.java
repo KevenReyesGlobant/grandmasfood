@@ -7,8 +7,6 @@ import jakarta.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 public record OrdersDTO(
-        @NotEmpty(message = "UUID cannot be empty")
-        String uuid,
         @NotNull(message = "Creation date and time cannot be null")
         LocalDateTime creation_date_time,
         @NotEmpty(message = "Client document cannot be empty")
@@ -31,6 +29,7 @@ public record OrdersDTO(
     public OrdersDTO {
         delivered = delivered == null ? false : delivered;
         active = active == null ? true : active;
+        delivery_date = delivery_date == null ? null : delivery_date;
 
     }
 }
