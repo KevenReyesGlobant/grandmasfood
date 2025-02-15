@@ -9,6 +9,8 @@ import org.grandmasfood.springcloud.orders.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 
 @Service
 public class OrdersService implements IOrdersServices {
@@ -32,6 +34,9 @@ public class OrdersService implements IOrdersServices {
         orders.setSub_total(ordersDTO.sub_total());
         orders.setTax(ordersDTO.tax());
         orders.setGrand_total(ordersDTO.grand_total());
+        if (ordersDTO.delivered() != true) {
+            ordersDTO.delivery_date().isBlank();
+        }
         orders.setDelivered(ordersDTO.delivered());
         orders.setDelivery_date(ordersDTO.delivery_date());
         orders.setActive(ordersDTO.active());

@@ -1,10 +1,12 @@
 package org.grandmasfood.springcloud.orders.model.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDateTime;
+
 
 public record OrdersDTO(
         @NotNull(message = "Creation date and time cannot be null")
@@ -22,14 +24,15 @@ public record OrdersDTO(
         double tax,
         @Positive(message = "Grand total must be positive")
         double grand_total,
+        @NotNull(message = "Delivered status cannot be null")
         Boolean delivered,
+        @NotBlank(message = "Delivery Date cannot be null")
         String delivery_date,
         Boolean active
 ) {
     public OrdersDTO {
         delivered = delivered == null ? false : delivered;
         active = active == null ? true : active;
-        delivery_date = delivery_date == null ? null : delivery_date;
-
+        delivery_date = delivery_date == null ? "" : delivery_date;
     }
 }
