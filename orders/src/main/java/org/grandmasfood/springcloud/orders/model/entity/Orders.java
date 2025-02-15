@@ -21,7 +21,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Orders {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
@@ -55,7 +54,6 @@ public class Orders {
 
     private boolean delivered;
 
-    @NotBlank(message = "Delivery Date cannot be null")
     private String delivery_date;
 
     @JsonIgnore

@@ -1,6 +1,7 @@
 package org.grandmasfood.springcloud.orders.service;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import org.grandmasfood.springcloud.orders.config.interfaces.IOrdersServices;
 import org.grandmasfood.springcloud.orders.config.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
@@ -34,11 +35,9 @@ public class OrdersService implements IOrdersServices {
         orders.setSub_total(ordersDTO.sub_total());
         orders.setTax(ordersDTO.tax());
         orders.setGrand_total(ordersDTO.grand_total());
-        if (ordersDTO.delivered() != true) {
-            ordersDTO.delivery_date().isBlank();
-        }
         orders.setDelivered(ordersDTO.delivered());
         orders.setDelivery_date(ordersDTO.delivery_date());
+
         orders.setActive(ordersDTO.active());
 
         return ordersRepository.save(orders);
