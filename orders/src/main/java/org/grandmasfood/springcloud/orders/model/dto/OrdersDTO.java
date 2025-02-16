@@ -4,10 +4,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import org.grandmasfood.springcloud.orders.config.interfaces.IValidDeliveryDate;
 
 import java.time.LocalDateTime;
 
 
+@IValidDeliveryDate
 public record OrdersDTO(
         @NotNull(message = "Creation date and time cannot be null")
         LocalDateTime creation_date_time,
@@ -35,22 +37,15 @@ public record OrdersDTO(
         @NotNull(message = "Delivered status cannot be null")
         Boolean delivered,
 
-        @NotEmpty(message = "Delivered Date status cannot be empty")
+//        @NotEmpty(message = "Delivered Date status cannot be empty")
         String delivery_date,
 
         Boolean active
 ) {
-        public OrdersDTO {
-                active = active == null ? true : active;
-                delivered = delivered == null ? false : delivered;
+    public OrdersDTO {
+        active = active == null ? true : active;
+        delivered = delivered == null ? false : delivered;
+    }
 
-                if (Boolean.TRUE.equals(delivered)) {
-                        if (delivery_date == null || delivery_date.isBlank()) {
-                                delivery_date().isEmpty();
-                                throw new IllegalArgumentException("Delivery date cannot be null or empty");
-                        }
-                } else {
-                        delivery_date = null;
-                }
-        }
+
 }
