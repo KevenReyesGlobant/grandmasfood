@@ -5,12 +5,26 @@ import org.grandmasfood.springcloud.orders.model.Client;
 import org.grandmasfood.springcloud.orders.model.Product;
 import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 import org.grandmasfood.springcloud.orders.model.entity.Orders;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IOrdersServices {
+    //    CRUD
+
     Orders createOrders(@Valid OrdersDTO ordersDTO);
-//    Comunication microservices CLients
+
+    Page<Orders> readOrders(Pageable pageable);
+
+    Optional<Orders> readOrdersById(Long id);
+
+    void deleteOrdersById(Long id);
+
+
+
+    //    Comunication microservices CLients
 
     Optional<Client> signedClient(Client client, Long id);
 
@@ -18,7 +32,7 @@ public interface IOrdersServices {
 
     Optional<Client> designedClient(Client client, Long id);
 
-//    Comunication microservices Products
+    //    Comunication microservices Products
 
     Optional<Product> signedProduct(Product product, Long id);
 

@@ -1,8 +1,9 @@
 package org.grandmasfood.springcloud.orders.service;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Null;
+import org.grandmasfood.springcloud.orders.config.interfaces.IClientClientRest;
 import org.grandmasfood.springcloud.orders.config.interfaces.IOrdersServices;
+import org.grandmasfood.springcloud.orders.config.interfaces.IProductClientRest;
 import org.grandmasfood.springcloud.orders.config.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.orders.model.Client;
 import org.grandmasfood.springcloud.orders.model.Product;
@@ -10,9 +11,13 @@ import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 import org.grandmasfood.springcloud.orders.model.entity.Orders;
 import org.grandmasfood.springcloud.orders.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -24,6 +29,12 @@ public class OrdersService implements IOrdersServices {
 
     @Autowired
     private GeneratedUuId generatedUuId;
+
+    @Autowired
+    private IClientClientRest iClientClientRest;
+
+    @Autowired
+    private IProductClientRest iProductClientRest;
 
 
     @Override
@@ -44,6 +55,22 @@ public class OrdersService implements IOrdersServices {
         orders.setActive(ordersDTO.active());
 
         return ordersRepository.save(orders);
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Orders> readOrders(Pageable pageable) {
+        return ordersRepository.findOrdersActive(pageable);
+    }
+
+    @Override
+    public Optional<Orders> readOrdersById(Long id) {
+        return ordersRepository.findOrdersActiveById(id).stream().findFirst();
+    }
+
+    @Override
+    public void deleteOrdersById(Long id) {
 
     }
 
