@@ -11,6 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,13 +20,17 @@ import java.util.UUID;
 @Entity
 @Table(name = "orders")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
+
+    @OneToMany(mappedBy = "order_id", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<OrdersProducts> ordersProducts;
+
+    @OneToMany(mappedBy = "order_id", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<OrdersClients> ordersClients;
 
     @NotNull(message = "UUID cannot be null")
     private UUID uuid;
@@ -62,5 +68,32 @@ public class Orders {
     public Optional<Orders> setInactiveOrders() {
         active = false;
         return Optional.empty();
+    }
+
+    public void addOrderProduct(OrdersProducts orderProduct) {
+        if (ordersProducts == null) {
+            ordersProducts = new ArrayList<>();
+        }
+        ordersProducts.add(orderProduct);
+    }
+
+    public void addOrderClient(OrdersClients orderClient) {
+        if (ordersClients == null) {
+            ordersClients = new ArrayList<>();
+        }
+        ordersClients.add(orderClient);
+    }
+
+    public void removeOrderProduct(OrdersProducts orderProduct) {
+        ordersProducts.remove(orderProduct);
+    }
+
+    public void removeOrderClient(OrdersClients orderClient) {
+        ordersClients.remove(orderClient);
+    }
+
+    public Orders() {
+        ordersClients = new ArrayList<>();
+        ordersProducts = new ArrayList<>();
     }
 }
