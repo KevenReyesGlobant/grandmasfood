@@ -2,13 +2,12 @@ package org.grandmasfood.springcloud.orders.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.grandmasfood.springcloud.orders.model.Client;
+import org.grandmasfood.springcloud.orders.model.Product;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,10 +25,18 @@ public class Orders {
     @JsonIgnore
     private Long id;
 
-    @OneToMany(mappedBy = "order_id", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
     private List<OrdersProducts> ordersProducts;
 
-    @OneToMany(mappedBy = "order_id", orphanRemoval = true, cascade = CascadeType.ALL)
+    @Transient
+    private List<Product> product;
+
+    @Transient
+    private List<Client> client;
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
     private List<OrdersClients> ordersClients;
 
     @NotNull(message = "UUID cannot be null")
@@ -95,5 +102,7 @@ public class Orders {
     public Orders() {
         ordersClients = new ArrayList<>();
         ordersProducts = new ArrayList<>();
+        client = new ArrayList<>();
+        product = new ArrayList<>();
     }
 }
