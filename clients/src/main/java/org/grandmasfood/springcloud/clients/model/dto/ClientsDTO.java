@@ -31,6 +31,8 @@ public record ClientsDTO(
         @Size(max = 500, message = "Delivery address must be at most 500 characters")
         String deliveryAddress,
 
+
+
         Boolean active
 
 ) {

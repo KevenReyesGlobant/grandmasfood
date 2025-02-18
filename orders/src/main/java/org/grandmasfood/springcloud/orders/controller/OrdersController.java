@@ -38,7 +38,11 @@ public class OrdersController {
         try {
             Page<Orders> orders = ordersService.readOrders(pageable);
 
-            Page<OrdersDTO> ordersDTO = orders.map(o -> new OrdersDTO(o.getCreation_date_time(), o.getClient_document(), o.getProduct_uuid(), o.getQuantity(), o.getExtra_info(), o.getSub_total(), o.getTax(), o.getGrand_total(), null, o.getDelivery_date(), o.getActive()));
+            Page<OrdersDTO> ordersDTO = orders.map(o -> new OrdersDTO(
+                    o.getCreation_date_time(), o.getClient_document(), o.getOrdersProducts(), o.getOrdersClients(),
+                    o.getProduct_uuid(), o.getQuantity(), o.getExtra_info(), o.getSub_total(), o.getTax(),
+                    o.getGrand_total(), o.isDelivered(), o.getDelivery_date(), o.getActive()
+            ));
 
             return ResponseEntity.ok(PageableDTO.fromPage(ordersDTO));
 

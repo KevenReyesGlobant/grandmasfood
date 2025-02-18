@@ -5,8 +5,11 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.grandmasfood.springcloud.orders.config.interfaces.IValidDeliveryDate;
+import org.grandmasfood.springcloud.orders.model.entity.OrdersClients;
+import org.grandmasfood.springcloud.orders.model.entity.OrdersProducts;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @IValidDeliveryDate
@@ -16,6 +19,10 @@ public record OrdersDTO(
 
         @NotEmpty(message = "Client document cannot be empty")
         String client_document,
+
+        List<OrdersProducts> ordersProducts,
+
+        List<OrdersClients> ordersClients,
 
         @NotEmpty(message = "Product UUID cannot be empty")
         String product_uuid,
