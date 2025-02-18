@@ -3,6 +3,7 @@ package org.grandmasfood.springcloud.orders.controller;
 import feign.FeignException;
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.orders.model.Client;
+import org.grandmasfood.springcloud.orders.model.Product;
 import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 import org.grandmasfood.springcloud.orders.model.dto.PageableDTO;
 import org.grandmasfood.springcloud.orders.model.entity.Orders;
@@ -52,6 +53,8 @@ public class OrdersController {
         }
     }
 
+    //    SIGNED
+
     @PutMapping("/signed_client/{id}")
     ResponseEntity<?> signedClient(@RequestBody Client client, @PathVariable @Valid Long id) {
         Optional<Client> client_msvc;
@@ -67,7 +70,27 @@ public class OrdersController {
             return ResponseEntity.status(HttpStatus.CREATED).body(client_msvc.get());
         }
         return ResponseEntity.notFound().build();
+
     }
+
+    @PutMapping("/signed_product/{id}")
+    ResponseEntity<?> signedProduct(@RequestBody Product product, @PathVariable @Valid Long id) {
+        Optional<Product> product_msvc;
+        try {
+            product_msvc = ordersService.signedProduct(product, id);
+
+
+        } catch (FeignException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message: ", "Product not found" + e.getMessage()));
+
+        }
+        if (product_msvc.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(product_msvc.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    //    CREATED
 
     @PostMapping("/created_client/{id}")
     ResponseEntity<?> createClient(@RequestBody Client client, @PathVariable @Valid Long id) {
@@ -86,6 +109,26 @@ public class OrdersController {
         return ResponseEntity.notFound().build();
     }
 
+    @PostMapping("/created_product/{id}")
+    ResponseEntity<?> createProduct(@RequestBody Product product, @PathVariable @Valid Long id) {
+        Optional<Product> product_msvc;
+        try {
+            product_msvc = ordersService.createProduct(product, id);
+
+
+        } catch (FeignException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message: ", "Product not create" + e.getMessage()));
+
+        }
+        if (product_msvc.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(product_msvc.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    //DESIGNED
+
     @DeleteMapping("/designed_client/{id}")
     ResponseEntity<?> deleteClient(@RequestBody Client client, @PathVariable @Valid Long id) {
         Optional<Client> client_msvc;
@@ -99,6 +142,23 @@ public class OrdersController {
         }
         if (client_msvc.isPresent()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(client_msvc.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/designed_product/{id}")
+    ResponseEntity<?> deleteProduct(@RequestBody Product product, @PathVariable @Valid Long id) {
+        Optional<Product> product_msvc;
+        try {
+            product_msvc = ordersService.designedProduct(product, id);
+
+
+        } catch (FeignException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message: ", "Product not designed" + e.getMessage()));
+
+        }
+        if (product_msvc.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(product_msvc.get());
         }
         return ResponseEntity.notFound().build();
     }

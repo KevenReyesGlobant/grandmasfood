@@ -30,9 +30,9 @@ public class Clients {
     @NotEmpty(message = "Name cannot be empty")
     private String name;
 
-    @Column(unique = true)
     @Email(message = "Email should be valid")
     @NotEmpty(message = "Email cannot be empty")
+    @Column(unique = true)
     private String email;
 
     @NotBlank(message = "Document cannot be empty")
