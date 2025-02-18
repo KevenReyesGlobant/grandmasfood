@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -39,4 +40,11 @@ public class ProductsService implements IProductsServies {
 
         return productsRepositoy.save(products);
     }
+
+    @Override
+    public Optional<Products> readProductsById(Long id) {
+        return Optional.ofNullable(productsRepositoy.findProductsActiveById(id));
+    }
+
+
 }

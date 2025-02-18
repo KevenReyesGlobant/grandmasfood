@@ -14,6 +14,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
     Page<Orders> findOrdersActive(Pageable pageable);
 
     @Query("select o from Orders o where o.id=:id and o.active=true")
-    List<Orders> findOrdersActiveById(Long id);
+    Orders findOrdersActiveById(Long id);
 
 }

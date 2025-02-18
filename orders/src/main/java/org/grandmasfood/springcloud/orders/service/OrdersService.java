@@ -66,7 +66,7 @@ public class OrdersService implements IOrdersServices {
 
     @Override
     public Optional<Orders> readOrdersById(Long id) {
-        return ordersRepository.findOrdersActiveById(id).stream().findFirst();
+        return Optional.ofNullable(ordersRepository.findOrdersActiveById(id));
     }
 
     @Override

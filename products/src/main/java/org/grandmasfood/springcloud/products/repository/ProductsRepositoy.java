@@ -2,7 +2,11 @@ package org.grandmasfood.springcloud.products.repository;
 
 import org.grandmasfood.springcloud.products.model.entity.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface ProductsRepositoy extends JpaRepository<Products, Long> {
-
+    @Query("select p from Products p where p.id=:id and p.active=true")
+    Products findProductsActiveById(Long id);
 }

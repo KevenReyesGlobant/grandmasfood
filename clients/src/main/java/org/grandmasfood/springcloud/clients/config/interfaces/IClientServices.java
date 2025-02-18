@@ -6,7 +6,10 @@ import org.grandmasfood.springcloud.clients.model.entity.Clients;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 public interface IClientServices {
     Clients createClient(@Valid ClientsDTO clientDTO);
-    Page<Clients> getAllClients(Pageable pageable);
+    Page<Clients> readAllActiveClients(Pageable pageable);
+    Optional<Clients> readCLientsById(Long id);
 }

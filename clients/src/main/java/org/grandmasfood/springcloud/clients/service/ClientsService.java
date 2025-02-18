@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class ClientsService implements IClientServices {
     @Autowired
@@ -36,7 +38,12 @@ public class ClientsService implements IClientServices {
     }
 
     @Override
-    public Page<Clients> getAllClients(Pageable pageable) {
+    public Page<Clients> readAllActiveClients(Pageable pageable) {
         return null;
+    }
+
+    @Override
+    public Optional<Clients> readCLientsById(Long id) {
+        return Optional.ofNullable(clientsReposity.findClientsActiveById(id));
     }
 }
