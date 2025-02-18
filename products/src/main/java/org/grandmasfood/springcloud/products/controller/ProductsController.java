@@ -2,18 +2,17 @@ package org.grandmasfood.springcloud.products.controller;
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.products.model.dto.ProductsDTO;
+import org.grandmasfood.springcloud.products.model.entity.Products;
 import org.grandmasfood.springcloud.products.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class ProductsController {
@@ -31,9 +30,15 @@ public class ProductsController {
 
     }
 
-    @GetMapping
-    public ResponseEntity<?> message() {
-        return ResponseEntity.ok("Hello from Products");
+    @GetMapping("/{id}")
+    public ResponseEntity<?> readProductActiveByID(@PathVariable @Valid Long id) {
+        Optional<Products> product = productsService.readProductsById(id);
+
+        if (product.isPresent()) {
+            return ResponseEntity.ok(product.get());
+        }
+        return ResponseEntity.notFound().build();
+
     }
 
     private ResponseEntity<?> getErrors(BindingResult bindingResult) {

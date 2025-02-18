@@ -9,6 +9,8 @@ import org.grandmasfood.springcloud.orders.model.Client;
 import org.grandmasfood.springcloud.orders.model.Product;
 import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 import org.grandmasfood.springcloud.orders.model.entity.Orders;
+import org.grandmasfood.springcloud.orders.model.entity.OrdersClients;
+import org.grandmasfood.springcloud.orders.model.entity.OrdersProducts;
 import org.grandmasfood.springcloud.orders.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,6 +40,7 @@ public class OrdersService implements IOrdersServices {
 
 
     @Override
+    @Transactional
     public Orders createOrders(@Valid OrdersDTO ordersDTO) {
         Orders orders = new Orders();
         orders.setUuid(generatedUuId.generateUuid());
@@ -75,32 +78,119 @@ public class OrdersService implements IOrdersServices {
     }
 
     @Override
+    @Transactional
     public Optional<Client> signedClient(Client client, Long id) {
+        Optional<Orders> order = ordersRepository.findById(id);
+        if (order.isPresent()) {
+            Client client_msv = iClientClientRest.readClientActiveById(client.getId());
+
+            Orders orders = order.get();
+
+            OrdersClients ordersClients = new OrdersClients();
+            ordersClients.setClientId(client_msv.getId());
+            orders.addOrderClient(ordersClients);
+            ordersRepository.save(orders);
+            return Optional.of(client_msv);
+        }
+
         return Optional.empty();
     }
 
     @Override
+    @Transactional
     public Optional<Client> createClient(Client client, Long id) {
+        Optional<Orders> order = ordersRepository.findById(id);
+        if (order.isPresent()) {
+            Client client_msv = iClientClientRest.createClientRest(client);
+
+            Orders orders = order.get();
+
+            OrdersClients ordersClients = new OrdersClients();
+            ordersClients.setClientId(client_msv.getId());
+            orders.addOrderClient(ordersClients);
+            ordersRepository.save(orders);
+            return Optional.of(client_msv);
+        }
+
         return Optional.empty();
     }
 
     @Override
+    @Transactional
     public Optional<Client> designedClient(Client client, Long id) {
+        Optional<Orders> order = ordersRepository.findById(id);
+        if (order.isPresent()) {
+            Client client_msv = iClientClientRest.readClientActiveById(client.getId());
+
+            Orders orders = order.get();
+
+            OrdersClients ordersClients = new OrdersClients();
+            ordersClients.setClientId(client_msv.getId());
+            orders.removeOrderClient(ordersClients);
+            ordersRepository.save(orders);
+            return Optional.of(client_msv);
+        }
+
         return Optional.empty();
+
     }
 
     @Override
     public Optional<Product> signedProduct(Product product, Long id) {
+        Optional<Orders> order = ordersRepository.findById(id);
+        if (order.isPresent()) {
+            Product product_msv = iProductClientRest.readProductActiveByID(product.getId());
+
+            Orders orders = order.get();
+
+            OrdersProducts ordersProducts = new OrdersProducts();
+            ordersProducts.setProductId(product_msv.getId());
+            orders.addOrderProduct(ordersProducts);
+
+            ordersRepository.save(orders);
+            return Optional.of(product_msv);
+        }
+
         return Optional.empty();
     }
 
     @Override
     public Optional<Product> createProduct(Product product, Long id) {
+
+        Optional<Orders> order = ordersRepository.findById(id);
+        if (order.isPresent()) {
+            Product product_msv = iProductClientRest.createProductRest(product);
+
+            Orders orders = order.get();
+
+            OrdersProducts ordersProducts = new OrdersProducts();
+            ordersProducts.setProductId(product_msv.getId());
+            orders.addOrderProduct(ordersProducts);
+
+            ordersRepository.save(orders);
+            return Optional.of(product_msv);
+        }
+
+
         return Optional.empty();
     }
 
     @Override
     public Optional<Product> designedProduct(Product product, Long id) {
+        Optional<Orders> order = ordersRepository.findById(id);
+        if (order.isPresent()) {
+            Product product_msv = iProductClientRest.readProductActiveByID(product.getId());
+
+            Orders orders = order.get();
+
+            OrdersProducts ordersProducts = new OrdersProducts();
+            ordersProducts.setProductId(product_msv.getId());
+            orders.removeOrderProduct(ordersProducts);
+
+            ordersRepository.save(orders);
+            return Optional.of(product_msv);
+        }
+
         return Optional.empty();
     }
 }

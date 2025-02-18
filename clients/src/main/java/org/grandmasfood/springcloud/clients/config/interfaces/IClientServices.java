@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface IClientServices {
     Clients createClient(@Valid ClientsDTO clientDTO);
     Page<Clients> readAllActiveClients(Pageable pageable);
-    Optional<Clients> readCLientsById(Long id);
+    Optional<Clients> readCLientsActiveById(Long id);
 }

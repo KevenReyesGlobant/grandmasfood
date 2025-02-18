@@ -1,6 +1,8 @@
 package org.grandmasfood.springcloud.orders.controller;
 
+import feign.FeignException;
 import jakarta.validation.Valid;
+import org.grandmasfood.springcloud.orders.model.Client;
 import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 import org.grandmasfood.springcloud.orders.model.dto.PageableDTO;
 import org.grandmasfood.springcloud.orders.model.entity.Orders;
@@ -12,14 +14,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class OrdersController {
@@ -27,7 +24,7 @@ public class OrdersController {
     @Autowired
     private OrdersService ordersService;
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> createOrders(@RequestBody @Valid OrdersDTO orderDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
@@ -36,7 +33,7 @@ public class OrdersController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ordersService.createOrders(orderDTO));
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<PageableDTO> readAllOrders(@PageableDefault(size = 10) Pageable pageable) {
         try {
             Page<Orders> orders = ordersService.readOrders(pageable);
@@ -49,7 +46,57 @@ public class OrdersController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-//        return ordersService.readOrders(pageable);
+    }
+
+    @PutMapping("/signed_client/{id}")
+    ResponseEntity<?> signedClient(@RequestBody Client client, @PathVariable @Valid Long id) {
+        Optional<Client> client_msvc;
+        try {
+            client_msvc = ordersService.signedClient(client, id);
+
+
+        } catch (FeignException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message: ", "Client not found" + e.getMessage()));
+
+        }
+        if (client_msvc.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(client_msvc.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/created_client/{id}")
+    ResponseEntity<?> createClient(@RequestBody Client client, @PathVariable @Valid Long id) {
+        Optional<Client> client_msvc;
+        try {
+            client_msvc = ordersService.createClient(client, id);
+
+
+        } catch (FeignException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message: ", "Client not create" + e.getMessage()));
+
+        }
+        if (client_msvc.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(client_msvc.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/designed_client/{id}")
+    ResponseEntity<?> deleteClient(@RequestBody Client client, @PathVariable @Valid Long id) {
+        Optional<Client> client_msvc;
+        try {
+            client_msvc = ordersService.designedClient(client, id);
+
+
+        } catch (FeignException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message: ", "Client not designed" + e.getMessage()));
+
+        }
+        if (client_msvc.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(client_msvc.get());
+        }
+        return ResponseEntity.notFound().build();
     }
 
 

@@ -43,7 +43,7 @@ public class ClientsService implements IClientServices {
     }
 
     @Override
-    public Optional<Clients> readCLientsById(Long id) {
+    public Optional<Clients> readCLientsActiveById(Long id) {
         return Optional.ofNullable(clientsReposity.findClientsActiveById(id));
     }
 }
