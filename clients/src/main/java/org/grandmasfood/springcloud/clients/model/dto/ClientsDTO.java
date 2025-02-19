@@ -13,9 +13,9 @@ public record ClientsDTO(
         @Size(max = 255, message = "Name and surname must be at most 255 characters")
         String name,
 
+        @Column(unique = true)
         @Email(message = "Email should be valid")
         @NotEmpty(message = "Email cannot be empty")
-        @Column(unique = true)
         @Size(max = 255, message = "Email must be at most 255 characters")
         String email,
 
