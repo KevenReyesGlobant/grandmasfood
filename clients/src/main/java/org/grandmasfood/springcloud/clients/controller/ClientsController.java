@@ -19,7 +19,7 @@ public class ClientsController {
     @Autowired
     private ClientsService clientsService;
 
-    @PostMapping
+    @PostMapping("/clients")
     public ResponseEntity<?> createClient(@RequestBody @Valid ClientsDTO client, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
@@ -37,7 +37,7 @@ public class ClientsController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/document/{document}")
+    @GetMapping("/clients/{document}")
     public ResponseEntity<?> readClientActiveByDocument(@PathVariable @Valid String document) {
         Optional<Clients> client = clientsService.readActiveClientsByDocument(document);
         if (client.isPresent()) {
@@ -46,6 +46,14 @@ public class ClientsController {
         return ResponseEntity.notFound().build();
     }
 
+    @DeleteMapping("/clients/{document}")
+    public ResponseEntity<?> deleteClientActiveByDocument(@PathVariable @Valid String document) {
+        Optional<Clients> client = clientsService.deleteClientsByDocument(document);
+        if (client.isPresent()) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found");
+    }
 
 
     private ResponseEntity<?> getErrors(BindingResult bindingResult) {

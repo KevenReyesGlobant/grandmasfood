@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -46,9 +45,8 @@ public class Clients {
     @JsonIgnore
     private Boolean active;
 
-    public Optional<Clients> setInactiveClient() {
-        active = false;
-        return Optional.empty();
+    public Boolean setInactiveClient() {
+        return active = false;
     }
 
 

@@ -7,8 +7,6 @@ import org.grandmasfood.springcloud.clients.model.dto.ClientsDTO;
 import org.grandmasfood.springcloud.clients.model.entity.Clients;
 import org.grandmasfood.springcloud.clients.repository.ClientsReposity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,11 +35,10 @@ public class ClientsService implements IClientServices {
 
     }
 
-
-    @Override
-    public Page<Clients> readAllActiveClients(Pageable pageable) {
-        return null;
-    }
+//    @Override
+//    public Page<Clients> readAllActiveClients(Pageable pageable) {
+//        return null;
+//    }
 
     @Transactional
     @Override
@@ -55,5 +52,16 @@ public class ClientsService implements IClientServices {
         return Optional.ofNullable(clientsReposity.findClientsActiveByDocument(document.toString()));
     }
 
+    @Override
+    public Optional<Clients> deleteClientsByDocument(String document) {
+        Clients clients = clientsReposity.findClientsActiveByDocument(document);
+        if (clients != null) {
+            clients.setActive(false);
+//            clientsReposity.save(clients);
+            return Optional.of(clients);
+        }
+        return Optional.empty();
+
+    }
 
 }
