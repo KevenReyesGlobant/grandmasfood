@@ -31,11 +31,22 @@ public class ClientsController {
     @GetMapping("/{id}")
     public ResponseEntity<?> readClientActiveById(@PathVariable @Valid Long id) {
         Optional<Clients> client = clientsService.readCLientsActiveById(id);
-        if(client.isPresent()){
-            return  ResponseEntity.ok(client.get());
+        if (client.isPresent()) {
+            return ResponseEntity.ok(client.get());
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/document/{document}")
+    public ResponseEntity<?> readClientActiveByDocument(@PathVariable @Valid String document) {
+        Optional<Clients> client = clientsService.readActiveClientsByDocument(document);
+        if (client.isPresent()) {
+            return ResponseEntity.ok(client.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
 
     private ResponseEntity<?> getErrors(BindingResult bindingResult) {
         Map<String, String> error = new HashMap<>();

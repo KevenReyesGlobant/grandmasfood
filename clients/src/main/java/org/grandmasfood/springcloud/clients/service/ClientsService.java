@@ -37,13 +37,23 @@ public class ClientsService implements IClientServices {
 
     }
 
+
     @Override
     public Page<Clients> readAllActiveClients(Pageable pageable) {
         return null;
     }
 
+    @Transactional
     @Override
-    public Optional<Clients> readCLientsActiveById(Long id) {
+    public Optional<Clients> readCLientsActiveById(@Valid Long id) {
         return Optional.ofNullable(clientsReposity.findClientsActiveById(id));
     }
+
+    @Transactional
+    @Override
+    public Optional<Clients> readActiveClientsByDocument(@Valid String document) {
+        return Optional.ofNullable(clientsReposity.findClientsActiveByDocument(document.toString()));
+    }
+
+
 }

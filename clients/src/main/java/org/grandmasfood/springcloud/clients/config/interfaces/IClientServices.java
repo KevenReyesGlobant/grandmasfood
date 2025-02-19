@@ -12,4 +12,5 @@ public interface IClientServices {
     Clients createClient(@Valid ClientsDTO clientDTO);
     Page<Clients> readAllActiveClients(Pageable pageable);
     Optional<Clients> readCLientsActiveById(Long id);
+    Optional<Clients> readActiveClientsByDocument(String document);
 }

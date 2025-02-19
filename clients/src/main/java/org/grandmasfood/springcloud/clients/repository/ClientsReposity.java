@@ -10,12 +10,10 @@ import java.util.Optional;
 
 public interface ClientsReposity extends JpaRepository<Clients, Long> {
 
-    default Page<Clients> findAll(Pageable pageable) {
-        return null;
-
-
-    }
-
     @Query("select c from Clients c where c.id=:id and c.active=true")
     Clients findClientsActiveById(Long id);
+
+    @Query("select c from Clients c where c.document=:document and c.active=true")
+    Clients findClientsActiveByDocument(String document);
+
 }
