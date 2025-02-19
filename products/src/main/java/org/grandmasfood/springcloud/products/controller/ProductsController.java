@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class ProductsController {
@@ -20,7 +21,7 @@ public class ProductsController {
     @Autowired
     private ProductsService productsService;
 
-    @PostMapping
+    @PostMapping("/products")
     public ResponseEntity<?> createProduct(@RequestBody @Valid ProductsDTO productsDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
@@ -33,6 +34,16 @@ public class ProductsController {
     @GetMapping("/{id}")
     public ResponseEntity<?> readProductActiveByID(@PathVariable @Valid Long id) {
         Optional<Products> product = productsService.readProductsById(id);
+
+        if (product.isPresent()) {
+            return ResponseEntity.ok(product.get());
+        }
+        return ResponseEntity.notFound().build();
+
+    }
+    @GetMapping("/products/{uuid}")
+    public ResponseEntity<?> readProductActiveByID(@PathVariable @Valid UUID uuid) {
+        Optional<Products> product = productsService.readProductsByUuId(uuid);
 
         if (product.isPresent()) {
             return ResponseEntity.ok(product.get());

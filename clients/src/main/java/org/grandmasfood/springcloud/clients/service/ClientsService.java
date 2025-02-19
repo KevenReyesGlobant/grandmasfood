@@ -57,7 +57,7 @@ public class ClientsService implements IClientServices {
         Clients clients = clientsReposity.findClientsActiveByDocument(document);
         if (clients != null) {
             clients.setActive(false);
-//            clientsReposity.save(clients);
+            clientsReposity.save(clients);
             return Optional.of(clients);
         }
         return Optional.empty();
