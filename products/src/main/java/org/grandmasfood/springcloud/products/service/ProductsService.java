@@ -50,6 +50,7 @@ public class ProductsService implements IProductsServies {
     @Override
     @Transactional
     public Optional<Products> readProductsByUuId(UUID id) {
+
         return Optional.ofNullable(productsRepositoy.findProductsActiveByUuId(id));
     }
 

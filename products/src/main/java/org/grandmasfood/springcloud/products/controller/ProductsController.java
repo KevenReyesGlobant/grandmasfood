@@ -1,6 +1,7 @@
 package org.grandmasfood.springcloud.products.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import org.grandmasfood.springcloud.products.model.dto.ProductsDTO;
 import org.grandmasfood.springcloud.products.model.entity.Products;
 import org.grandmasfood.springcloud.products.service.ProductsService;
@@ -41,15 +42,19 @@ public class ProductsController {
         return ResponseEntity.notFound().build();
 
     }
+
     @GetMapping("/products/{uuid}")
     public ResponseEntity<?> readProductActiveByID(@PathVariable @Valid UUID uuid) {
-        Optional<Products> product = productsService.readProductsByUuId(uuid);
+        try {
+            Optional<Products> product = productsService.readProductsByUuId(uuid.compareTo(new UUID(0, 0)) == 0 ? null : uuid);
 
-        if (product.isPresent()) {
-            return ResponseEntity.ok(product.get());
+            if (product.isPresent()) {
+                return ResponseEntity.ok(product.get());
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid UUID format");
         }
-        return ResponseEntity.notFound().build();
-
     }
 
     private ResponseEntity<?> getErrors(BindingResult bindingResult) {
