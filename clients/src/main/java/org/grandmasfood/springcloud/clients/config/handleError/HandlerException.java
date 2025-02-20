@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,16 @@ public class HandlerException {
         String detailedMessage = extractDetailMessage(ex.getMessage());
         error.setException(detailedMessage);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(error);
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> notFoundException(Exception ex) {
+        ErrorResponseDTO error = new ErrorResponseDTO();
+        error.setCode(HttpStatus.NOT_FOUND.toString());
+        error.setTimestamp(LocalDateTime.now());
+        error.setDescription(ex.getLocalizedMessage());
+        error.setException(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class, NoResourceFoundException.class})
