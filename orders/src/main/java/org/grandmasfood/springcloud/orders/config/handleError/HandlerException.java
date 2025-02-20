@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.config.handleError;
+package org.grandmasfood.springcloud.orders.config.handleError;
 
 import org.grandmasfood.springcloud.clients.model.dto.ErrorResponseDTO;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -38,7 +37,7 @@ public class HandlerException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
-    @ExceptionHandler({MethodArgumentTypeMismatchException.class,HttpRequestMethodNotSupportedException.class, NoResourceFoundException.class})
+    @ExceptionHandler({HttpRequestMethodNotSupportedException.class, NoResourceFoundException.class})
     public ResponseEntity<ErrorResponseDTO> handleServerException(Exception ex) {
         ErrorResponseDTO error = new ErrorResponseDTO();
         error.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());

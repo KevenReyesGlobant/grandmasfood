@@ -43,31 +43,33 @@ public class Orders {
     private UUID uuid;
 
     @NotNull(message = "Creation date and time cannot be null")
-    private LocalDateTime creation_date_time;
+    private LocalDateTime creationDateTime;
 
     @NotEmpty(message = "Client document cannot be empty")
-    private String client_document;
+    private String clientDocument;
 
     @NotEmpty(message = "Product UUID cannot be empty")
-    private String product_uuid;
+    private String productUuid;
 
     @Positive(message = "Quantity must be positive")
     private int quantity;
 
-    private String extra_info;
+    @NotEmpty(message = "Product extra info cannot be empty")
+    private String extraInfo;
 
     @Positive(message = "Subtotal must be positive")
-    private double sub_total;
+    private double subTotal;
 
     @Positive(message = "Tax must be positive")
     private double tax;
 
     @Positive(message = "Grand total must be positive")
-    private double grand_total;
+    private double grandTotal;
 
     private boolean delivered;
 
-    private String delivery_date;
+    @NotEmpty(message = "Delivery date cannot be empty")
+    private String deliveryDate;
 
     @JsonIgnore
     private Boolean active;

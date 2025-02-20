@@ -10,9 +10,9 @@ public class DeliveryDateValidator implements ConstraintValidator<IValidDelivery
     @Override
     public boolean isValid(OrdersDTO dto, ConstraintValidatorContext context) {
         if (Boolean.TRUE.equals(dto.delivered())) {
-            return dto.delivery_date() != null && !dto.delivery_date().isBlank();
+            return dto.deliveryDate() != null && !dto.deliveryDate().isEmpty();
         } else {
-            return dto.delivery_date() == null;
+            return dto.deliveryDate() == null;
         }
     }
 }

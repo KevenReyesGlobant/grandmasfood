@@ -20,12 +20,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
+
 public class OrdersController {
 
     @Autowired
     private OrdersService ordersService;
 
-    @PostMapping("/")
+    @PostMapping("/order")
     public ResponseEntity<?> createOrders(@RequestBody @Valid OrdersDTO orderDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
@@ -34,15 +35,15 @@ public class OrdersController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ordersService.createOrders(orderDTO));
     }
 
-    @GetMapping("/")
+    @GetMapping("/order")
     public ResponseEntity<PageableDTO> readAllOrders(@PageableDefault(size = 10) Pageable pageable) {
         try {
             Page<Orders> orders = ordersService.readOrders(pageable);
 
             Page<OrdersDTO> ordersDTO = orders.map(o -> new OrdersDTO(
-                    o.getCreation_date_time(), o.getClient_document(), o.getOrdersProducts(), o.getOrdersClients(),
-                    o.getProduct_uuid(), o.getQuantity(), o.getExtra_info(), o.getSub_total(), o.getTax(),
-                    o.getGrand_total(), o.isDelivered(), o.getDelivery_date(), o.getActive()
+                    o.getCreationDateTime(), o.getClientDocument(), o.getOrdersProducts(), o.getOrdersClients(),
+                    o.getProductUuid(), o.getQuantity(), o.getExtraInfo(), o.getSubTotal(), o.getTax(),
+                    o.getGrandTotal(), o.isDelivered(), o.getDeliveryDate(), o.getActive()
             ));
 
             return ResponseEntity.ok(PageableDTO.fromPage(ordersDTO));

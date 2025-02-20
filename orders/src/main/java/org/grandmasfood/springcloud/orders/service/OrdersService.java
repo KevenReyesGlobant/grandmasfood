@@ -44,16 +44,16 @@ public class OrdersService implements IOrdersServices {
     public Orders createOrders(@Valid OrdersDTO ordersDTO) {
         Orders orders = new Orders();
         orders.setUuid(generatedUuId.generateUuid());
-        orders.setCreation_date_time(ordersDTO.creation_date_time());
-        orders.setClient_document(ordersDTO.client_document());
-        orders.setProduct_uuid(ordersDTO.product_uuid());
+        orders.setCreationDateTime(ordersDTO.creationDateTime());
+        orders.setClientDocument(ordersDTO.clientDocument());
+        orders.setProductUuid(ordersDTO.productUuid());
         orders.setQuantity(ordersDTO.quantity());
-        orders.setExtra_info(ordersDTO.extra_info());
-        orders.setSub_total(ordersDTO.sub_total());
+        orders.setExtraInfo(ordersDTO.extraInfo());
+        orders.setSubTotal(ordersDTO.subTotal());
         orders.setTax(ordersDTO.tax());
-        orders.setGrand_total(ordersDTO.grand_total());
+        orders.setGrandTotal(ordersDTO.grandTotal());
         orders.setDelivered(ordersDTO.delivered());
-        orders.setDelivery_date(ordersDTO.delivery_date());
+        orders.setDeliveryDate(ordersDTO.deliveryDate());
 
         orders.setActive(ordersDTO.active());
 
