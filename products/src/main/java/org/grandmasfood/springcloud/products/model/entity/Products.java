@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.grandmasfood.springcloud.products.model.enums.Category;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -28,10 +29,10 @@ public class Products {
     private UUID uuid;
 
     @NotEmpty(message = "Fantasy name cannot be empty")
-    private String fantasy_name;
+    private String fantasyName;
 
-    @NotEmpty(message = "Category cannot be empty")
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     private String description;
 

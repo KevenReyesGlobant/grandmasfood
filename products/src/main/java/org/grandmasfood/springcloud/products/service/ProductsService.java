@@ -31,7 +31,7 @@ public class ProductsService implements IProductsServies {
 
         products.setUuid(generatedUuId.generateUuid());
         products.setDescription(productsDTO.description());
-        products.setFantasy_name(productsDTO.fantasy_name().toUpperCase());
+        products.setFantasyName(productsDTO.fantasyName().toUpperCase());
         products.setCategory(productsDTO.category());
         products.setPrice(productsDTO.price());
         products.setAvailable(productsDTO.available());
