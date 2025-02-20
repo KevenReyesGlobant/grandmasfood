@@ -19,6 +19,7 @@ public record ClientsDTO(
         @Size(max = 255, message = "Email must be at most 255 characters")
         String email,
 
+        @Column(unique = true)
         @NotBlank(message = "Document cannot be empty")
         @Pattern(regexp = "^(CC|CE|P)-\\d{1,20}$", message = "Document must include type (CC, CE, P,...) followed by a hyphen and a number, with a maximum of 20 characters")
         String document,

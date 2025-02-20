@@ -23,7 +23,6 @@ public class Clients {
     @JsonIgnore
     private Long id;
 
-    //    @NotEmpty(message = "UUID cannot be empty")
     private UUID uuid;
 
     @NotEmpty(message = "Name cannot be empty")
@@ -34,6 +33,7 @@ public class Clients {
     @Email(message = "Email should be valid")
     private String email;
 
+    @Column(unique = true)
     @NotBlank(message = "Document cannot be empty")
     private String document;
 
