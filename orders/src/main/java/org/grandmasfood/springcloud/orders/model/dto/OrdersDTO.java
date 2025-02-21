@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-//@IValidDeliveryDate
+@IValidDeliveryDate
 public record OrdersDTO(
         @NotNull(message = "Creation date and time cannot be null")
         LocalDateTime creationDateTime,
@@ -53,7 +53,7 @@ public record OrdersDTO(
     public OrdersDTO {
         active = active == null ? true : active;
         delivered = delivered == null ? false : delivered;
-        deliveryDate = deliveryDate == null ? null : deliveryDate;
+        deliveryDate = Boolean.FALSE.equals(delivered) ? null : deliveryDate;
     }
 
 
