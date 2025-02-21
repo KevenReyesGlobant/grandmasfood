@@ -8,11 +8,15 @@ import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 public class DeliveryDateValidator implements ConstraintValidator<IValidDeliveryDate, OrdersDTO>{
 
     @Override
-    public boolean isValid(OrdersDTO dto, ConstraintValidatorContext context) {
-        if (Boolean.TRUE.equals(dto.delivered())) {
-            return dto.deliveryDate() != null && !dto.deliveryDate().isEmpty();
+    public void initialize(IValidDeliveryDate constraintAnnotation) {
+    }
+
+    @Override
+    public boolean isValid(OrdersDTO ordersDTO, ConstraintValidatorContext context) {
+        if (ordersDTO.delivered() != null && ordersDTO.delivered()) {
+            return ordersDTO.deliveryDate() != null && !ordersDTO.deliveryDate().isEmpty();
         } else {
-            return dto.deliveryDate() == null;
+            return ordersDTO.deliveryDate() == null || ordersDTO.deliveryDate().isEmpty();
         }
     }
 }

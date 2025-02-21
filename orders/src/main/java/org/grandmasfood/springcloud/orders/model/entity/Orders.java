@@ -68,7 +68,7 @@ public class Orders {
 
     private boolean delivered;
 
-    @NotEmpty(message = "Delivery date cannot be empty")
+//    @NotEmpty(message = "Delivery date cannot be empty")
     private String deliveryDate;
 
     @JsonIgnore

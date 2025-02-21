@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IValidDeliveryDate {
-    String message() default "Delivery date is required and cannot be blank when order is marked as delivered";
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
+//    String message() default "Delivery date is required and cannot be blank when order is marked as delivered";
+//    Class<?>[] groups() default {};
+//    Class<? extends Payload>[] payload() default {};
 }

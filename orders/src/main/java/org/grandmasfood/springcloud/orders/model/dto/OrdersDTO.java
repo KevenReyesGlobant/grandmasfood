@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-@IValidDeliveryDate
+//@IValidDeliveryDate
 public record OrdersDTO(
         @NotNull(message = "Creation date and time cannot be null")
         LocalDateTime creationDateTime,
@@ -44,7 +44,7 @@ public record OrdersDTO(
         @NotNull(message = "Delivered status cannot be null")
         Boolean delivered,
 
-        @NotEmpty(message = "Delivered Date status cannot be empty")
+//        @NotEmpty(message = "Delivered Date status cannot be empty")
         String deliveryDate,
 
         Boolean active

@@ -1,5 +1,6 @@
 package org.grandmasfood.springcloud.orders.config.handleError;
 
+import jakarta.validation.ConstraintDefinitionException;
 import org.grandmasfood.springcloud.clients.model.dto.ErrorResponseDTO;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,16 @@ public class HandlerException {
         error.setCode(HttpStatus.BAD_REQUEST.toString());
         error.setTimestamp(LocalDateTime.now());
         error.setDescription("Data integrity violation");
+        String detailedMessage = extractDetailMessage(ex.getMessage());
+        error.setException(detailedMessage);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(error);
+    }
+    @ExceptionHandler({ConstraintDefinitionException.class})
+    public ResponseEntity<ErrorResponseDTO> handleDataViolationException(Exception ex) {
+        ErrorResponseDTO error = new ErrorResponseDTO();
+        error.setCode(HttpStatus.BAD_REQUEST.toString());
+        error.setTimestamp(LocalDateTime.now());
+        error.setDescription("If delivered is true, delivery date cannot be empty");
         String detailedMessage = extractDetailMessage(ex.getMessage());
         error.setException(detailedMessage);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(error);
