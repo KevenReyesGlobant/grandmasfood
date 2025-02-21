@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface IClientServices {
     Clients createClient(@Valid ClientsDTO clientDTO);
 
+    Clients updateClient(@Valid ClientsDTO clientDTO, String document);
+
     //    Page<Clients> readAllActiveClients(Pageable pageable);
     Optional<Clients> readCLientsActiveById(Long id);
 

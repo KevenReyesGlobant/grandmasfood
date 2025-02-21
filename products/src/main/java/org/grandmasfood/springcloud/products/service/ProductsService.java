@@ -6,6 +6,7 @@ import org.grandmasfood.springcloud.products.config.interfaces.IProductsServies;
 import org.grandmasfood.springcloud.products.config.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.products.model.dto.ProductsDTO;
 import org.grandmasfood.springcloud.products.model.entity.Products;
+import org.grandmasfood.springcloud.products.model.enums.Category;
 import org.grandmasfood.springcloud.products.repository.ProductsRepositoy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

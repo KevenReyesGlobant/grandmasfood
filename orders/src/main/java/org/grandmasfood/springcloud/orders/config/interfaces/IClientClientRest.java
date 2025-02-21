@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "clients", url = "localhost:3000")
 public interface IClientClientRest {
-    @PostMapping("/")
+    @PostMapping("/clients")
     Client createClientRest(@RequestBody @Valid Client client);
 
     @GetMapping("/{id}")

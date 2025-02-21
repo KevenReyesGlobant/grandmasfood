@@ -2,10 +2,7 @@ package org.grandmasfood.springcloud.products.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,8 +42,4 @@ public class Products {
     @JsonIgnore
     private Boolean active;
 
-    public Optional<Products> setInactiveProducts() {
-        active = false;
-        return Optional.empty();
-    }
 }

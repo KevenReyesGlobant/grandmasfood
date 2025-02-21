@@ -1,6 +1,7 @@
 package org.grandmasfood.springcloud.clients.service;
 
 import jakarta.validation.Valid;
+import org.grandmasfood.springcloud.clients.ClientsApplication;
 import org.grandmasfood.springcloud.clients.config.interfaces.IClientServices;
 import org.grandmasfood.springcloud.clients.config.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.clients.model.dto.ClientsDTO;
@@ -35,10 +36,30 @@ public class ClientsService implements IClientServices {
 
     }
 
-//    @Override
-//    public Page<Clients> readAllActiveClients(Pageable pageable) {
-//        return null;
-//    }
+
+    @Override
+    public Clients updateClient(@Valid ClientsDTO clientDTO, @Valid String document) {
+
+        Optional<Clients> clientUpdate = Optional.ofNullable(clientsReposity.findClientsActiveByDocument(document));
+        if (clientUpdate.isPresent()) {
+            Clients client = clientUpdate.get();
+            updateField(clientDTO.name(), client::setName);
+            updateField(clientDTO.email(), client::setEmail);
+            updateField(clientDTO.document(), client::setDocument);
+            updateField(clientDTO.phone(), client::setPhone);
+            updateField(clientDTO.deliveryAddress(), client::setDeliveryAddress);
+            updateField(clientDTO.active(), client::setActive);
+            return clientsReposity.save(client);
+        }
+        return null;
+    }
+
+    private <T> void updateField(T newValue, java.util.function.Consumer<T> setter) {
+        if (newValue != null) {
+            setter.accept(newValue);
+        }
+    }
+
 
     @Transactional
     @Override

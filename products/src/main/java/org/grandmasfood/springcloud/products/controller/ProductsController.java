@@ -1,7 +1,6 @@
 package org.grandmasfood.springcloud.products.controller;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Pattern;
 import org.grandmasfood.springcloud.products.model.dto.ProductsDTO;
 import org.grandmasfood.springcloud.products.model.entity.Products;
 import org.grandmasfood.springcloud.products.service.ProductsService;
@@ -27,7 +26,6 @@ public class ProductsController {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
         }
-
         return ResponseEntity.status(HttpStatus.CREATED).body(productsService.createProduct(productsDTO));
 
     }
@@ -61,7 +59,7 @@ public class ProductsController {
         Map<String, String> error = new HashMap<>();
 
         bindingResult.getFieldErrors().forEach(e -> {
-            error.put(e.getField(), "This field " + e.getField() + " is not empty");
+            error.put(e.getField(), "This field " + e.getField() + " is not empty or negative");
         });
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);

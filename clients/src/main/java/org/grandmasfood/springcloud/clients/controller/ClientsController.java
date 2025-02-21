@@ -45,6 +45,18 @@ public class ClientsController {
         }
         return ResponseEntity.notFound().build();
     }
+    @PutMapping("/clients/{document}")
+    public ResponseEntity<?> updateClientActiveByDocument(@RequestBody @Valid ClientsDTO clientDTO, @PathVariable @Valid String document, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return getErrors(bindingResult);
+        }
+
+        Optional<Clients> client = Optional.ofNullable(clientsService.updateClient(clientDTO, document));
+        if (client.isPresent()) {
+            return ResponseEntity.ok(client.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     @DeleteMapping("/clients/{document}")
     public ResponseEntity<?> deleteClientActiveByDocument(@PathVariable @Valid String document) {
