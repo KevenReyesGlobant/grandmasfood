@@ -39,19 +39,29 @@ public class ClientsService implements IClientServices {
 
     @Override
     public Clients updateClient(@Valid ClientsDTO clientDTO, @Valid String document) {
-
-        Optional<Clients> clientUpdate = Optional.ofNullable(clientsReposity.findClientsActiveByDocument(document));
-        if (clientUpdate.isPresent()) {
-            Clients client = clientUpdate.get();
-            updateField(clientDTO.name(), client::setName);
-            updateField(clientDTO.email(), client::setEmail);
-            updateField(clientDTO.document(), client::setDocument);
-            updateField(clientDTO.phone(), client::setPhone);
-            updateField(clientDTO.deliveryAddress(), client::setDeliveryAddress);
-            updateField(clientDTO.active(), client::setActive);
-            return clientsReposity.save(client);
+        try {
+            Optional<Clients> clientUpdate = Optional.ofNullable(clientsReposity.findClientsActiveByDocument(document));
+            if (clientUpdate.isPresent()) {
+                Clients client = clientUpdate.get();
+                updateField(clientDTO.name(), client::setName);
+                if (clientUpdate.stream().map(Clients::getEmail).findFirst().get().equals(clientDTO.email())) {
+                    throw new RuntimeException("Email already exists");
+                }
+                updateField(clientDTO.email(), client::setEmail);
+                if (clientUpdate.stream().map(Clients::getDocument).findFirst().get().equals(clientDTO.document())) {
+                    throw new RuntimeException("Document already exists");
+                }
+                updateField(clientDTO.document(), client::setDocument);
+                updateField(clientDTO.phone(), client::setPhone);
+                updateField(clientDTO.deliveryAddress(), client::setDeliveryAddress);
+                updateField(clientDTO.active(), client::setActive);
+                return clientsReposity.save(client);
+            }
+            return null;
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error updating client" + e.getMessage());
         }
-        return null;
+
     }
 
     private <T> void updateField(T newValue, java.util.function.Consumer<T> setter) {
@@ -59,7 +69,6 @@ public class ClientsService implements IClientServices {
             setter.accept(newValue);
         }
     }
-
 
     @Transactional
     @Override
