@@ -38,6 +38,7 @@ public class ClientsService implements IClientServices {
 
 
     @Override
+    @Transactional
     public Clients updateClient(@Valid ClientsDTO clientDTO, @Valid String document) {
         try {
             Optional<Clients> clientUpdate = Optional.ofNullable(clientsReposity.findClientsActiveByDocument(document));
@@ -48,18 +49,13 @@ public class ClientsService implements IClientServices {
                     throw new RuntimeException("Email already exists");
                 }
                 updateField(clientDTO.email(), client::setEmail);
-                if (clientUpdate.stream().map(Clients::getDocument).findFirst().get().equals(clientDTO.document())) {
-                    throw new RuntimeException("Document already exists");
-                }
-                updateField(clientDTO.document(), client::setDocument);
                 updateField(clientDTO.phone(), client::setPhone);
                 updateField(clientDTO.deliveryAddress(), client::setDeliveryAddress);
-                updateField(clientDTO.active(), client::setActive);
                 return clientsReposity.save(client);
             }
             return null;
         } catch (RuntimeException e) {
-            throw new RuntimeException("Error updating client" + e.getMessage());
+            throw new RuntimeException("Error updating client: " + e.getMessage());
         }
 
     }

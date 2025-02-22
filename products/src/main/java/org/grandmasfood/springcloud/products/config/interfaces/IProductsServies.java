@@ -9,8 +9,15 @@ import java.util.UUID;
 
 
 public interface IProductsServies {
+
     Products createProduct(@Valid ProductsDTO productsDTO);
 
+    Products updateProduct(@Valid ProductsDTO productsDTO, UUID id);
+
     Optional<Products> readProductsById(Long id);
+
     Optional<Products> readProductsByUuId(UUID id);
+
+    Optional<Products> deleteProductsByUuId(UUID id);
+
 }

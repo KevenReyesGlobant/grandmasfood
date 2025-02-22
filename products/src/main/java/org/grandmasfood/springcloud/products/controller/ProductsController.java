@@ -55,6 +55,33 @@ public class ProductsController {
         }
     }
 
+    @PutMapping("/products/{uuid}")
+    public ResponseEntity<?> updateProductActiveByID(@RequestBody ProductsDTO productsDTO, @PathVariable @Valid UUID uuid) {
+        try {
+            Optional<Products> product = productsService.readProductsByUuId(uuid.compareTo(new UUID(0, 0)) == 0 ? null : uuid);
+
+            if (product.isPresent()) {
+                return ResponseEntity.ok(productsService.updateProduct(productsDTO, uuid));
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid UUID format");
+        }
+    }
+    @DeleteMapping("/products/{uuid}")
+    public ResponseEntity<?> deleteProductActiveByID(@PathVariable @Valid UUID uuid) {
+        try {
+            Optional<Products> product = productsService.readProductsByUuId(uuid.compareTo(new UUID(0, 0)) == 0 ? null : uuid);
+
+            if (product.isPresent()) {
+                return ResponseEntity.ok(productsService.deleteProductsByUuId(uuid));
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid UUID format");
+        }
+    }
+
     private ResponseEntity<?> getErrors(BindingResult bindingResult) {
         Map<String, String> error = new HashMap<>();
 
