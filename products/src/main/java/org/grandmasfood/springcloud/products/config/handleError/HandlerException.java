@@ -9,6 +9,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 
 import java.time.LocalDateTime;
@@ -27,7 +28,7 @@ public class HandlerException {
         error.setException(detailedMessage);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(error);
     }
-    @ExceptionHandler({HttpMessageNotReadableException.class})
+    @ExceptionHandler({HttpMessageNotReadableException.class, RuntimeException.class})
     public ResponseEntity<ErrorResponseDTO> cannotDeserializeException(Exception ex) {
         ErrorResponseDTO error = new ErrorResponseDTO();
         error.setCode(HttpStatus.BAD_REQUEST.toString());
@@ -39,7 +40,7 @@ public class HandlerException {
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ErrorResponseDTO> notFoundException(Exception ex) {
+    public ResponseEntity<ErrorResponseDTO> badGatewayException(Exception ex) {
         ErrorResponseDTO error = new ErrorResponseDTO();
         error.setCode(HttpStatus.BAD_GATEWAY.toString());
         error.setTimestamp(LocalDateTime.now());
@@ -47,12 +48,22 @@ public class HandlerException {
         error.setException(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(error);
     }
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ErrorResponseDTO> notFoundException(Exception ex) {
+        ErrorResponseDTO error = new ErrorResponseDTO();
+        error.setCode(HttpStatus.NOT_FOUND.toString());
+        error.setTimestamp(LocalDateTime.now());
+        error.setDescription(ex.getLocalizedMessage()+" verify the UUID..");
+        error.setException(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
     private String extractDetailMessage(String message) {
         String[] parts = message.split("Detail: ");
         if (parts.length > 1) {
             return parts[1].split("\\]")[0].trim();
         }
-        return "No detailed message available";
+        return "No detailed message available, body request not readable";
     }
 
 }

@@ -74,7 +74,8 @@ public class ProductsController {
             Optional<Products> product = productsService.readProductsByUuId(uuid.compareTo(new UUID(0, 0)) == 0 ? null : uuid);
 
             if (product.isPresent()) {
-                return ResponseEntity.ok(productsService.deleteProductsByUuId(uuid));
+                productsService.deleteProductsByUuId(uuid);
+                return ResponseEntity.ok("Product deleted");
             }
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
         } catch (IllegalArgumentException e) {
