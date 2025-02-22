@@ -56,7 +56,7 @@ public class OrdersController {
 
     //    SIGNED
 
-    @PutMapping("/signed_client/{id}")
+    @PutMapping("/order/signed_client/{id}")
     ResponseEntity<?> signedClient(@RequestBody Client client, @PathVariable @Valid Long id) {
         Optional<Client> client_msvc;
         try {
@@ -74,7 +74,7 @@ public class OrdersController {
 
     }
 
-    @PutMapping("/signed_product/{id}")
+    @PutMapping("/order/signed_product/{id}")
     ResponseEntity<?> signedProduct(@RequestBody Product product, @PathVariable @Valid Long id) {
         Optional<Product> product_msvc;
         try {
@@ -93,7 +93,7 @@ public class OrdersController {
 
     //    CREATED
 
-    @PostMapping("/created_client/{id}")
+    @PostMapping("/order/created_client/{id}")
     ResponseEntity<?> createClient(@RequestBody Client client, @PathVariable @Valid Long id) {
         Optional<Client> client_msvc;
         try {
@@ -110,7 +110,7 @@ public class OrdersController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/created_product/{id}")
+    @PostMapping("/order/created_product/{id}")
     ResponseEntity<?> createProduct(@RequestBody Product product, @PathVariable @Valid Long id) {
         Optional<Product> product_msvc;
         try {
@@ -130,7 +130,7 @@ public class OrdersController {
 
     //DESIGNED
 
-    @DeleteMapping("/designed_client/{id}")
+    @DeleteMapping("/order/designed_client/{id}")
     ResponseEntity<?> deleteClient(@RequestBody Client client, @PathVariable @Valid Long id) {
         Optional<Client> client_msvc;
         try {
@@ -147,7 +147,7 @@ public class OrdersController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/designed_product/{id}")
+    @DeleteMapping("/order/designed_product/{id}")
     ResponseEntity<?> deleteProduct(@RequestBody Product product, @PathVariable @Valid Long id) {
         Optional<Product> product_msvc;
         try {
