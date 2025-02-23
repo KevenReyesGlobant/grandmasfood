@@ -21,8 +21,8 @@ public class ProductsController {
     @Autowired
     private ProductsService productsService;
 
-    @PostMapping("/products")
-    public ResponseEntity<?> createProduct(@RequestBody @Valid ProductsDTO productsDTO, BindingResult bindingResult) {
+    @PostMapping("/product")
+    public ResponseEntity<?> createProductRest(@RequestBody @Valid ProductsDTO productsDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
         }
@@ -41,8 +41,8 @@ public class ProductsController {
 
     }
 
-    @GetMapping("/products/{uuid}")
-    public ResponseEntity<?> readProductActiveByID(@PathVariable @Valid UUID uuid) {
+    @GetMapping("/product/{uuid}")
+    public ResponseEntity<?> ListProductActiveByUUID(@PathVariable @Valid UUID uuid) {
         try {
             Optional<Products> product = productsService.readProductsByUuId(uuid.compareTo(new UUID(0, 0)) == 0 ? null : uuid);
 
@@ -55,7 +55,7 @@ public class ProductsController {
         }
     }
 
-    @PutMapping("/products/{uuid}")
+    @PutMapping("/product/{uuid}")
     public ResponseEntity<?> updateProductActiveByID(@RequestBody ProductsDTO productsDTO, @PathVariable @Valid UUID uuid) {
         try {
             Optional<Products> product = productsService.readProductsByUuId(uuid.compareTo(new UUID(0, 0)) == 0 ? null : uuid);
@@ -68,7 +68,7 @@ public class ProductsController {
             return ResponseEntity.badRequest().body("Invalid UUID format");
         }
     }
-    @DeleteMapping("/products/{uuid}")
+    @DeleteMapping("/product/{uuid}")
     public ResponseEntity<?> deleteProductActiveByID(@PathVariable @Valid UUID uuid) {
         try {
             Optional<Products> product = productsService.readProductsByUuId(uuid.compareTo(new UUID(0, 0)) == 0 ? null : uuid);

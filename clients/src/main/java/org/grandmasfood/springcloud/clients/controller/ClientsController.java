@@ -19,8 +19,8 @@ public class ClientsController {
     @Autowired
     private ClientsService clientsService;
 
-    @PostMapping("/clients")
-    public ResponseEntity<?> createClient(@RequestBody @Valid ClientsDTO client, BindingResult bindingResult) {
+    @PostMapping("/client")
+    public ResponseEntity<?> createClientRest(@RequestBody @Valid ClientsDTO client, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
         }
@@ -37,14 +37,15 @@ public class ClientsController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/clients/{document}")
-    public ResponseEntity<?> readClientActiveByDocument(@PathVariable @Valid String document) {
+    @GetMapping("/client/{document}")
+    public ResponseEntity<?> ListClientActiveByDocument(@PathVariable @Valid String document) {
         Optional<Clients> client = clientsService.readActiveClientsByDocument(document);
         if (client.isPresent()) {
             return ResponseEntity.ok(client.get());
         }
         return ResponseEntity.notFound().build();
     }
+
     @PutMapping("/clients/{document}")
     public ResponseEntity<?> updateClientActiveByDocument(@RequestBody @Valid ClientsDTO clientDTO, @PathVariable @Valid String document, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -58,7 +59,7 @@ public class ClientsController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/clients/{document}")
+    @DeleteMapping("/client/{document}")
     public ResponseEntity<?> deleteClientActiveByDocument(@PathVariable @Valid String document) {
         Optional<Clients> client = clientsService.deleteClientsByDocument(document);
         if (client.isPresent()) {

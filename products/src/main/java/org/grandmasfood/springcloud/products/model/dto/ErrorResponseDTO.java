@@ -10,7 +10,5 @@ public class ErrorResponseDTO {
     private LocalDateTime timestamp;
     private String description;
     private String exception;
-
-
 }
 

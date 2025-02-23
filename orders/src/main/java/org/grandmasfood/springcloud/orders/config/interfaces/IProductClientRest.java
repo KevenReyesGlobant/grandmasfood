@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "products", url = "localhost:3200")
 public interface IProductClientRest {
 
-    @PostMapping("/order")
+    @PostMapping("/product")
     Product createProductRest(@RequestBody @Valid Product product);
 
     @GetMapping("/{id}")
