@@ -8,7 +8,7 @@ import java.util.UUID;
 public class Product {
     Long id;
     UUID uuid;
-    String fantasy_name;
+    String fantasyName;
     String category;
     String description;
     float price;

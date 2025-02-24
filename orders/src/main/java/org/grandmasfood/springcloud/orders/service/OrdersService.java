@@ -43,8 +43,15 @@ public class OrdersService implements IOrdersServices {
         Orders orders = new Orders();
         orders.setUuid(generatedUuId.generateUuid());
         orders.setCreationDateTime(ordersDTO.creationDateTime());
+
+//        if (!orders.getOrdersClients().isEmpty()) {
         orders.setClientDocument(ordersDTO.clientDocument());
+//        }
+
+//        if (!orders.getOrdersProducts().isEmpty()) {
         orders.setProductUuid(ordersDTO.productUuid());
+//        }
+
         orders.setQuantity(ordersDTO.quantity());
         orders.setExtraInfo(ordersDTO.extraInfo());
         orders.setSubTotal(ordersDTO.subTotal());
@@ -52,11 +59,9 @@ public class OrdersService implements IOrdersServices {
         orders.setGrandTotal(ordersDTO.grandTotal());
         orders.setDelivered(ordersDTO.delivered());
         orders.setDeliveryDate(ordersDTO.deliveryDate());
-
         orders.setActive(ordersDTO.active());
 
         return ordersRepository.save(orders);
-
     }
 
     @Override

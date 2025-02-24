@@ -35,6 +35,7 @@ public class OrdersController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ordersService.createOrders(orderDTO));
     }
 
+
     @GetMapping("/order")
     public ResponseEntity<PageableDTO> readAllOrders(@PageableDefault(size = 10) Pageable pageable) {
         try {

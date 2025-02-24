@@ -39,13 +39,13 @@ public class Orders {
     @JoinColumn(name = "order_id")
     private List<OrdersClients> ordersClients;
 
-    @NotNull(message = "UUID cannot be null")
+//    @NotNull(message = "UUID cannot be null")
     private UUID uuid;
 
     @NotNull(message = "Creation date and time cannot be null")
     private LocalDateTime creationDateTime;
 
-    @NotEmpty(message = "Client document cannot be empty")
+//    @NotEmpty(message = "Client document cannot be empty")
     private String clientDocument;
 
     @NotEmpty(message = "Product UUID cannot be empty")
@@ -68,7 +68,6 @@ public class Orders {
 
     private boolean delivered;
 
-//    @NotEmpty(message = "Delivery date cannot be empty")
     private String deliveryDate;
 
     @JsonIgnore
