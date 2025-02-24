@@ -21,8 +21,7 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
-    @NotNull(message = "UUID cannot be empty")
-    @JsonIgnore
+
     private UUID uuid;
 
     @NotEmpty(message = "Fantasy name cannot be empty")
