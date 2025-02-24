@@ -86,6 +86,7 @@ public class OrdersService implements IOrdersServices {
 
             OrdersClients ordersClients = new OrdersClients();
             ordersClients.setClientId(client_msv.getId());
+            ordersClients.setClientDocument(client_msv.getDocument());
             orders.addOrderClient(ordersClients);
             ordersRepository.save(orders);
             return Optional.of(client_msv);
@@ -143,8 +144,8 @@ public class OrdersService implements IOrdersServices {
 
             OrdersProducts ordersProducts = new OrdersProducts();
             ordersProducts.setProductId(product_msv.getId());
+            ordersProducts.setProductUuid(product_msv.getUuid());
             orders.addOrderProduct(ordersProducts);
-
             ordersRepository.save(orders);
             return Optional.of(product_msv);
         }

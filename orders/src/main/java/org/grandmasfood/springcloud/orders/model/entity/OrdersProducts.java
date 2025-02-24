@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "orders_products")
@@ -16,6 +17,9 @@ public class OrdersProducts {
 
     @Column(name = "order_id", unique = true)
     private Long productId;
+
+    @Column(name = "product_uuid", unique = true)
+    private UUID productUuid;
 
     @Override
     public boolean equals(Object o) {
