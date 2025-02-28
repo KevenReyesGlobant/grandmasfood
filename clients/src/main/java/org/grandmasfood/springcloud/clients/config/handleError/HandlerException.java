@@ -1,6 +1,6 @@
 package org.grandmasfood.springcloud.clients.config.handleError;
 
-import org.grandmasfood.springcloud.clients.model.configDto.ErrorResponseDTO;
+import org.grandmasfood.springcloud.clients.model.dto.configDto.ErrorResponseDTO;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

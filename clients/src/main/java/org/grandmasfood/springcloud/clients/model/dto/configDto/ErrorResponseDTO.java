@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.model.configDto;
+package org.grandmasfood.springcloud.clients.model.dto.configDto;
 
 import lombok.Data;
 
@@ -10,7 +10,5 @@ public class ErrorResponseDTO {
     private LocalDateTime timestamp;
     private String description;
     private String exception;
-
-
 }
 
