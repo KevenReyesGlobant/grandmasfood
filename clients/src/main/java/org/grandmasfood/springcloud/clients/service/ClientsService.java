@@ -1,10 +1,9 @@
 package org.grandmasfood.springcloud.clients.service;
 
 import jakarta.validation.Valid;
-import org.grandmasfood.springcloud.clients.ClientsApplication;
 import org.grandmasfood.springcloud.clients.config.interfaces.IClientServices;
 import org.grandmasfood.springcloud.clients.config.uuid.GeneratedUuId;
-import org.grandmasfood.springcloud.clients.model.dto.ClientsDTO;
+import org.grandmasfood.springcloud.clients.model.dto.ClientsRequestDTO;
 import org.grandmasfood.springcloud.clients.model.entity.Clients;
 import org.grandmasfood.springcloud.clients.repository.ClientsReposity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class ClientsService implements IClientServices {
 
     @Transactional
     @Override
-    public Clients createClient(@Valid ClientsDTO clientDTO) {
+    public Clients createClient(@Valid ClientsRequestDTO clientDTO) {
         Clients client = new Clients();
         client.setUuid(generatedUuId.generateUuid());
         client.setName(clientDTO.name());
@@ -39,7 +38,7 @@ public class ClientsService implements IClientServices {
 
     @Override
     @Transactional
-    public Clients updateClient(@Valid ClientsDTO clientDTO, @Valid String document) {
+    public Clients updateClient(@Valid ClientsRequestDTO clientDTO, @Valid String document) {
         try {
             Optional<Clients> clientUpdate = Optional.ofNullable(clientsReposity.findClientsActiveByDocument(document));
             if (clientUpdate.isPresent()) {

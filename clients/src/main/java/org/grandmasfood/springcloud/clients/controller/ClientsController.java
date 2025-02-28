@@ -1,7 +1,7 @@
 package org.grandmasfood.springcloud.clients.controller;
 
 import jakarta.validation.Valid;
-import org.grandmasfood.springcloud.clients.model.dto.ClientsDTO;
+import org.grandmasfood.springcloud.clients.model.dto.ClientsRequestDTO;
 import org.grandmasfood.springcloud.clients.model.entity.Clients;
 import org.grandmasfood.springcloud.clients.service.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class ClientsController {
     private ClientsService clientsService;
 
     @PostMapping("/client")
-    public ResponseEntity<?> createClientRest(@RequestBody @Valid ClientsDTO client, BindingResult bindingResult) {
+    public ResponseEntity<?> createClientRest(@RequestBody @Valid ClientsRequestDTO client, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
         }
@@ -47,7 +47,7 @@ public class ClientsController {
     }
 
     @PutMapping("/clients/{document}")
-    public ResponseEntity<?> updateClientActiveByDocument(@RequestBody @Valid ClientsDTO clientDTO, @PathVariable @Valid String document, BindingResult bindingResult) {
+    public ResponseEntity<?> updateClientActiveByDocument(@RequestBody @Valid ClientsRequestDTO clientDTO, @PathVariable @Valid String document, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
         }
@@ -67,6 +67,8 @@ public class ClientsController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found");
     }
+
+
 
 
     private ResponseEntity<?> getErrors(BindingResult bindingResult) {

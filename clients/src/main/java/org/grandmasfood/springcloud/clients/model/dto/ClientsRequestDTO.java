@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public record ClientsDTO(
+public record ClientsRequestDTO(
 
         @NotEmpty(message = "Name cannot be empty")
         @Size(max = 255, message = "Name and surname must be at most 255 characters")
@@ -37,7 +37,7 @@ public record ClientsDTO(
         Boolean active
 
 ) {
-    public ClientsDTO {
+    public ClientsRequestDTO {
         active = active == null ? true : active;
     }
 }
