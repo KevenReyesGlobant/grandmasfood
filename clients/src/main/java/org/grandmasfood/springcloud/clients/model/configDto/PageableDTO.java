@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.model.dto;
+package org.grandmasfood.springcloud.clients.model.configDto;
 
 import org.springframework.data.domain.Page;
 

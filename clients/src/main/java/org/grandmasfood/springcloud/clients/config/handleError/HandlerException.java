@@ -1,6 +1,6 @@
 package org.grandmasfood.springcloud.clients.config.handleError;
 
-import org.grandmasfood.springcloud.clients.model.dto.ErrorResponseDTO;
+import org.grandmasfood.springcloud.clients.model.configDto.ErrorResponseDTO;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,12 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class HandlerException {
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponseDTO> handleException(Exception ex) {
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO();
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     @ExceptionHandler({DataIntegrityViolationException.class})
     public ResponseEntity<ErrorResponseDTO> handleDataIntegrityViolationException(Exception ex) {
@@ -38,7 +44,7 @@ public class HandlerException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
-    @ExceptionHandler({MethodArgumentTypeMismatchException.class,HttpRequestMethodNotSupportedException.class, NoResourceFoundException.class})
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class, HttpRequestMethodNotSupportedException.class, NoResourceFoundException.class})
     public ResponseEntity<ErrorResponseDTO> handleServerException(Exception ex) {
         ErrorResponseDTO error = new ErrorResponseDTO();
         error.setCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
@@ -47,7 +53,6 @@ public class HandlerException {
         error.setException(ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(error);
     }
-
 
 
     private String extractDetailMessage(String message) {
