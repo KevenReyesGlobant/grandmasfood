@@ -4,7 +4,7 @@ import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
 
 import java.util.Optional;
 
-public interface RetrieveClientUseCase {
+public interface IRetrieveClientUseCase {
 
     Optional<Clients> retrieveCLientsActiveByIdUseCase(Long id);
 

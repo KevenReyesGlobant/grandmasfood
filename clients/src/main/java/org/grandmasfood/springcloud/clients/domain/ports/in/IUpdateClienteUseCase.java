@@ -4,7 +4,8 @@ import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
 import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
 
-public interface CreateClientUseCase {
-    Clients createClientUseCase(@Valid ClientsRequestDTO clientDTO);
+import java.util.Optional;
 
+public interface IUpdateClienteUseCase {
+    Optional<Clients> updateClientUseCase(@Valid ClientsRequestDTO clientDTO, String document);
 }

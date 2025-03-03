@@ -4,6 +4,6 @@ import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
 
 import java.util.Optional;
 
-public interface DeleteClientUsesCase {
+public interface IDeleteClientUsesCase {
     Optional<Clients> deleteClientsByDocument(String document);
 }
