@@ -2,7 +2,7 @@ package org.grandmasfood.springcloud.clients.infraestructure.controller;
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
+import org.grandmasfood.springcloud.clients.infraestructure.entities.Clients;
 import org.grandmasfood.springcloud.clients.application.service.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

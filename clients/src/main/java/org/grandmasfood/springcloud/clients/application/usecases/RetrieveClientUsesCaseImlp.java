@@ -1,7 +1,7 @@
 package org.grandmasfood.springcloud.clients.application.usecases;
 
 
-import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
+import org.grandmasfood.springcloud.clients.infraestructure.entities.Clients;
 import org.grandmasfood.springcloud.clients.domain.ports.in.IRetrieveClientUseCase;
 import org.grandmasfood.springcloud.clients.infraestructure.repository.ClientsReposity;
 

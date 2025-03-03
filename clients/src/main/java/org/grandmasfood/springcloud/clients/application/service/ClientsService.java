@@ -5,11 +5,8 @@ import org.grandmasfood.springcloud.clients.domain.ports.in.ICreateClientUseCase
 import org.grandmasfood.springcloud.clients.domain.ports.in.IDeleteClientUsesCase;
 import org.grandmasfood.springcloud.clients.domain.ports.in.IRetrieveClientUseCase;
 import org.grandmasfood.springcloud.clients.domain.ports.in.IUpdateClienteUseCase;
-import org.grandmasfood.springcloud.clients.domain.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
-import org.grandmasfood.springcloud.clients.infraestructure.repository.ClientsReposity;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.grandmasfood.springcloud.clients.infraestructure.entities.Clients;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

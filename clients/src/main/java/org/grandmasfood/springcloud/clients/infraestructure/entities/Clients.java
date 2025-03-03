@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.domain.model.entity;
+package org.grandmasfood.springcloud.clients.infraestructure.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.grandmasfood.springcloud.clients.domain.model.Client;
 
 import java.util.UUID;
 
@@ -20,7 +21,6 @@ public class Clients {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
 
     private UUID uuid;
@@ -45,9 +45,9 @@ public class Clients {
     @JsonIgnore
     private Boolean active;
 
-    public Boolean setInactiveClient() {
-        return active = false;
-    }
+    public static Clients fromDomainModel(Client client) {
+        return new Clients(client.getId(), client.getUuid(), client.getName(), client.getEmail(), client.getDocument(), client.getPhone(), client.getDeliveryAddress(), client.getActive());
 
+    }
 
 }
