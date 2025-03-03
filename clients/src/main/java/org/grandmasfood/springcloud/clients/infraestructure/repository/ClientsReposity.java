@@ -1,6 +1,6 @@
-package org.grandmasfood.springcloud.clients.repository;
+package org.grandmasfood.springcloud.clients.infraestructure.repository;
 
-import org.grandmasfood.springcloud.clients.model.entity.Clients;
+import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 public interface ClientsReposity extends JpaRepository<Clients, Long> {

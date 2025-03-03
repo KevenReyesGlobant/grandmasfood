@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.config.interfaces;
+package org.grandmasfood.springcloud.clients.infraestructure.config.interfaces;
 
 import java.util.UUID;
 

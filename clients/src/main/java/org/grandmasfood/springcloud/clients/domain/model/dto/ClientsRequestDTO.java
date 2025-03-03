@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.model.dto;
+package org.grandmasfood.springcloud.clients.domain.model.dto;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;

@@ -1,11 +1,11 @@
-package org.grandmasfood.springcloud.clients.service;
+package org.grandmasfood.springcloud.clients.application.service;
 
 import jakarta.validation.Valid;
-import org.grandmasfood.springcloud.clients.config.interfaces.IClientServices;
-import org.grandmasfood.springcloud.clients.config.uuid.GeneratedUuId;
-import org.grandmasfood.springcloud.clients.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.model.entity.Clients;
-import org.grandmasfood.springcloud.clients.repository.ClientsReposity;
+import org.grandmasfood.springcloud.clients.infraestructure.config.interfaces.IClientServices;
+import org.grandmasfood.springcloud.clients.infraestructure.config.uuid.GeneratedUuId;
+import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
+import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
+import org.grandmasfood.springcloud.clients.infraestructure.repository.ClientsReposity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

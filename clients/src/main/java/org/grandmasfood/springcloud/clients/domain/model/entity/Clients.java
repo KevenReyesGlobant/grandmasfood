@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.model.entity;
+package org.grandmasfood.springcloud.clients.domain.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,8 +1,8 @@
-package org.grandmasfood.springcloud.clients.config.interfaces;
+package org.grandmasfood.springcloud.clients.infraestructure.config.interfaces;
 
 import jakarta.validation.Valid;
-import org.grandmasfood.springcloud.clients.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.model.entity.Clients;
+import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
+import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
 
 
 import java.util.Optional;

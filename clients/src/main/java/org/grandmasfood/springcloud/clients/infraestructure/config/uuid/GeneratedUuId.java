@@ -1,7 +1,7 @@
-package org.grandmasfood.springcloud.clients.config.uuid;
+package org.grandmasfood.springcloud.clients.infraestructure.config.uuid;
 
 
-import org.grandmasfood.springcloud.clients.config.interfaces.IUuidGenerator;
+import org.grandmasfood.springcloud.clients.infraestructure.config.interfaces.IUuidGenerator;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.model.dto;
+package org.grandmasfood.springcloud.clients.domain.model.dto;
 
 public record ClientsResponse(
 
