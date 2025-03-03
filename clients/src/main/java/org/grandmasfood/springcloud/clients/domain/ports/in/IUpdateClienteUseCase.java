@@ -7,5 +7,5 @@ import org.grandmasfood.springcloud.clients.domain.model.entity.Clients;
 import java.util.Optional;
 
 public interface IUpdateClienteUseCase {
-    Optional<Clients> updateClientUseCase(@Valid ClientsRequestDTO clientDTO, String document);
+    Clients updateClient(@Valid ClientsRequestDTO clientDTO, String document);
 }

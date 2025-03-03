@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface IRetrieveClientUseCase {
 
-    Optional<Clients> retrieveCLientsActiveByIdUseCase(Long id);
+    Optional<Clients> readCLientsActiveById(Long id);
 
-    Optional<Clients> retrieveActiveClientsByDocument(String document);
+    Optional<Clients> readActiveClientsByDocument(String document);
 }

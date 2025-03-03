@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.infraestructure.config.uuid;
+package org.grandmasfood.springcloud.clients.domain.uuid;
 
 
 import org.grandmasfood.springcloud.clients.infraestructure.config.interfaces.IUuidGenerator;
