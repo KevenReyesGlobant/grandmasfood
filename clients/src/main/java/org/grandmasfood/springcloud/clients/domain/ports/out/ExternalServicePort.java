@@ -1,7 +1,7 @@
 package org.grandmasfood.springcloud.clients.domain.ports.out;
 
-import org.grandmasfood.springcloud.clients.domain.model.AditionalInfoClient;
+import org.grandmasfood.springcloud.clients.domain.model.AdditionalInfoClient;
 
 public interface ExternalServicePort {
-    AditionalInfoClient getAditionalClientInfo(String document);
+    AdditionalInfoClient getAditionalClientInfo(String document);
 }

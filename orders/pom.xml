@@ -57,8 +57,8 @@
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>org.grandmasfood.springcloud.clients</groupId>
-            <artifactId>clients</artifactId>
+            <groupId>org.grandmasfood.springcloud.clientsEntity</groupId>
+            <artifactId>clientsEntity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

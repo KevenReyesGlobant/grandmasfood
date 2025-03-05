@@ -1,12 +1,10 @@
 package org.grandmasfood.springcloud.clients.application.service;
 
 import jakarta.validation.Valid;
-import org.grandmasfood.springcloud.clients.domain.ports.in.ICreateClientUseCase;
-import org.grandmasfood.springcloud.clients.domain.ports.in.IDeleteClientUsesCase;
-import org.grandmasfood.springcloud.clients.domain.ports.in.IRetrieveClientUseCase;
-import org.grandmasfood.springcloud.clients.domain.ports.in.IUpdateClienteUseCase;
+import org.grandmasfood.springcloud.clients.domain.model.Client;
+import org.grandmasfood.springcloud.clients.domain.ports.in.*;
 import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.Clients;
+import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,45 +17,40 @@ public class ClientsService implements ICreateClientUseCase, IRetrieveClientUseC
     private final IRetrieveClientUseCase iRetrieveClientUseCase;
     private final IDeleteClientUsesCase iDeleteClientUsesCase;
     private final IUpdateClienteUseCase iUpdateClienteUseCase;
+    private final IGetAditionalClientInfoUseCase iGetAditionalClientInfoUseCase;
 
 
-    public ClientsService(ICreateClientUseCase iCreateClientUseCase, IRetrieveClientUseCase iRetrieveClientUseCase, IDeleteClientUsesCase iDeleteClientUsesCase, IUpdateClienteUseCase iUpdateClienteUseCase) {
+    public ClientsService(ICreateClientUseCase iCreateClientUseCase, IRetrieveClientUseCase iRetrieveClientUseCase, IDeleteClientUsesCase iDeleteClientUsesCase, IUpdateClienteUseCase iUpdateClienteUseCase, IGetAditionalClientInfoUseCase iGetAditionalClientInfoUseCase) {
         this.iCreateClientUseCase = iCreateClientUseCase;
         this.iRetrieveClientUseCase = iRetrieveClientUseCase;
         this.iDeleteClientUsesCase = iDeleteClientUsesCase;
         this.iUpdateClienteUseCase = iUpdateClienteUseCase;
-    }
-
-    @Transactional
-    @Override
-    public Clients createClient(@Valid ClientsRequestDTO clientDTO) {
-        return iCreateClientUseCase.createClient(clientDTO);
+        this.iGetAditionalClientInfoUseCase = iGetAditionalClientInfoUseCase;
     }
 
 
     @Override
-    @Transactional
-    public Clients updateClient(@Valid ClientsRequestDTO clientDTO, @Valid String document) {
-
-        return iUpdateClienteUseCase.updateClient(clientDTO, document);
+    public Client createClient(Client client) {
+        return iCreateClientUseCase.createClient(client);
     }
 
-    @Transactional
     @Override
-    public Optional<Clients> readCLientsActiveById(@Valid Long id) {
+    public Optional<Client> deleteClientsByDocument(String document) {
+        return iDeleteClientUsesCase.deleteClientsByDocument(document);
+    }
+
+    @Override
+    public Optional<Client> readCLientsActiveById(Long id) {
         return iRetrieveClientUseCase.readCLientsActiveById(id);
     }
 
-    @Transactional
     @Override
-    public Optional<Clients> readActiveClientsByDocument(@Valid String document) {
+    public Optional<Client> readActiveClientsByDocument(String document) {
         return iRetrieveClientUseCase.readActiveClientsByDocument(document);
     }
 
     @Override
-    public Optional<Clients> deleteClientsByDocument(String document) {
-        return iDeleteClientUsesCase.deleteClientsByDocument(document);
+    public Optional<Client> updateClient(Client client, String document) {
+        return iUpdateClienteUseCase.updateClient(client, document);
     }
-
-
 }

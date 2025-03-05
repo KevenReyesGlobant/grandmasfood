@@ -13,11 +13,11 @@ import org.grandmasfood.springcloud.clients.domain.model.Client;
 import java.util.UUID;
 
 @Entity
-@Table(name = "client")
+@Table(name = "client_entity")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Clients {
+public class ClientsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,9 +45,13 @@ public class Clients {
     @JsonIgnore
     private Boolean active;
 
-    public static Clients fromDomainModel(Client client) {
-        return new Clients(client.getId(), client.getUuid(), client.getName(), client.getEmail(), client.getDocument(), client.getPhone(), client.getDeliveryAddress(), client.getActive());
+    public static ClientsEntity fromDomainModel(Client client) {
+        return new ClientsEntity(client.getId(), client.getUuid(), client.getName(), client.getEmail(), client.getDocument(), client.getPhone(), client.getDeliveryAddress(), client.getActive());
 
+    }
+
+    public Client toDomainModel() {
+        return new Client(id, uuid, name, email, document, phone, deliveryAddress, active);
     }
 
 }

@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
 <modules>
-    <module>clients</module>
+    <module>clientsEntity</module>
     <module>orders</module>
     <module>products</module>
 </modules>

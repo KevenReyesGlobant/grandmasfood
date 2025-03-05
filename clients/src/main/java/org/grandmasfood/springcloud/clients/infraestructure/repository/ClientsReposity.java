@@ -1,13 +1,13 @@
 package org.grandmasfood.springcloud.clients.infraestructure.repository;
 
-import org.grandmasfood.springcloud.clients.infraestructure.entities.Clients;
+import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-public interface ClientsReposity extends JpaRepository<Clients, Long> {
+public interface ClientsReposity extends JpaRepository<ClientsEntity, Long> {
 
     @Query("select c from Clients c where c.id=:id and c.active=true")
-    Clients findClientsActiveById(Long id);
+    ClientsEntity findClientsActiveById(Long id);
 
     @Query("select c from Clients c where c.document=:document and c.active=true")
-    Clients findClientsActiveByDocument(String document);
+    ClientsEntity findClientsActiveByDocument(String document);
 }

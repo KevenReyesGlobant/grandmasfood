@@ -7,11 +7,12 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-public class AditionalInfoClient {
+public class AdditionalInfoClient {
 
     private final Long clientId;
-    private final String clienName;
+    private final String clientName;
     private final UUID clientUuid;
     private final String clientEmail;
+    private final String clientDocument;
 
 }

@@ -7,10 +7,10 @@
         <artifactId>grandmasfood</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>org.grandmasfood.springcloud.clients</groupId>
-    <artifactId>clients</artifactId>
+    <groupId>org.grandmasfood.springcloud.clientsEntity</groupId>
+    <artifactId>clientsEntity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>clients</name>
+    <name>clientsEntity</name>
     <description>This project includes microservices that handle client operations</description>
 
     <properties>

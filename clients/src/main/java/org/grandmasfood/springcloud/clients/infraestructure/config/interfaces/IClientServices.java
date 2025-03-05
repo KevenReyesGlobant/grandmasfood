@@ -2,20 +2,20 @@ package org.grandmasfood.springcloud.clients.infraestructure.config.interfaces;
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.Clients;
+import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
 
 
 import java.util.Optional;
 
 public interface IClientServices {
-    Clients createClient(@Valid ClientsRequestDTO clientDTO);
+    ClientsEntity createClient(@Valid ClientsRequestDTO clientDTO);
 
-    Clients updateClient(@Valid ClientsRequestDTO clientDTO, String document);
+    ClientsEntity updateClient(@Valid ClientsRequestDTO clientDTO, String document);
 
     //    Page<Clients> readAllActiveClients(Pageable pageable);
-    Optional<Clients> readCLientsActiveById(Long id);
+    Optional<ClientsEntity> readCLientsActiveById(Long id);
 
-    Optional<Clients> readActiveClientsByDocument(String document);
+    Optional<ClientsEntity> readActiveClientsByDocument(String document);
 
-    Optional<Clients> deleteClientsByDocument(String document);
+    Optional<ClientsEntity> deleteClientsByDocument(String document);
 }

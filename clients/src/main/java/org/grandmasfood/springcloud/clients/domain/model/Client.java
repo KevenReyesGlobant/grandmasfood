@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Client {
 
@@ -28,10 +28,5 @@ public class Client {
 
     private String deliveryAddress;
     private Boolean active;
-
-    public Boolean setInactiveClient() {
-        return active = false;
-    }
-
 
 }
