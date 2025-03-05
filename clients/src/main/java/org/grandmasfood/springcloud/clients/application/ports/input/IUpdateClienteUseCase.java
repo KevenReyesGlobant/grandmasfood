@@ -1,9 +1,7 @@
-package org.grandmasfood.springcloud.clients.domain.ports.in;
+package org.grandmasfood.springcloud.clients.application.ports.input;
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
 
 import java.util.Optional;
 

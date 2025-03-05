@@ -2,23 +2,21 @@ package org.grandmasfood.springcloud.clients.application.usecases;
 
 
 import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.grandmasfood.springcloud.clients.domain.ports.out.ClientRepositoryPort;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
-import org.grandmasfood.springcloud.clients.domain.ports.in.IDeleteClientUsesCase;
-import org.grandmasfood.springcloud.clients.infraestructure.repository.ClientsReposity;
+import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersistencePort;
+import org.grandmasfood.springcloud.clients.application.ports.input.IDeleteClientUsesCase;
 
 import java.util.Optional;
 
 public class DeleteClientUseCaseImlp implements IDeleteClientUsesCase {
 
-    private final ClientRepositoryPort clientRepositoryPort;
+    private final ClientPersistencePort clientPersistencePort;
 
-    public DeleteClientUseCaseImlp(ClientRepositoryPort clientRepositoryPort) {
-        this.clientRepositoryPort = clientRepositoryPort;
+    public DeleteClientUseCaseImlp(ClientPersistencePort clientPersistencePort) {
+        this.clientPersistencePort = clientPersistencePort;
     }
 
     @Override
     public Optional<Client> deleteClientsByDocument(String document) {
-        return clientRepositoryPort.deleteClientsByDocument(document);
+        return clientPersistencePort.deleteClientsByDocument(document);
     }
 }

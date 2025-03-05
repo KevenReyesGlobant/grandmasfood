@@ -2,25 +2,22 @@ package org.grandmasfood.springcloud.clients.application.usecases;
 
 
 import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.domain.ports.out.ClientRepositoryPort;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
-import org.grandmasfood.springcloud.clients.domain.ports.in.IUpdateClienteUseCase;
-import org.grandmasfood.springcloud.clients.infraestructure.repository.ClientsReposity;
+import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersistencePort;
+import org.grandmasfood.springcloud.clients.application.ports.input.IUpdateClienteUseCase;
 
 import java.util.Optional;
 
 public class UpdateClientUseCaseImlp implements IUpdateClienteUseCase {
-    private final ClientRepositoryPort clientRepositoryPort;
+    private final ClientPersistencePort clientPersistencePort;
 
-    public UpdateClientUseCaseImlp(ClientRepositoryPort clientRepositoryPort) {
-        this.clientRepositoryPort = clientRepositoryPort;
+    public UpdateClientUseCaseImlp(ClientPersistencePort clientPersistencePort) {
+        this.clientPersistencePort = clientPersistencePort;
     }
 
 
     @Override
     public Optional<Client> updateClient(Client client, String document) {
 
-        return clientRepositoryPort.updateClient(client, document);
+        return clientPersistencePort.updateClient(client, document);
     }
 }

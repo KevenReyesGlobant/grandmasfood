@@ -1,25 +1,21 @@
 package org.grandmasfood.springcloud.clients.application.usecases;
 
 import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.grandmasfood.springcloud.clients.domain.model.dto.ClientsRequestDTO;
-import org.grandmasfood.springcloud.clients.domain.ports.out.ClientRepositoryPort;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
-import org.grandmasfood.springcloud.clients.domain.ports.in.ICreateClientUseCase;
-import org.grandmasfood.springcloud.clients.domain.uuid.GeneratedUuId;
-import org.grandmasfood.springcloud.clients.infraestructure.repository.ClientsReposity;
+import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersistencePort;
+import org.grandmasfood.springcloud.clients.application.ports.input.ICreateClientUseCase;
 
 public class CreateClientUseCaseImlp implements ICreateClientUseCase {
 
-    private final ClientRepositoryPort clientRepositoryPort;
+    private final ClientPersistencePort clientPersistencePort;
 
 
-    public CreateClientUseCaseImlp(ClientRepositoryPort clientRepositoryPort) {
-        this.clientRepositoryPort = clientRepositoryPort;
+    public CreateClientUseCaseImlp(ClientPersistencePort clientPersistencePort) {
+        this.clientPersistencePort = clientPersistencePort;
     }
 
 
     @Override
     public Client createClient(Client client) {
-        return clientRepositoryPort.createClient(client);
+        return clientPersistencePort.createClient(client);
     }
 }

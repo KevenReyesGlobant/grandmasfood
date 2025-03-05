@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.infraestructure.entities;
+package org.grandmasfood.springcloud.clients.infraestructure.adapters.output.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -45,13 +45,13 @@ public class ClientsEntity {
     @JsonIgnore
     private Boolean active;
 
-    public static ClientsEntity fromDomainModel(Client client) {
-        return new ClientsEntity(client.getId(), client.getUuid(), client.getName(), client.getEmail(), client.getDocument(), client.getPhone(), client.getDeliveryAddress(), client.getActive());
-
-    }
-
-    public Client toDomainModel() {
-        return new Client(id, uuid, name, email, document, phone, deliveryAddress, active);
-    }
+//    public static ClientsEntity fromDomainModel(Client client) {
+//        return new ClientsEntity(client.getId(), client.getUuid(), client.getName(), client.getEmail(), client.getDocument(), client.getPhone(), client.getDeliveryAddress(), client.getActive());
+//
+//    }
+//
+//    public Client toDomainModel() {
+//        return new Client(id, uuid, name, email, document, phone, deliveryAddress, active);
+//    }
 
 }

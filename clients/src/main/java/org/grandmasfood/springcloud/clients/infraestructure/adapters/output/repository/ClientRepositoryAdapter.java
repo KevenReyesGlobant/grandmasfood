@@ -1,15 +1,14 @@
-package org.grandmasfood.springcloud.clients.infraestructure.repository;
+package org.grandmasfood.springcloud.clients.infraestructure.adapters.output.repository;
 
 
-import org.grandmasfood.springcloud.clients.application.service.ClientsService;
 import org.grandmasfood.springcloud.clients.domain.model.AdditionalInfoClient;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.grandmasfood.springcloud.clients.domain.ports.out.ClientRepositoryPort;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
+import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersistencePort;
+import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.entities.ClientsEntity;
 
 import java.util.Optional;
 
-public class ClientRepositoryAdapter implements ClientRepositoryPort {
+public class ClientRepositoryAdapter implements ClientPersistencePort {
 
     private final ClientsReposity clientsReposity;
 
@@ -32,7 +31,7 @@ public class ClientRepositoryAdapter implements ClientRepositoryPort {
 
     @Override
     public Optional<Client> readCLientsActiveById(Long id) {
-        return clientsReposity.findById(id).map(ClientsEntity::toDomainModel);
+        return null;
     }
 
     @Override

@@ -1,7 +1,6 @@
-package org.grandmasfood.springcloud.clients.domain.ports.in;
+package org.grandmasfood.springcloud.clients.application.ports.input;
 
 import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
 
 import java.util.Optional;
 

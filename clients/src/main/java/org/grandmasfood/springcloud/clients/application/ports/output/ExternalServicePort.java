@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.domain.ports.out;
+package org.grandmasfood.springcloud.clients.application.ports.output;
 
 import org.grandmasfood.springcloud.clients.domain.model.AdditionalInfoClient;
 

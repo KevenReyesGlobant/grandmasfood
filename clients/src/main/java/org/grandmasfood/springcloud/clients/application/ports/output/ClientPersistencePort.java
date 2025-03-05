@@ -1,13 +1,12 @@
-package org.grandmasfood.springcloud.clients.domain.ports.out;
+package org.grandmasfood.springcloud.clients.application.ports.output;
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.domain.model.AdditionalInfoClient;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
 
 import java.util.Optional;
 
-public interface ClientRepositoryPort {
+public interface ClientPersistencePort {
     Client createClient(@Valid Client client);
 
     Optional<Client> updateClient(@Valid Client client, String document);
@@ -18,5 +17,5 @@ public interface ClientRepositoryPort {
 
     Optional<Client> deleteClientsByDocument(String document);
 
-    AdditionalInfoClient getAditionalClientInfoUseCase(String clientDocument);
+//    AdditionalInfoClient getAditionalClientInfoUseCase(String clientDocument);
 }
