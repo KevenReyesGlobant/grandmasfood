@@ -9,16 +9,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ApplicationCofig {
 
-//    @Bean
-//    public ClientsService clientsService(ClientRepositoryPort clientRepositoryPort, GetAditionalInfoUseCaseImlp getAditionalInfoUseCaseImlp) {
-//        return new ClientsService(
-//                new CreateClientUseCaseImlp(clientRepositoryPort),
-//                new RetrieveClientUsesCaseImlp(clientRepositoryPort),
-//                new DeleteClientUseCaseImlp(clientRepositoryPort),
-//                new UpdateClientUseCaseImlp(clientRepositoryPort),
-//                getAditionalInfoUseCaseImlp
-//
-//        );
-//
-//    }
+    @Bean
+    public ClientsService clientsService(ClientRepositoryPort clientRepositoryPort, GetAditionalInfoUseCaseImlp getAditionalInfoUseCaseImlp) {
+        return new ClientsService(
+                new CreateClientUseCaseImlp(clientRepositoryPort),
+                new RetrieveClientUsesCaseImlp(clientRepositoryPort),
+                new DeleteClientUseCaseImlp(clientRepositoryPort),
+                new UpdateClientUseCaseImlp(clientRepositoryPort),
+                getAditionalInfoUseCaseImlp
+        );
+
+    }
 }

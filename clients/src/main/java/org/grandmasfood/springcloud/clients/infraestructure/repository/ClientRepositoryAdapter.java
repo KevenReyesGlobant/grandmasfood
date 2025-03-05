@@ -1,18 +1,28 @@
 package org.grandmasfood.springcloud.clients.infraestructure.repository;
 
 
+import org.grandmasfood.springcloud.clients.application.service.ClientsService;
 import org.grandmasfood.springcloud.clients.domain.model.AdditionalInfoClient;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.grandmasfood.springcloud.clients.domain.ports.out.ClientRepositoryPort;
+import org.grandmasfood.springcloud.clients.infraestructure.entities.ClientsEntity;
 
 import java.util.Optional;
 
 public class ClientRepositoryAdapter implements ClientRepositoryPort {
 
+    private final ClientsReposity clientsReposity;
+
+    public ClientRepositoryAdapter(ClientsReposity clientsReposity) {
+        this.clientsReposity = clientsReposity;
+    }
+
 
     @Override
     public Client createClient(Client client) {
-        return null;
+        ClientsEntity clientsEntity = ClientsEntity.fromDomainModel(client);
+        ClientsEntity savedClient = clientsReposity.save(clientsEntity);
+        return savedClient.toDomainModel();
     }
 
     @Override
@@ -22,12 +32,12 @@ public class ClientRepositoryAdapter implements ClientRepositoryPort {
 
     @Override
     public Optional<Client> readCLientsActiveById(Long id) {
-        return Optional.empty();
+        return clientsReposity.findById(id).map(ClientsEntity::toDomainModel);
     }
 
     @Override
     public Optional<Client> readActiveClientsByDocument(String document) {
-        return Optional.empty();
+        return null;
     }
 
     @Override
