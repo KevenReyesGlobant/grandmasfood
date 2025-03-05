@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.infraestructure.controller;
+package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.controller;
 
 
 import jakarta.validation.Valid;

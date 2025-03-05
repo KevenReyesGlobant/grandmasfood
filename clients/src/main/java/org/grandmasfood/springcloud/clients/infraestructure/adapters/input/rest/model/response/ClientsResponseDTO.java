@@ -1,13 +1,11 @@
 package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.response;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ClientsCreateResponseDTO {
+public class ClientsResponseDTO {
 
 
     private String name;
@@ -23,7 +21,7 @@ public class ClientsCreateResponseDTO {
 
     Boolean active;
 
-    public ClientsCreateResponseDTO() {
+    public ClientsResponseDTO() {
         active = active == null ? true : active;
     }
 }

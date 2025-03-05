@@ -2,10 +2,17 @@ package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest
 
 import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.request.ClientsCreateRequestDTO;
+import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.response.ClientsResponseDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ClientRestMapper {
     Client toClient(ClientsCreateRequestDTO clientsCreateRequestDTO);
+
+    ClientsResponseDTO toClientsResponseDTO(Client client);
+
+
+
 
 }
