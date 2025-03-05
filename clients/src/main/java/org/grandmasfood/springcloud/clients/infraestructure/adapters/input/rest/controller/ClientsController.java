@@ -4,6 +4,8 @@ package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.application.service.ClientsService;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
+import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.mapper.ClientRestMapper;
+import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.request.ClientsCreateRequestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -15,19 +17,22 @@ import java.util.Map;
 @RestController
 public class ClientsController {
     private final ClientsService clientsService;
+    private final ClientRestMapper clientRestMapper;
 
-    public ClientsController(ClientsService clientsService) {
+    public ClientsController(ClientsService clientsService, ClientRestMapper clientRestMapper) {
         this.clientsService = clientsService;
+        this.clientRestMapper = clientRestMapper;
     }
 
 
     @PostMapping("/client")
-    public ResponseEntity<?> createClientRest(@RequestBody @Valid Client client, BindingResult bindingResult) {
+    public ResponseEntity<?> createClientRest(@RequestBody @Valid ClientsCreateRequestDTO
+                                                      clientsCreateRequestDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return getErrors(bindingResult);
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(clientsService.createClient(client));
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientRestMapper.toClientsResponseDTO(clientsService.createClient(clientRestMapper.toClient(clientsCreateRequestDTO))));
     }
 
 //    @GetMapping("/{id}")
