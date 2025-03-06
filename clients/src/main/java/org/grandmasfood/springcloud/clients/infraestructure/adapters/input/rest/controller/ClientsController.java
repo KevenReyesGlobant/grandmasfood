@@ -26,12 +26,7 @@ public class ClientsController {
 
 
     @PostMapping("/client")
-    public ResponseEntity<ClientsResponseDTO> createClientRest(@RequestBody @Valid ClientsCreateRequestDTO
-                                                      clientsCreateRequestDTO) {
-//        if (bindingResult.hasErrors()) {
-//            return getErrors(bindingResult);
-//        }
-
+    public ResponseEntity<ClientsResponseDTO> createClientRest(@RequestBody @Valid ClientsCreateRequestDTO clientsCreateRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.save(clientRestMapper.toClient(clientsCreateRequestDTO))));
     }
 

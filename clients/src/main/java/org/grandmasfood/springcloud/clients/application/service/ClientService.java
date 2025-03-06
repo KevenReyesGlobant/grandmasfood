@@ -10,10 +10,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+
 public class ClientService implements ClientsServicePort {
 
     private final ClientPersistencePort persistencePort;
+
+    public ClientService(ClientPersistencePort persistencePort) {
+        this.persistencePort = persistencePort;
+    }
 
     @Override
     public Client findById(Long id) {

@@ -12,11 +12,11 @@ import org.grandmasfood.springcloud.clients.domain.model.Client;
 
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "client_entity")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class ClientsEntity {
 
     @Id

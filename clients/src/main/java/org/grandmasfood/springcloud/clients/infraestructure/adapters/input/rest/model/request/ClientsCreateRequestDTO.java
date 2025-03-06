@@ -7,10 +7,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ClientsCreateRequestDTO {
+
+
 
 //    @NotEmpty(message = "Name cannot be empty")
 //    @Size(max = 255, message = "Name and surname must be at most 255 characters")
@@ -38,7 +41,5 @@ public class ClientsCreateRequestDTO {
 
     private Boolean active;
 
-    public ClientsCreateRequestDTO() {
-        active = active == null ? true : active;
-    }
+
 }
