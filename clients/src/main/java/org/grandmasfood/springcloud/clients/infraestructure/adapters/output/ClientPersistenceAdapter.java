@@ -6,13 +6,13 @@ import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.mapp
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.repository.ClientsReposity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
 public class ClientPersistenceAdapter implements ClientPersistencePort {
 
     private final ClientsReposity clientsReposity;
-
     private final ClientMapper clientMapper;
 
     public ClientPersistenceAdapter(ClientsReposity clientsReposity, ClientMapper clientMapper) {
@@ -21,28 +21,22 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
     }
 
     @Override
-    public Client createClient(Client client) {
+    public Optional<Client> findById(Long id) {
+        return clientsReposity.findById(id).map(clientMapper::toClient);
+    }
+
+    @Override
+    public List<Client> findAll() {
+        return clientsReposity.findAll().stream().map(clientMapper::toClient).toList();
+    }
+
+    @Override
+    public Client save(Client client) {
         return clientMapper.toClient(clientsReposity.save(clientMapper.toClientEntity(client)));
     }
 
     @Override
-    public Optional<Client> updateClient(Client client, String document) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Client> readCLientsActiveById(Long id) {
-        return Optional.ofNullable(clientMapper.toClient(clientsReposity.findClientsActiveById(id)));
-
-    }
-
-    @Override
-    public Optional<Client> readActiveClientsByDocument(String document) {
-        return Optional.ofNullable(clientMapper.toClient(clientsReposity.findClientsActiveByDocument(document)));
-    }
-
-    @Override
-    public Optional<Client> deleteClientsByDocument(String document) {
-        return Optional.empty();
+    public void deleteById(Long id) {
+        clientsReposity.deleteById(id);
     }
 }

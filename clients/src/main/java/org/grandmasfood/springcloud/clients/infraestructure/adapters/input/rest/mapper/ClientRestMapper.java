@@ -6,6 +6,8 @@ import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ClientRestMapper {
     Client toClient(ClientsCreateRequestDTO clientsCreateRequestDTO);
@@ -13,6 +15,7 @@ public interface ClientRestMapper {
     ClientsResponseDTO toClientsResponseDTO(Client client);
 
 
+    List<ClientsResponseDTO> toStudentResponseList(List<Client> clientList);
 
 
 }

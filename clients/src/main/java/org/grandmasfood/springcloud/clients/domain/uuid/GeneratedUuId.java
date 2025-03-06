@@ -1,7 +1,4 @@
 package org.grandmasfood.springcloud.clients.domain.uuid;
-
-
-import org.grandmasfood.springcloud.clients.infraestructure.config.interfaces.IUuidGenerator;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
 

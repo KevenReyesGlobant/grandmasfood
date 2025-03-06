@@ -9,5 +9,5 @@ public interface ClientsReposity extends JpaRepository<ClientsEntity, Long> {
     ClientsEntity findClientsActiveById(Long id);
 
     @Query("select c from ClientsEntity c where c.document=:document and c.active=true")
-    ClientsEntity findClientsActiveByDocument(String document);
+    ClientsEntity findClientsActiveByDocument (String document);
 }

@@ -7,19 +7,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class ClientsResponseDTO {
 
-
+    private Long id;
     private String name;
-
     private String email;
-
     private String document;
-
     private String phone;
-
     private String deliveryAddress;
-
-
-    Boolean active;
+    private Boolean active;
 
     public ClientsResponseDTO() {
         active = active == null ? true : active;

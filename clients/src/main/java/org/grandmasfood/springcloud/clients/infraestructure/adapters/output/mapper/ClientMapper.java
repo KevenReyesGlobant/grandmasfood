@@ -11,6 +11,7 @@ public interface ClientMapper {
     ClientsEntity toClientEntity(Client client);
 
     Client toClient(ClientsEntity clientsEntity);
+
     List<Client> toClientsList(List<ClientsEntity> clientsEntities);
 
 
