@@ -8,6 +8,7 @@ import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -20,6 +21,24 @@ public class ClientService implements ClientsServicePort {
     }
 
     @Override
+    public Client save(Client client) {
+        return persistencePort.save(client);
+    }
+
+    @Override
+    public Client findActiveByDocument(String document) {
+        return persistencePort.findActiveByDocument(document)
+                .orElseThrow(ClientNotFoundException::new);
+    }
+
+    @Override
+    public Client findActiveById(Long id) {
+        return persistencePort.findActiveById(id)
+                .orElseThrow(ClientNotFoundException::new);
+    }
+
+
+    @Override
     public Client findById(Long id) {
         return persistencePort.findById(id)
                 .orElseThrow(ClientNotFoundException::new);
@@ -30,11 +49,6 @@ public class ClientService implements ClientsServicePort {
         return persistencePort.findAll();
     }
 
-
-    @Override
-    public Client save(Client client) {
-        return persistencePort.save(client);
-    }
 
     @Override
     public Client update(Long id, Client client) {
@@ -50,4 +64,6 @@ public class ClientService implements ClientsServicePort {
 //        persistencePort.deleteById(id);
 //    }
     }
+
+
 }

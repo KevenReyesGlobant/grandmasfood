@@ -15,7 +15,7 @@ public interface ClientRestMapper {
     ClientsResponseDTO toClientsResponseDTO(Client client);
 
 
-    List<ClientsResponseDTO> toStudentResponseList(List<Client> clientList);
+    List<ClientsResponseDTO> toClientResponseList(List<Client> clientList);
 
 
 }

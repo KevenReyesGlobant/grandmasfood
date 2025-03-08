@@ -3,6 +3,7 @@ package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.application.ports.input.ClientsServicePort;
+import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.mapper.ClientRestMapper;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.request.ClientsCreateRequestDTO;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.response.ClientsResponseDTO;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class ClientsController {
@@ -30,23 +32,13 @@ public class ClientsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.save(clientRestMapper.toClient(clientsCreateRequestDTO))));
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> readClientActiveById(@PathVariable @Valid Long id) {
-//        Optional<ClientsEntity> client = clientsService.readCLientsActiveById(id);
-//        if (client.isPresent()) {
-//            return ResponseEntity.ok(client.get());
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
-//
-//    @GetMapping("/client/{document}")
-//    public ResponseEntity<?> ListClientActiveByDocument(@PathVariable @Valid String document) {
-//        Optional<ClientsEntity> client = clientsService.readActiveClientsByDocument(document);
-//        if (client.isPresent()) {
-//            return ResponseEntity.ok(client.get());
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
+
+    @GetMapping("/client/{document}")
+    public ResponseEntity<ClientsResponseDTO> ListClientActiveByDocument(@PathVariable @Valid String document) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.findActiveByDocument(document)));
+
+    }
 //
 //    @PutMapping("/clients/{document}")
 //    public ResponseEntity<?> updateClientActiveByDocument(@RequestBody @Valid ClientsRequestDTO clientDTO, @PathVariable @Valid String document, BindingResult bindingResult) {
