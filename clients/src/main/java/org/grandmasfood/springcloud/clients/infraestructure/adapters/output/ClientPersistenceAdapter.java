@@ -43,4 +43,14 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
     public void deleteById(Long id) {
         clientsReposity.deleteById(id);
     }
+
+    @Override
+    public Optional<Client> findActiveByDocument(String document) {
+        return null;
+    }
+
+    @Override
+    public Optional<Client> findActiveById(Long id) {
+        return Optional.empty();
+    }
 }

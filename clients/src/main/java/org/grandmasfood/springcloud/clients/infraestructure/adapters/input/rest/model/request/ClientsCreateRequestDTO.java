@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 public class ClientsCreateRequestDTO {
 
 
@@ -43,5 +43,8 @@ public class ClientsCreateRequestDTO {
 
     private Boolean active;
 
+    public ClientsCreateRequestDTO() {
+        active = active == null ? true : active;
+    }
 
 }
