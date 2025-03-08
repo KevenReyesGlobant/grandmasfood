@@ -15,6 +15,7 @@ import java.util.UUID;
 public class Client {
 
     private Long id;
+    private UUID uuid;
     private String name;
     private String email;
     private String document;
