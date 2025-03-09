@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ErrorCatalog {
 
-    CLIENT_NOT_FOUND("STUDENT_NOT_FOUND", "Student not found"),
+    CLIENT_NOT_FOUND("CLIENT_NOT_FOUND", "Client not found"),
 
     INVALID_CLIENT("INVALID_CLIENT", "Invalid client"),
 

@@ -39,7 +39,8 @@ public class ClientsController {
         return ResponseEntity.status(HttpStatus.OK).body(clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.findActiveByDocument(document)));
 
     }
-//
+
+    //
 //    @PutMapping("/clients/{document}")
 //    public ResponseEntity<?> updateClientActiveByDocument(@RequestBody @Valid ClientsRequestDTO clientDTO, @PathVariable @Valid String document, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()) {
@@ -53,14 +54,12 @@ public class ClientsController {
 //        return ResponseEntity.notFound().build();
 //    }
 //
-//    @DeleteMapping("/client/{document}")
-//    public ResponseEntity<?> deleteClientActiveByDocument(@PathVariable @Valid String document) {
-//        Optional<ClientsEntity> client = clientsService.deleteClientsByDocument(document);
-//        if (client.isPresent()) {
-//            return ResponseEntity.ok().build();
-//        }
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found");
-//    }
+    @DeleteMapping("/client/{document}")
+    public ResponseEntity<ClientsResponseDTO> deleteClientActiveByDocument(@PathVariable @Valid String document) {
+        ClientsResponseDTO client = clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.findActiveByDocument(document));
+        iCreateClientUseCase.deleteByDocument(document);
+        return ResponseEntity.status(HttpStatus.OK).body(client);
+    }
 
 
     private ResponseEntity<?> getErrors(BindingResult bindingResult) {

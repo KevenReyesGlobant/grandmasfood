@@ -14,11 +14,11 @@ public interface ClientsServicePort {
 
     Client update(Long id, Client client);
 
-    void deleteById(Long id);
-
     Client findActiveByDocument(String document);
 
     Client findActiveById(Long id);
+
+    Optional<Client> deleteByDocument(String document);
 
 
 }

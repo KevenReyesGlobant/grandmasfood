@@ -14,9 +14,6 @@ public class ErrorResponseDTO {
     private String message;
     private List<String> details;
     private LocalDateTime timestamp;
-//    private String code;
-//    private LocalDateTime timestamp;
-//    private String description;
-//    private String exception;
+
 }
 

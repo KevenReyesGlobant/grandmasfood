@@ -1,6 +1,5 @@
 package org.grandmasfood.springcloud.clients.application.service;
 
-import lombok.RequiredArgsConstructor;
 import org.grandmasfood.springcloud.clients.application.ports.input.*;
 import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersistencePort;
 import org.grandmasfood.springcloud.clients.domain.exceptions.ClientNotFoundException;
@@ -37,6 +36,11 @@ public class ClientService implements ClientsServicePort {
                 .orElseThrow(ClientNotFoundException::new);
     }
 
+    @Override
+    public Optional<Client> deleteByDocument(String document) {
+        return Optional.ofNullable(persistencePort.deleteByDocument(document));
+    }
+
 
     @Override
     public Client findById(Long id) {
@@ -55,15 +59,8 @@ public class ClientService implements ClientsServicePort {
         return null;
     }
 
-    @Override
-    public void deleteById(Long id) {
-//        if (persistencePort.findById(id).isEmpty()) {
-//            throw new StudentNotFoundException();
-//        }
-//
-//        persistencePort.deleteById(id);
-//    }
-    }
-
 
 }
+
+
+

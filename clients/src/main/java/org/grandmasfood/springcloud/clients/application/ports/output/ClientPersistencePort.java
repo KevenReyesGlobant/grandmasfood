@@ -12,10 +12,9 @@ public interface ClientPersistencePort {
 
     Client save(Client client);
 
-    void deleteById(Long id);
-
     Optional<Client> findActiveByDocument(String document);
 
     Optional<Client> findActiveById(Long id);
 
+    Client deleteByDocument(String document);
 }
