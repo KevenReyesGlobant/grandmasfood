@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.products.model.enums;
+package org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.enums;
 
 public enum Category {
     HAMBURGERS_AND_HOTDOGS,

@@ -1,10 +1,9 @@
-package org.grandmasfood.springcloud.products.repository;
+package org.grandmasfood.springcloud.products.infrastructure.adapters.output.repository;
 
-import org.grandmasfood.springcloud.products.model.entity.Products;
+import org.grandmasfood.springcloud.products.infrastructure.adapters.output.entities.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface ProductsRepositoy extends JpaRepository<Products, Long> {

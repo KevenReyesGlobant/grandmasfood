@@ -3,7 +3,7 @@ package org.grandmasfood.springcloud.clients.application.ports.input;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
 
 import java.util.List;
-import java.util.Optional;
+
 
 public interface ClientsServicePort {
     Client findById(Long id);

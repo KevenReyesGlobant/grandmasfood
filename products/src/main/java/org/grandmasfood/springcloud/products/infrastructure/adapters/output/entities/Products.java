@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.products.model.entity;
+package org.grandmasfood.springcloud.products.infrastructure.adapters.output.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,9 +6,8 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.grandmasfood.springcloud.products.model.enums.Category;
+import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.enums.Category;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -29,7 +28,6 @@ public class Products {
 
     @Enumerated(EnumType.STRING)
     private Category category;
-
     private String description;
 
     @NotNull(message = "Price cannot be null")

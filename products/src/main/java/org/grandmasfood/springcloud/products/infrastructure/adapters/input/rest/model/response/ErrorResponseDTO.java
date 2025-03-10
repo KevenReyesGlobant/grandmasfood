@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.response;
+package org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Builder
 @Data
