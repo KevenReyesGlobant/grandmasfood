@@ -18,7 +18,7 @@ public interface ClientsServicePort {
 
     Client findActiveById(Long id);
 
-    Optional<Client> deleteByDocument(String document);
+    Client deleteByDocument(String document);
 
 
 }

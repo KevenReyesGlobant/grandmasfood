@@ -7,7 +7,6 @@ import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 
@@ -37,8 +36,8 @@ public class ClientService implements ClientsServicePort {
     }
 
     @Override
-    public Optional<Client> deleteByDocument(String document) {
-        return Optional.ofNullable(persistencePort.deleteByDocument(document));
+    public Client deleteByDocument(String document) {
+        return persistencePort.deleteByDocument(document);
     }
 
 

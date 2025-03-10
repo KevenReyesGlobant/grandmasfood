@@ -3,7 +3,6 @@ package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.application.ports.input.ClientsServicePort;
-import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.mapper.ClientRestMapper;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.request.ClientsCreateRequestDTO;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.response.ClientsResponseDTO;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 public class ClientsController {
@@ -56,9 +54,8 @@ public class ClientsController {
 //
     @DeleteMapping("/client/{document}")
     public ResponseEntity<ClientsResponseDTO> deleteClientActiveByDocument(@PathVariable @Valid String document) {
-        ClientsResponseDTO client = clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.findActiveByDocument(document));
-        iCreateClientUseCase.deleteByDocument(document);
-        return ResponseEntity.status(HttpStatus.OK).body(client);
+        ClientsResponseDTO clientsResponseDTO = clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.deleteByDocument(document));
+        return ResponseEntity.ok().build();
     }
 
 
