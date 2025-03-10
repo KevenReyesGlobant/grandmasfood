@@ -17,4 +17,6 @@ public interface ClientPersistencePort {
     Optional<Client> findActiveById(Long id);
 
     Client deleteByDocument(String document);
+
+//    Client update(String document, Client client);
 }

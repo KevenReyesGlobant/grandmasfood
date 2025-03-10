@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
 public class ClientService implements ClientsServicePort {
 
     private final ClientPersistencePort persistencePort;
@@ -54,8 +53,24 @@ public class ClientService implements ClientsServicePort {
 
 
     @Override
-    public Client update(Long id, Client client) {
-        return null;
+    public Client update(String document, Client client) {
+        return persistencePort.findActiveByDocument(document)
+                .map(savedCLient -> {
+
+                    updateField(client.getName(), savedCLient::setName);
+                    updateField(client.getEmail(), savedCLient::setEmail);
+                    updateField(client.getDocument(), savedCLient::setDocument);
+                    updateField(client.getPhone(), savedCLient::setPhone);
+                    updateField(client.getDeliveryAddress(), savedCLient::setDeliveryAddress);
+                    return persistencePort.save(savedCLient);
+                })
+                .orElseThrow(ClientNotFoundException::new);
+    }
+
+    private <T> void updateField(T newValue, java.util.function.Consumer<T> setter) {
+        if (newValue != null) {
+            setter.accept(newValue);
+        }
     }
 
 

@@ -12,7 +12,7 @@ public interface ClientsServicePort {
 
     Client save(Client client);
 
-    Client update(Long id, Client client);
+    Client update(String document, Client client);
 
     Client findActiveByDocument(String document);
 

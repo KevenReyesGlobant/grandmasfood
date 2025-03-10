@@ -35,13 +35,6 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
     }
 
     @Override
-    public Client deleteByDocument(String document) {
-        Client client = clientMapper.toClient(clientsReposity.findClientsActiveByDocument(document));
-        client.setActive(false);
-        return clientMapper.toClient(clientsReposity.save(clientMapper.toClientEntity(client)));
-    }
-
-    @Override
     public Optional<Client> findById(Long id) {
         return clientsReposity.findById(id).map(clientMapper::toClient);
     }
@@ -49,7 +42,7 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
 
     @Override
     public Optional<Client> findActiveById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(clientMapper.toClient(clientsReposity.findClientsActiveById(id)));
     }
 
     @Override
@@ -57,5 +50,18 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
         return clientsReposity.findAll().stream().map(clientMapper::toClient).toList();
     }
 
+
+
+    @Override
+    public Client deleteByDocument(String document) {
+        Client client = clientMapper.toClient(clientsReposity.findClientsActiveByDocument(document));
+        client.setActive(false);
+        return clientMapper.toClient(clientsReposity.save(clientMapper.toClientEntity(client)));
+    }
+
+//    @Override
+//    public Client update(String document, Client client) {
+//        return null;
+//    }
 
 }
