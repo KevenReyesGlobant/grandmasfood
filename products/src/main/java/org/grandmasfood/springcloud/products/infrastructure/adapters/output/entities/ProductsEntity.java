@@ -11,11 +11,11 @@ import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.
 import java.util.UUID;
 
 @Entity
-@Table(name = "products")
+@Table(name = "products_entity")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Products {
+public class ProductsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
