@@ -12,6 +12,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Client {
 
     private Long id;

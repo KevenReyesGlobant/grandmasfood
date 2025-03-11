@@ -9,9 +9,9 @@ import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.
 import java.util.UUID;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class ProductResponse {
     private Long id;
     private UUID uuid;

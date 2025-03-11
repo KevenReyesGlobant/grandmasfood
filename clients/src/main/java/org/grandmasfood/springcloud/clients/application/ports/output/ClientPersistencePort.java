@@ -18,5 +18,4 @@ public interface ClientPersistencePort {
 
     Client deleteByDocument(String document);
 
-//    Client update(String document, Client client);
 }

@@ -5,7 +5,6 @@ import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersi
 import org.grandmasfood.springcloud.clients.domain.exceptions.ClientNotFoundException;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

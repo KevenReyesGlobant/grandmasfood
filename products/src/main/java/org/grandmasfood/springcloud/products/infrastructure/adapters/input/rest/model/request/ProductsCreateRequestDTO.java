@@ -6,8 +6,14 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.enums.Category;
 
+@Builder
+@Data
+@AllArgsConstructor
 public class ProductsCreateRequestDTO {
     @NotEmpty(message = "Fantasy name cannot be empty")
     private String fantasyName;
@@ -25,8 +31,8 @@ public class ProductsCreateRequestDTO {
 
 
     public ProductsCreateRequestDTO() {
-        active = active == null ? true : active;
-        available = available == null ? true : available;
+        active = active == null || active;
+        available = available == null || available;
 
     }
 

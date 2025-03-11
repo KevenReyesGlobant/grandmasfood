@@ -36,7 +36,6 @@ public class ProductsEntity {
 
     private boolean available;
 
-    @JsonIgnore
     private Boolean active;
 
 }
