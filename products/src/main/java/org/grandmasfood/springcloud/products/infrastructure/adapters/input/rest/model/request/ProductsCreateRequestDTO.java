@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.enums.Category;
 
-public class ProductsRequestDTO {
+public class ProductsCreateRequestDTO {
     @NotEmpty(message = "Fantasy name cannot be empty")
     private String fantasyName;
     @Enumerated(EnumType.STRING)
@@ -24,7 +24,7 @@ public class ProductsRequestDTO {
     private Boolean active;
 
 
-    public ProductsRequestDTO() {
+    public ProductsCreateRequestDTO() {
         active = active == null ? true : active;
         available = available == null ? true : available;
 
