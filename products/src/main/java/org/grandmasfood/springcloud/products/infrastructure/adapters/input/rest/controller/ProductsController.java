@@ -28,7 +28,7 @@ public class ProductsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponse> findProductActiveById(@RequestBody @Valid Long id) {
+    public ResponseEntity<ProductResponse> readProductActiveById(@PathVariable @Valid Long id) {
         return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findActiveById(id)));
     }
 
@@ -45,6 +45,6 @@ public class ProductsController {
     @DeleteMapping("/product/{uuid}")
     public ResponseEntity<ProductResponse> softDeleteProductByUuid(@PathVariable @Valid UUID uuid) {
         ProductResponse productResponse = productRestMapper.toProductResponseDTO(productServicesPort.deleteByUuid(uuid));
-
+        return ResponseEntity.ok().build();
     }
 }
