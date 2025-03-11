@@ -27,6 +27,7 @@ public class ProductPersistentAdapter implements ProductPersistentPort {
     @Override
     public Product save(Product product) {
         product.setUuid(generatedUuId.generateUuid());
+        product.setFantasyName(product.getFantasyName().toUpperCase());
         return productMapper.toProduct(productsRepositoy.save(productMapper.toProductEntity(product)));
     }
 

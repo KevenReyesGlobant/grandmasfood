@@ -37,7 +37,6 @@ public class ProductsCreateRequestDTO {
     public ProductsCreateRequestDTO() {
         active = active == null || active;
         available = available == null || available;
-
     }
 
 
