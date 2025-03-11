@@ -28,6 +28,8 @@ public class ProductsEntity {
 
     @Enumerated(EnumType.STRING)
     private Category category;
+
+    @NotNull(message = "Description cannot be null")
     private String description;
 
     @NotNull(message = "Price cannot be null")

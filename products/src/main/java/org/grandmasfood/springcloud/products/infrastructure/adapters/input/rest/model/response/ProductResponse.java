@@ -13,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductResponse {
+
     private Long id;
     private UUID uuid;
     private String fantasyName;
@@ -20,5 +21,4 @@ public class ProductResponse {
     private String description;
     private float price;
     private boolean available;
-    private Boolean active;
 }

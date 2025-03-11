@@ -11,10 +11,14 @@ import lombok.Builder;
 import lombok.Data;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.enums.Category;
 
+import java.util.UUID;
+
 @Builder
 @Data
 @AllArgsConstructor
 public class ProductsCreateRequestDTO {
+
+    private UUID uuid;
     @NotEmpty(message = "Fantasy name cannot be empty")
     private String fantasyName;
     @Enumerated(EnumType.STRING)
