@@ -43,16 +43,18 @@ public class ProductPersistentAdapter implements ProductPersistentPort {
 
     @Override
     public Optional<Product> findActiveByUuid(UUID uuid) {
-        return Optional.empty();
+        return Optional.ofNullable(productMapper.toProduct(productsRepositoy.findProductsActiveByUuId(uuid)));
     }
 
     @Override
     public Optional<Product> findActiveById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(productMapper.toProduct(productsRepositoy.findProductsActiveById(id)));
     }
 
     @Override
     public Product deleteByUuid(UUID uuid) {
-        return null;
+        Product product = productMapper.toProduct(productsRepositoy.findProductsActiveByUuId(uuid));
+        product.setActive(false);
+        return productMapper.toProduct(productsRepositoy.save(productMapper.toProductEntity(product)));
     }
 }

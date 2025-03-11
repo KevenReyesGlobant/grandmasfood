@@ -58,10 +58,4 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
         client.setActive(false);
         return clientMapper.toClient(clientsReposity.save(clientMapper.toClientEntity(client)));
     }
-
-//    @Override
-//    public Client update(String document, Client client) {
-//        return null;
-//    }
-
 }
