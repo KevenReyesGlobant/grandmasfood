@@ -1,10 +1,10 @@
 package org.grandmasfood.springcloud.orders.application.services;
 
+import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.grandmasfood.springcloud.orders.application.ports.input.OrdersServicesPort;
 import org.grandmasfood.springcloud.orders.application.ports.output.OrdersPersistentPort;
 import org.grandmasfood.springcloud.orders.domain.model.Order;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
-import org.grandmasfood.springcloud.orders.model.Client;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -3,10 +3,10 @@ package org.grandmasfood.springcloud.orders.domain.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.grandmasfood.springcloud.orders.model.Client;
-import org.grandmasfood.springcloud.orders.model.Product;
-import org.grandmasfood.springcloud.orders.model.entity.OrdersClients;
-import org.grandmasfood.springcloud.orders.model.entity.OrdersProducts;
+//import org.grandmasfood.springcloud.orders.model.Client;
+//import org.grandmasfood.springcloud.orders.model.Product;
+//import org.grandmasfood.springcloud.orders.model.entity.OrdersClients;
+//import org.grandmasfood.springcloud.orders.model.entity.OrdersProducts;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
