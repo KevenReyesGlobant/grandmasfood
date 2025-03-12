@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.infrastructure.model;
+package org.grandmasfood.springcloud.orders.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

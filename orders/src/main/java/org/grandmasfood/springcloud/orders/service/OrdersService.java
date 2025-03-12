@@ -11,7 +11,7 @@ import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 import org.grandmasfood.springcloud.orders.model.entity.Orders;
 import org.grandmasfood.springcloud.orders.model.entity.OrdersClients;
 import org.grandmasfood.springcloud.orders.model.entity.OrdersProducts;
-import org.grandmasfood.springcloud.orders.repository.OrdersRepository;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

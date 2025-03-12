@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.infrastructure.exceptions;
+package org.grandmasfood.springcloud.orders.domain.exceptions;
 
 public class OrderNotFoundException extends RuntimeException{
 }

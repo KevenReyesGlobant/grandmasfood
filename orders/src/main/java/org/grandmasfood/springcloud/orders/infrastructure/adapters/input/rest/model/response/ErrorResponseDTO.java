@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.response;
+package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

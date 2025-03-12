@@ -1,7 +1,7 @@
-package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.controller;
+package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.controller;
 
-import org.grandmasfood.springcloud.clients.domain.exceptions.ClientNotFoundException;
 import org.grandmasfood.springcloud.clients.domain.model.ErrorResponseDTO;
+import org.grandmasfood.springcloud.orders.domain.exceptions.OrderNotFoundException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -14,17 +14,18 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-import static org.grandmasfood.springcloud.clients.utils.ErrorCatalog.*;
+import static org.grandmasfood.springcloud.orders.utils.ErrorCatalog.*;
+
 
 @RestControllerAdvice
 public class GlobalControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ClientNotFoundException.class)
+    @ExceptionHandler(OrderNotFoundException.class)
     public ErrorResponseDTO handleStudentNotFoundException() {
         return ErrorResponseDTO.builder()
-                .code(CLIENT_NOT_FOUND.getCode())
-                .message(CLIENT_NOT_FOUND.getMessage())
+                .code(ORDER_NOT_FOUND.getCode())
+                .message(ORDER_NOT_FOUND.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build();
     }
@@ -36,8 +37,8 @@ public class GlobalControllerAdvice {
         BindingResult result = exception.getBindingResult();
 
         return ErrorResponseDTO.builder()
-                .code(INVALID_CLIENT.getCode())
-                .message(INVALID_CLIENT.getMessage())
+                .code(INVALID_ORDER.getCode())
+                .message(INVALID_ORDER.getMessage())
                 .details(result.getFieldErrors()
                         .stream()
                         .map(DefaultMessageSourceResolvable::getDefaultMessage)

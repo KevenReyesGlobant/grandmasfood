@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.response;
+package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.model.response;
 
 public class OrdersResponseDTO {
 }

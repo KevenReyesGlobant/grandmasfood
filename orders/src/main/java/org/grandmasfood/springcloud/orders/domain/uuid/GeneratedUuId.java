@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.infrastructure.uuid;
+package org.grandmasfood.springcloud.orders.domain.uuid;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.repository;
+package org.grandmasfood.springcloud.orders.infrastructure.adapters.output.repository;
 
 import org.grandmasfood.springcloud.orders.model.entity.Orders;
 import org.springframework.data.domain.Page;

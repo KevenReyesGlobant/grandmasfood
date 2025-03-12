@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.controller;
+package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.controller;
 
 import feign.FeignException;
 import jakarta.validation.Valid;

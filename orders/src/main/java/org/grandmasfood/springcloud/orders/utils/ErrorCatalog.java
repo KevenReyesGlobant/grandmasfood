@@ -1,13 +1,13 @@
-package org.grandmasfood.springcloud.clients.utils;
+package org.grandmasfood.springcloud.orders.utils;
 
 import lombok.Getter;
 
 @Getter
 public enum ErrorCatalog {
 
-    CLIENT_NOT_FOUND("CLIENT_NOT_FOUND", "Client not found"),
+    ORDER_NOT_FOUND("ORDER_NOT_FOUND", "Order not found"),
 
-    INVALID_CLIENT("INVALID_CLIENT", "Invalid client"),
+    INVALID_ORDER("INVALID_ORDER", "Invalid order"),
 
     GENERIC_ERROR("GENERIC_ERROR", "An error occurred");
 

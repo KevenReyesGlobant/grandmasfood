@@ -20,6 +20,4 @@ public class ClientsResponseDTO {
     private String document;
     private String phone;
     private String deliveryAddress;
-    private Boolean active;
-
 }
