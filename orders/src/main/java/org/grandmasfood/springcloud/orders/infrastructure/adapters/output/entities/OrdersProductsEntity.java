@@ -19,5 +19,5 @@ public class OrdersProductsEntity {
 
     @Column(name = "product_uuid", unique = true)
     private UUID productUuid;
-    
+
 }

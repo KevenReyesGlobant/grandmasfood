@@ -3,6 +3,9 @@ package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.m
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import org.grandmasfood.springcloud.orders.application.ports.input.IValidDeliveryDate;
 import org.grandmasfood.springcloud.orders.domain.model.OrdersClients;
 import org.grandmasfood.springcloud.orders.domain.model.OrdersProducts;
@@ -11,6 +14,9 @@ import org.grandmasfood.springcloud.orders.domain.model.OrdersProducts;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Builder
+@Data
+@AllArgsConstructor
 @IValidDeliveryDate
 public class OrdersCreateRequestDTO {
 
