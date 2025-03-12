@@ -1,9 +1,9 @@
-package org.grandmasfood.springcloud.orders.config.validations;
+package org.grandmasfood.springcloud.orders.domain.validations;
 
 import jakarta.validation.ConstraintDefinitionException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.grandmasfood.springcloud.orders.config.interfaces.IValidDeliveryDate;
+import org.grandmasfood.springcloud.orders.application.ports.input.IValidDeliveryDate;
 import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
 
 public class DeliveryDateValidator implements ConstraintValidator<IValidDeliveryDate, OrdersDTO> {

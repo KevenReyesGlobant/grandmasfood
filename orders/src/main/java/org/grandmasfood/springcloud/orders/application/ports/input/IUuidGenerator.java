@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.domain.uuid;
+package org.grandmasfood.springcloud.orders.application.ports.input;
 import java.util.UUID;
 
 public interface IUuidGenerator {

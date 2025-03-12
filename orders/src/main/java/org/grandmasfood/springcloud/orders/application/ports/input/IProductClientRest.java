@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.orders.config.interfaces;
+package org.grandmasfood.springcloud.orders.application.ports.input;
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.orders.model.Product;

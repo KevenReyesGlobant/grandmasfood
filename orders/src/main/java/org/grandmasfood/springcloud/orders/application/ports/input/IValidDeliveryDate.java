@@ -1,8 +1,8 @@
-package org.grandmasfood.springcloud.orders.config.interfaces;
+package org.grandmasfood.springcloud.orders.application.ports.input;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import org.grandmasfood.springcloud.orders.config.validations.DeliveryDateValidator;
+import org.grandmasfood.springcloud.orders.domain.validations.DeliveryDateValidator;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

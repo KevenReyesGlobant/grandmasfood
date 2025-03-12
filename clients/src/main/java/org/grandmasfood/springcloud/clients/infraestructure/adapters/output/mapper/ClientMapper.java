@@ -14,5 +14,4 @@ public interface ClientMapper {
 
     List<Client> toClientsList(List<ClientsEntity> clientsEntities);
 
-
 }

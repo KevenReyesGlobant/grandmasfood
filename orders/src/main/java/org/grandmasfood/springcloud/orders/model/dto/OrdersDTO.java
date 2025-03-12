@@ -3,7 +3,7 @@ package org.grandmasfood.springcloud.orders.model.dto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import org.grandmasfood.springcloud.orders.config.interfaces.IValidDeliveryDate;
+import org.grandmasfood.springcloud.orders.application.ports.input.IValidDeliveryDate;
 import org.grandmasfood.springcloud.orders.model.entity.OrdersClients;
 import org.grandmasfood.springcloud.orders.model.entity.OrdersProducts;
 

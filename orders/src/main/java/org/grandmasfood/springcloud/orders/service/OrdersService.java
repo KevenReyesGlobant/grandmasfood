@@ -1,9 +1,9 @@
 package org.grandmasfood.springcloud.orders.service;
 
 import jakarta.validation.Valid;
-import org.grandmasfood.springcloud.orders.config.interfaces.IClientClientRest;
+import org.grandmasfood.springcloud.orders.application.ports.input.IClientClientRest;
 import org.grandmasfood.springcloud.orders.config.interfaces.IOrdersServices;
-import org.grandmasfood.springcloud.orders.config.interfaces.IProductClientRest;
+import org.grandmasfood.springcloud.orders.application.ports.input.IProductClientRest;
 import org.grandmasfood.springcloud.orders.config.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.orders.model.Client;
 import org.grandmasfood.springcloud.orders.model.Product;
