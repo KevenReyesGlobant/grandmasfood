@@ -6,10 +6,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
-import org.grandmasfood.springcloud.orders.model.Client;
-import org.grandmasfood.springcloud.orders.model.Product;
-import org.grandmasfood.springcloud.orders.model.entity.OrdersClients;
-import org.grandmasfood.springcloud.orders.model.entity.OrdersProducts;
+import org.grandmasfood.springcloud.orders.domain.model.Client;
+import org.grandmasfood.springcloud.orders.domain.model.OrdersClients;
+import org.grandmasfood.springcloud.orders.domain.model.OrdersProducts;
+import org.grandmasfood.springcloud.orders.domain.model.Product;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -68,7 +68,7 @@ public class OrderEntity {
 
     private boolean delivered;
 
-    private String deliveryDate;
+    private LocalDateTime deliveryDate;
 
     @JsonIgnore
     private Boolean active;

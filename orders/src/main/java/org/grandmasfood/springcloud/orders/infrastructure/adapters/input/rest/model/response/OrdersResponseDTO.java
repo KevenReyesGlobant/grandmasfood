@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.grandmasfood.springcloud.orders.model.Client;
-import org.grandmasfood.springcloud.orders.model.Product;
-import org.grandmasfood.springcloud.orders.model.entity.OrdersClients;
-import org.grandmasfood.springcloud.orders.model.entity.OrdersProducts;
+import org.grandmasfood.springcloud.orders.domain.model.Client;
+import org.grandmasfood.springcloud.orders.domain.model.OrdersClients;
+import org.grandmasfood.springcloud.orders.domain.model.OrdersProducts;
+import org.grandmasfood.springcloud.orders.domain.model.Product;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,6 +34,6 @@ public class OrdersResponseDTO {
     private double tax;
     private double grandTotal;
     private boolean delivered;
-    private String deliveryDate;
+    private LocalDateTime deliveryDate;
     private Boolean active;
 }

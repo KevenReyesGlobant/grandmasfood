@@ -4,9 +4,10 @@ import jakarta.validation.ConstraintDefinitionException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.grandmasfood.springcloud.orders.application.ports.input.IValidDeliveryDate;
-import org.grandmasfood.springcloud.orders.model.dto.OrdersDTO;
+import org.grandmasfood.springcloud.orders.domain.model.Order;
 
-public class DeliveryDateValidator implements ConstraintValidator<IValidDeliveryDate, OrdersDTO> {
+public class DeliveryDateValidator implements ConstraintValidator<IValidDeliveryDate, Order> {
+
 
     @Override
     public void initialize(IValidDeliveryDate constraintAnnotation) {
@@ -14,21 +15,23 @@ public class DeliveryDateValidator implements ConstraintValidator<IValidDelivery
     }
 
     @Override
-    public boolean isValid(OrdersDTO order, ConstraintValidatorContext context) {
+    public boolean isValid(Order order, ConstraintValidatorContext context) {
         // Si delivered es false, deliveryDate debe ser null
-        if (Boolean.FALSE.equals(order.delivered())) {
-            if (order.deliveryDate() != null) {
+        if (Boolean.FALSE.equals(order.isDelivered())) {
+            if (order.getDeliveryDate() != null) {
                 throw new ConstraintDefinitionException("If delivered is false, delivery date must be null");
             }
             return true;
         }
 
         // Si delivered es true, deliveryDate no puede ser null
-        if (Boolean.TRUE.equals(order.delivered()) && order.deliveryDate() == null) {
+        if (Boolean.TRUE.equals(order.isDelivered()) && order.getDeliveryDate() == null) {
             throw new ConstraintDefinitionException("If delivered is true, delivery date cannot be empty");
         }
 
         return true;
     }
+
+
 
 }
