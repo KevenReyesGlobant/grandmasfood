@@ -27,7 +27,7 @@ public class OrderEntity {
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
-    private List<OrdersProducts> ordersProducts;
+    private List<OrdersProductsEntity> ordersProducts;
 
     @Transient
     private List<Product> product;
@@ -37,7 +37,7 @@ public class OrderEntity {
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
-    private List<OrdersClients> ordersClients;
+    private List<OrdersClientsEntity> ordersClients;
 
     //    @NotNull(message = "UUID cannot be null")
     private UUID uuid;

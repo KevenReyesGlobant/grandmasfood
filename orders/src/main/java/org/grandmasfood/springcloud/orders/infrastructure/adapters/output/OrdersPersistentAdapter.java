@@ -1,28 +1,33 @@
-package org.grandmasfood.springcloud.orders.application.services;
+package org.grandmasfood.springcloud.orders.infrastructure.adapters.output;
 
-import org.grandmasfood.springcloud.orders.application.ports.input.OrdersServicesPort;
 import org.grandmasfood.springcloud.orders.application.ports.output.OrdersPersistentPort;
 import org.grandmasfood.springcloud.orders.domain.model.Client;
 import org.grandmasfood.springcloud.orders.domain.model.Order;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
-import org.springframework.stereotype.Service;
+import org.grandmasfood.springcloud.orders.domain.uuid.GeneratedUuId;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderMapper;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.repository.OrdersRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class OrdersServices implements OrdersServicesPort {
+@Component
+public class OrdersPersistentAdapter implements OrdersPersistentPort {
 
-    private final OrdersPersistentPort ordersPersistentPort;
+    private final OrdersRepository ordersRepository;
+    private final OrderMapper orderMapper;
+    private final GeneratedUuId generatedUuId;
 
-    public OrdersServices(OrdersPersistentPort ordersPersistentPort) {
-        this.ordersPersistentPort = ordersPersistentPort;
+    public OrdersPersistentAdapter(OrdersRepository ordersRepository, OrderMapper orderMapper, GeneratedUuId generatedUuId) {
+        this.ordersRepository = ordersRepository;
+        this.orderMapper = orderMapper;
+        this.generatedUuId = generatedUuId;
     }
 
-
     @Override
-    public Order findById(Long id) {
-        return null;
+    public Optional<Order> findById(Long id) {
+        return Optional.empty();
     }
 
     @Override
@@ -32,22 +37,18 @@ public class OrdersServices implements OrdersServicesPort {
 
     @Override
     public Order save(Order order) {
-        return ordersPersistentPort.save(order);
+        order.setUuid(generatedUuId.generateUuid());
+        return orderMapper.toOrder(ordersRepository.save(orderMapper.toOrderEntity(order)));
     }
 
     @Override
-    public Order update(String document, Order order) {
-        return null;
+    public Optional<Order> findActiveByDocument(String document) {
+        return Optional.empty();
     }
 
     @Override
-    public Order findActiveByDocument(String document) {
-        return null;
-    }
-
-    @Override
-    public Order findActiveById(Long id) {
-        return null;
+    public Optional<Order> findActiveById(Long id) {
+        return Optional.empty();
     }
 
     @Override

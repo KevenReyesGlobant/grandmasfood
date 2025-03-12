@@ -1,9 +1,9 @@
 package org.grandmasfood.springcloud.orders.application.ports.output;
 
 
+import org.grandmasfood.springcloud.orders.domain.model.Client;
 import org.grandmasfood.springcloud.orders.domain.model.Order;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
-import org.grandmasfood.springcloud.orders.model.Client;
 
 import java.util.List;
 import java.util.Optional;

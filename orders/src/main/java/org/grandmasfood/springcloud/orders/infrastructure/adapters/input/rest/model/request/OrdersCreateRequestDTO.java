@@ -7,8 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.grandmasfood.springcloud.orders.application.ports.input.IValidDeliveryDate;
-import org.grandmasfood.springcloud.orders.domain.model.OrdersClients;
-import org.grandmasfood.springcloud.orders.domain.model.OrdersProducts;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entities.OrdersClientsEntity;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entities.OrdersProductsEntity;
 
 
 import java.time.LocalDateTime;
@@ -26,9 +26,9 @@ public class OrdersCreateRequestDTO {
     @NotEmpty(message = "Client document cannot be empty")
     String clientDocument;
 
-    List<OrdersProducts> ordersProducts;
+    List<OrdersProductsEntity> ordersProducts;
 
-    List<OrdersClients> ordersClients;
+    List<OrdersClientsEntity> ordersClients;
 
     @NotEmpty(message = "Product UUID cannot be empty")
     String productUuid;

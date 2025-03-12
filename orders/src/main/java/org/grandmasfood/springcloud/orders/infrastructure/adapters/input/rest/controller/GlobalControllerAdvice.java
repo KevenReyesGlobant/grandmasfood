@@ -1,7 +1,7 @@
 package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.controller;
 
-import org.grandmasfood.springcloud.clients.domain.model.ErrorResponseDTO;
 import org.grandmasfood.springcloud.orders.domain.exceptions.OrderNotFoundException;
+import org.grandmasfood.springcloud.orders.domain.model.ErrorResponseDTO;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
