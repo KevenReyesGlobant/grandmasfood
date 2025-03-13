@@ -18,4 +18,6 @@ public class Product {
     float price;
     boolean available;
     Boolean active;
+
+
 }

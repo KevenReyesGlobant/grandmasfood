@@ -51,7 +51,6 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
     }
 
 
-
     @Override
     public Client deleteByDocument(String document) {
         Client client = clientMapper.toClient(clientsReposity.findClientsActiveByDocument(document));

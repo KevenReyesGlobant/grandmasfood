@@ -3,10 +3,12 @@ package org.grandmasfood.springcloud.orders.domain.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class OrdersClients {
     private Long id;
     private Long clientId;

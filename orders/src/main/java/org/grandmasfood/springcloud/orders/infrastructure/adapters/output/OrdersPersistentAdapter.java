@@ -1,11 +1,17 @@
 package org.grandmasfood.springcloud.orders.infrastructure.adapters.output;
 
+import org.grandmasfood.springcloud.orders.application.ports.input.IClientClientRest;
+import org.grandmasfood.springcloud.orders.application.ports.input.IProductClientRest;
 import org.grandmasfood.springcloud.orders.application.ports.output.OrdersPersistentPort;
 import org.grandmasfood.springcloud.orders.domain.model.Client;
 import org.grandmasfood.springcloud.orders.domain.model.Order;
+import org.grandmasfood.springcloud.orders.domain.model.OrdersClients;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
 import org.grandmasfood.springcloud.orders.domain.uuid.GeneratedUuId;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.model.request.OrderClientsCreateRequestDTO;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderClientsMapper;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderMapper;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderProductsMapper;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.repository.OrdersRepository;
 import org.springframework.stereotype.Component;
 
@@ -18,11 +24,19 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
     private final OrdersRepository ordersRepository;
     private final OrderMapper orderMapper;
     private final GeneratedUuId generatedUuId;
+    private final IClientClientRest iClientClientRest;
+    private final IProductClientRest iProductClientRest;
+    private final OrderClientsMapper orderClientsMapper;
+    private final OrderProductsMapper orderProductsMapper;
 
-    public OrdersPersistentAdapter(OrdersRepository ordersRepository, OrderMapper orderMapper, GeneratedUuId generatedUuId) {
+    public OrdersPersistentAdapter(OrdersRepository ordersRepository, OrderMapper orderMapper, GeneratedUuId generatedUuId, IClientClientRest iClientClientRest, IProductClientRest iProductClientRest, OrderClientsMapper orderClientsMapper, OrderProductsMapper orderProductsMapper) {
         this.ordersRepository = ordersRepository;
         this.orderMapper = orderMapper;
         this.generatedUuId = generatedUuId;
+        this.iClientClientRest = iClientClientRest;
+        this.iProductClientRest = iProductClientRest;
+        this.orderClientsMapper = orderClientsMapper;
+        this.orderProductsMapper = orderProductsMapper;
     }
 
     @Override
@@ -48,7 +62,7 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
 
     @Override
     public Optional<Order> findActiveById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(orderMapper.toOrder(ordersRepository.findOrdersActiveById(id)));
     }
 
     @Override
@@ -58,7 +72,22 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
 
     @Override
     public Optional<Client> signedClient(Client client, Long id) {
+        Optional<Order> order = Optional.ofNullable(orderMapper.toOrder(ordersRepository.findOrdersActiveById(id)));
+        if (order.isPresent()) {
+            Client client_msv = iClientClientRest.readClientActiveById(client.getId());
+
+            Order orders = order.get();
+
+            OrdersClients ordersClients = new OrdersClients();
+            ordersClients.setClientId(client_msv.getId());
+            ordersClients.setClientDocument(client_msv.getDocument());
+            orders.addOrderClient(ordersClients);
+            orderMapper.toOrder(ordersRepository.save(orderMapper.toOrderEntity(orders)));
+            return Optional.of(client_msv);
+        }
+
         return Optional.empty();
+
     }
 
     @Override
