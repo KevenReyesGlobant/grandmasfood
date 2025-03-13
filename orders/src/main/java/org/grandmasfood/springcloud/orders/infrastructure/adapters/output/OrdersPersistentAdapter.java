@@ -3,10 +3,7 @@ package org.grandmasfood.springcloud.orders.infrastructure.adapters.output;
 import org.grandmasfood.springcloud.orders.application.ports.input.IClientClientRest;
 import org.grandmasfood.springcloud.orders.application.ports.input.IProductClientRest;
 import org.grandmasfood.springcloud.orders.application.ports.output.OrdersPersistentPort;
-import org.grandmasfood.springcloud.orders.domain.model.Client;
-import org.grandmasfood.springcloud.orders.domain.model.Order;
-import org.grandmasfood.springcloud.orders.domain.model.OrdersClients;
-import org.grandmasfood.springcloud.orders.domain.model.Product;
+import org.grandmasfood.springcloud.orders.domain.model.*;
 import org.grandmasfood.springcloud.orders.domain.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.model.request.OrderClientsCreateRequestDTO;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderClientsMapper;
@@ -102,6 +99,20 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
 
     @Override
     public Optional<Product> signedProduct(Product product, Long id) {
+        Optional<Order> order = Optional.ofNullable(orderMapper.toOrder(ordersRepository.findOrdersActiveById(id)));
+        if (order.isPresent()) {
+            Product product_msv = iProductClientRest.readProductActiveByID(product.getId());
+
+            Order orders = order.get();
+
+            OrdersProducts ordersProducts = new OrdersProducts();
+            ordersProducts.setProductId(product_msv.getId());
+            ordersProducts.setProductUuid(product_msv.getUuid());
+            orders.addOrderProduct(ordersProducts);
+            orderMapper.toOrder(ordersRepository.save(orderMapper.toOrderEntity(orders)));
+            return Optional.of(product_msv);
+        }
+
         return Optional.empty();
     }
 
