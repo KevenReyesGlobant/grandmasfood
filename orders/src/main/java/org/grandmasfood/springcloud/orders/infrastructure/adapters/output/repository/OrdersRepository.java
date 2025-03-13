@@ -1,5 +1,6 @@
 package org.grandmasfood.springcloud.orders.infrastructure.adapters.output.repository;
 
+import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.entities.ClientsEntity;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entities.OrderEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -5,7 +5,6 @@ import org.grandmasfood.springcloud.orders.application.ports.input.IProductClien
 import org.grandmasfood.springcloud.orders.application.ports.output.OrdersPersistentPort;
 import org.grandmasfood.springcloud.orders.domain.model.*;
 import org.grandmasfood.springcloud.orders.domain.uuid.GeneratedUuId;
-import org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.model.request.OrderClientsCreateRequestDTO;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderClientsMapper;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderMapper;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderProductsMapper;
