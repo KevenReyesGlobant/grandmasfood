@@ -47,6 +47,10 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
 
     @Override
     public Order save(Order order) {
+        Client client_msv = iClientClientRest.readClientActiveById(order.getId());
+        Product product_msv = iProductClientRest.readProductActiveByID(order.getId());
+        order.setClientDocument(client_msv.getDocument());
+        order.setProductUuid(product_msv.getUuid());
         order.setUuid(generatedUuId.generateUuid());
         return orderMapper.toOrder(ordersRepository.save(orderMapper.toOrderEntity(order)));
     }
@@ -71,7 +75,6 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
         Optional<Order> order = Optional.ofNullable(orderMapper.toOrder(ordersRepository.findOrdersActiveById(id)));
         if (order.isPresent()) {
             Client client_msv = iClientClientRest.readClientActiveById(client.getId());
-
             Order orders = order.get();
 
             OrdersClients ordersClients = new OrdersClients();

@@ -20,7 +20,7 @@ public class Order {
     private List<OrdersClients> ordersClients;
     private LocalDateTime creationDateTime;
     private String clientDocument;
-    private String productUuid;
+    private UUID productUuid;
     private int quantity;
     private String extraInfo;
     private double subTotal;

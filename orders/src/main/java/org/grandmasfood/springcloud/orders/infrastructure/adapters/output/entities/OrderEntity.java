@@ -48,8 +48,8 @@ public class OrderEntity {
     //    @NotEmpty(message = "Client document cannot be empty")
     private String clientDocument;
 
-    @NotEmpty(message = "Product UUID cannot be empty")
-    private String productUuid;
+//    @NotEmpty(message = "Product UUID cannot be empty")
+    private UUID productUuid;
 
     @Positive(message = "Quantity must be positive")
     private int quantity;

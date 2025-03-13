@@ -27,7 +27,7 @@ public class OrdersResponseDTO {
     private UUID uuid;
     private LocalDateTime creationDateTime;
     private String clientDocument;
-    private String productUuid;
+    private UUID productUuid;
     private int quantity;
     private String extraInfo;
     private double subTotal;
