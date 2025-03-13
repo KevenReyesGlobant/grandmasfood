@@ -2,6 +2,7 @@ package org.grandmasfood.springcloud.orders.application.services;
 
 import org.grandmasfood.springcloud.orders.application.ports.input.OrdersServicesPort;
 import org.grandmasfood.springcloud.orders.application.ports.output.OrdersPersistentPort;
+import org.grandmasfood.springcloud.orders.domain.exceptions.OrderNotFoundException;
 import org.grandmasfood.springcloud.orders.domain.model.Client;
 import org.grandmasfood.springcloud.orders.domain.model.Order;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
@@ -22,7 +23,7 @@ public class OrdersServices implements OrdersServicesPort {
 
     @Override
     public Order findById(Long id) {
-        return null;
+        return ordersPersistentPort.findById(id).orElseThrow(OrderNotFoundException::new);
     }
 
     @Override
@@ -57,31 +58,31 @@ public class OrdersServices implements OrdersServicesPort {
 
     @Override
     public Optional<Client> signedClient(Client client, Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(ordersPersistentPort.signedClient(client, id).orElseThrow(OrderNotFoundException::new));
     }
 
     @Override
     public Optional<Client> createClient(Client client, Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(ordersPersistentPort.createClient(client, id).orElseThrow(OrderNotFoundException::new));
     }
 
     @Override
     public Optional<Client> designedClient(Client client, Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(ordersPersistentPort.designedClient(client, id).orElseThrow(OrderNotFoundException::new));
     }
 
     @Override
     public Optional<Product> signedProduct(Product product, Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(ordersPersistentPort.signedProduct(product, id).orElseThrow(OrderNotFoundException::new));
     }
 
     @Override
     public Optional<Product> createProduct(Product product, Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(ordersPersistentPort.createProduct(product, id).orElseThrow(OrderNotFoundException::new));
     }
 
     @Override
     public Optional<Product> designedProduct(Product product, Long id) {
-        return Optional.empty();
+        return Optional.of(ordersPersistentPort.designedProduct(product, id).orElseThrow());
     }
 }
