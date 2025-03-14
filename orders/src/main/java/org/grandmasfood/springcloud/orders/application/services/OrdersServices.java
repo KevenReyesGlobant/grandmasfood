@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class OrdersServices implements OrdersServicesPort {
@@ -37,8 +38,22 @@ public class OrdersServices implements OrdersServicesPort {
     }
 
     @Override
-    public Order update(String document, Order order) {
-        return null;
+    public Order update(String document, UUID productUuid, Order order) {
+        return ordersPersistentPort.updateByUuidAndDocumentActive(document, productUuid).map(updateOrder -> {
+
+                    updateField(order.getQuantity(), updateOrder::setQuantity);
+                    updateField(order.getDeliveryDate(), updateOrder::setDeliveryDate);
+                    updateField(order.getExtraInfo(), updateOrder::setExtraInfo);
+                    return ordersPersistentPort.save(updateOrder);
+
+                })
+                .orElseThrow(OrderNotFoundException::new);
+    }
+
+    private <T> void updateField(T newValue, java.util.function.Consumer<T> setter) {
+        if (newValue != null) {
+            setter.accept(newValue);
+        }
     }
 
     @Override

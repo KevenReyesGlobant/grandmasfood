@@ -8,6 +8,7 @@ import org.grandmasfood.springcloud.orders.domain.model.Product;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface OrdersServicesPort {
     Order findById(Long id);
@@ -16,7 +17,7 @@ public interface OrdersServicesPort {
 
     Order save(Order order);
 
-    Order update(String document, Order order);
+    Order update(String document, UUID productUuid, Order order);
 
     Order findActiveByDocument(String document);
 

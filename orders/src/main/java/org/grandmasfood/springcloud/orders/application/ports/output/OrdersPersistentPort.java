@@ -1,12 +1,15 @@
 package org.grandmasfood.springcloud.orders.application.ports.output;
 
 
+import feign.Param;
 import org.grandmasfood.springcloud.orders.domain.model.Client;
 import org.grandmasfood.springcloud.orders.domain.model.Order;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
+import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entities.OrderEntity;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface OrdersPersistentPort {
     Optional<Order> findById(Long id);
@@ -20,6 +23,8 @@ public interface OrdersPersistentPort {
     Optional<Order> findActiveById(Long id);
 
     Order deleteByDocument(String document);
+
+    Optional<Order> updateByUuidAndDocumentActive(@Param("clientDocument") String clientDocument, @Param("productUuid") UUID productUuid);
 
     //    Comunication microservices CLients
 

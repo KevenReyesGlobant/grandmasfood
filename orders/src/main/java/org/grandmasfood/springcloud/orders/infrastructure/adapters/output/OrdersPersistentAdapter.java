@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class OrdersPersistentAdapter implements OrdersPersistentPort {
@@ -85,6 +86,11 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
     @Override
     public Order deleteByDocument(String document) {
         return null;
+    }
+
+    @Override
+    public Optional<Order> updateByUuidAndDocumentActive(String clientDocument, UUID productUuid) {
+        return Optional.ofNullable(orderMapper.toOrder(ordersRepository.findByUuidAndDocumentActive(clientDocument, productUuid)));
     }
 
     @Override
