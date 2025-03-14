@@ -20,13 +20,10 @@ import java.util.UUID;
 @IValidDeliveryDate
 public class OrdersCreateRequestDTO {
 
-    @NotNull(message = "Creation date and time cannot be null")
     LocalDateTime creationDateTime;
-    @NotEmpty(message = "Client document cannot be empty")
     String clientDocument;
     List<OrdersProductsEntity> ordersProducts;
     List<OrdersClientsEntity> ordersClients;
-    @NotEmpty(message = "Product UUID cannot be empty")
     UUID productUuid;
     @Positive(message = "Quantity must be positive")
     int quantity;
@@ -43,5 +40,6 @@ public class OrdersCreateRequestDTO {
         active = active == null ? true : active;
         delivered = delivered == null ? false : delivered;
         deliveryDate = Boolean.FALSE.equals(delivered) ? null : deliveryDate;
+        creationDateTime = LocalDateTime.now();
     }
 }

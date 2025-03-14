@@ -49,25 +49,13 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
         Client client_msv = iClientClientRest.listClientActiveByDocuments(order.getClientDocument());
         Product product_msv = iProductClientRest.findProductActiveByUuid(order.getProductUuid());
         order.setClientDocument(client_msv.getDocument());
+//        order.setCreationDateTime(order.getCreationDateTime());
         order.setProductUuid(product_msv.getUuid());
         order.setUuid(generatedUuId.generateUuid());
         order.setSubTotal(product_msv.getPrice() * order.getQuantity());
         order.setGrandTotal(product_msv.getPrice() * order.getQuantity() + (product_msv.getPrice() * order.getQuantity()) * 0.19);
-
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println(client_msv);
-        System.out.println(product_msv.getPrice());
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println(product_msv.getPrice() * order.getQuantity());
-        System.out.println(product_msv.getPrice() * order.getQuantity() + (product_msv.getPrice() * order.getQuantity()) * 0.19);
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-
         order.setTax(product_msv.getPrice() * order.getQuantity() * 0.19);
         if (client_msv.getDocument().matches(order.getClientDocument()) && product_msv.getUuid().equals(order.getProductUuid())) {
-
             return orderMapper.toOrder(ordersRepository.save(orderMapper.toOrderEntity(order)));
         }
         return null;
