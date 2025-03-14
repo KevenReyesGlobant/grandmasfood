@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.UUID;
+
 public interface OrdersRepository extends JpaRepository<OrderEntity, Long> {
 
     @Query("select o from OrderEntity o where o.active=true")
@@ -15,4 +17,6 @@ public interface OrdersRepository extends JpaRepository<OrderEntity, Long> {
     @Query("select o from OrderEntity o where o.id=:id and o.active=true")
     OrderEntity findOrdersActiveById(Long id);
 
+    @Query("select p from OrderEntity o where o.client_document=:client_document and o.product_uuid=:product_uuid  and o.active=true")
+    OrderEntity updateUuidAndDocument(String client_document, UUID product_uuid);
 }

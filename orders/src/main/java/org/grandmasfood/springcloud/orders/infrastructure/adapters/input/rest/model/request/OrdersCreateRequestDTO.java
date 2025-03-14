@@ -10,7 +10,6 @@ import org.grandmasfood.springcloud.orders.application.ports.input.IValidDeliver
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entities.OrdersClientsEntity;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entities.OrdersProductsEntity;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -23,34 +22,21 @@ public class OrdersCreateRequestDTO {
 
     @NotNull(message = "Creation date and time cannot be null")
     LocalDateTime creationDateTime;
-
-    //    @NotEmpty(message = "Client document cannot be empty")
+    @NotEmpty(message = "Client document cannot be empty")
     String clientDocument;
-
     List<OrdersProductsEntity> ordersProducts;
-
     List<OrdersClientsEntity> ordersClients;
-
-    //    @NotEmpty(message = "Product UUID cannot be empty")
+    @NotEmpty(message = "Product UUID cannot be empty")
     UUID productUuid;
-
     @Positive(message = "Quantity must be positive")
     int quantity;
-
     @NotEmpty(message = "Product UUID cannot be empty")
     String extraInfo;
-
     double subTotal;
-
     double tax;
-
     double grandTotal;
-
     Boolean delivered;
-
-    //    @NotEmpty(message = "Delivered Date status cannot be empty")
     LocalDateTime deliveryDate;
-
     Boolean active;
 
     public OrdersCreateRequestDTO() {

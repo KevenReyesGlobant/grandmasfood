@@ -16,5 +16,4 @@ public class OrderClientsCreateRequestDTO {
     private Long clientId;
     @NotEmpty(message = "Client document cannot be empty")
     private String clientDocument;
-
 }
