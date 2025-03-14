@@ -19,11 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrdersResponseDTO {
-    private Long id;
-    private List<OrdersProducts> ordersProductsList;
-    private List<Product> productList;
-    private List<Client> clientList;
-    private List<OrdersClients> ordersClientsList;
+
     private UUID uuid;
     private LocalDateTime creationDateTime;
     private String clientDocument;

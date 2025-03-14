@@ -24,14 +24,14 @@ public class OrdersCreateRequestDTO {
     @NotNull(message = "Creation date and time cannot be null")
     LocalDateTime creationDateTime;
 
-//    @NotEmpty(message = "Client document cannot be empty")
+    //    @NotEmpty(message = "Client document cannot be empty")
     String clientDocument;
 
     List<OrdersProductsEntity> ordersProducts;
 
     List<OrdersClientsEntity> ordersClients;
 
-//    @NotEmpty(message = "Product UUID cannot be empty")
+    //    @NotEmpty(message = "Product UUID cannot be empty")
     UUID productUuid;
 
     @Positive(message = "Quantity must be positive")
@@ -40,19 +40,15 @@ public class OrdersCreateRequestDTO {
     @NotEmpty(message = "Product UUID cannot be empty")
     String extraInfo;
 
-    @Positive(message = "Subtotal must be positive")
     double subTotal;
 
-    @Positive(message = "Tax must be positive")
     double tax;
 
-    @Positive(message = "Grand total must be positive")
     double grandTotal;
 
-    @NotNull(message = "Delivered status cannot be null")
     Boolean delivered;
 
-    //        @NotEmpty(message = "Delivered Date status cannot be empty")
+    //    @NotEmpty(message = "Delivered Date status cannot be empty")
     LocalDateTime deliveryDate;
 
     Boolean active;

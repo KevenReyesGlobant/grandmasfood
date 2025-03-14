@@ -39,7 +39,7 @@ public class ClientsController {
     }
 
     @GetMapping("/client/{document}")
-    public ResponseEntity<ClientsResponseDTO> ListClientActiveByDocument(@PathVariable @Valid String document) {
+    public ResponseEntity<ClientsResponseDTO> listClientActiveByDocument(@PathVariable @Valid String document) {
 
         return ResponseEntity.status(HttpStatus.OK).body(clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.findActiveByDocument(document)));
 

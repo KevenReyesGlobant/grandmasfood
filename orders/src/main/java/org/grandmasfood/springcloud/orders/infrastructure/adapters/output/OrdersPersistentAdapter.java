@@ -22,8 +22,7 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
     private final GeneratedUuId generatedUuId;
     private final IClientClientRest iClientClientRest;
     private final IProductClientRest iProductClientRest;
-    private final OrderClientsMapper orderClientsMapper;
-    private final OrderProductsMapper orderProductsMapper;
+
 
     public OrdersPersistentAdapter(OrdersRepository ordersRepository, OrderMapper orderMapper, GeneratedUuId generatedUuId, IClientClientRest iClientClientRest, IProductClientRest iProductClientRest, OrderClientsMapper orderClientsMapper, OrderProductsMapper orderProductsMapper) {
         this.ordersRepository = ordersRepository;
@@ -31,8 +30,7 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
         this.generatedUuId = generatedUuId;
         this.iClientClientRest = iClientClientRest;
         this.iProductClientRest = iProductClientRest;
-        this.orderClientsMapper = orderClientsMapper;
-        this.orderProductsMapper = orderProductsMapper;
+
     }
 
     @Override
@@ -47,12 +45,31 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
 
     @Override
     public Order save(Order order) {
-        Client client_msv = iClientClientRest.readClientActiveById(order.getId());
-        Product product_msv = iProductClientRest.readProductActiveByID(order.getId());
+        Client client_msv = iClientClientRest.listClientActiveByDocuments(order.getClientDocument());
+        Product product_msv = iProductClientRest.findProductActiveByUuid(order.getProductUuid());
         order.setClientDocument(client_msv.getDocument());
         order.setProductUuid(product_msv.getUuid());
         order.setUuid(generatedUuId.generateUuid());
-        return orderMapper.toOrder(ordersRepository.save(orderMapper.toOrderEntity(order)));
+        order.setSubTotal(product_msv.getPrice() * order.getQuantity());
+        order.setGrandTotal(product_msv.getPrice() * order.getQuantity() + (product_msv.getPrice() * order.getQuantity()) * 0.19);
+
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(client_msv);
+        System.out.println(product_msv.getPrice());
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(product_msv.getPrice() * order.getQuantity());
+        System.out.println(product_msv.getPrice() * order.getQuantity() + (product_msv.getPrice() * order.getQuantity()) * 0.19);
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+
+        order.setTax(product_msv.getPrice() * order.getQuantity() * 0.19);
+        if (client_msv.getDocument().matches(order.getClientDocument()) && product_msv.getUuid().equals(order.getProductUuid())) {
+
+            return orderMapper.toOrder(ordersRepository.save(orderMapper.toOrderEntity(order)));
+        }
+        return null;
     }
 
     @Override

@@ -57,13 +57,13 @@ public class OrderEntity {
     @NotEmpty(message = "Product extra info cannot be empty")
     private String extraInfo;
 
-    @Positive(message = "Subtotal must be positive")
+//    @Positive(message = "Subtotal must be positive")
     private double subTotal;
 
-    @Positive(message = "Tax must be positive")
+//    @Positive(message = "Tax must be positive")
     private double tax;
 
-    @Positive(message = "Grand total must be positive")
+//    @Positive(message = "Grand total must be positive")
     private double grandTotal;
 
     private boolean delivered;
