@@ -1,7 +1,6 @@
 package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.model.request;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +8,6 @@ import lombok.Data;
 import org.grandmasfood.springcloud.orders.application.ports.input.IValidDeliveryDate;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entities.OrdersClientsEntity;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entities.OrdersProductsEntity;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;

@@ -22,6 +22,8 @@ public interface OrdersPersistentPort {
 
     Optional<Order> findActiveById(Long id);
 
+    Optional<Order> findActiveByUuid(UUID uuid);
+
     Order deleteByDocument(String document);
 
     Optional<Order> updateByUuidAndDocumentActive(@Param("clientDocument") String clientDocument, @Param("productUuid") UUID productUuid);

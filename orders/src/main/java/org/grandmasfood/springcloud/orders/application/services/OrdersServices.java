@@ -62,8 +62,8 @@ public class OrdersServices implements OrdersServicesPort {
     }
 
     @Override
-    public Order findActiveById(Long id) {
-        return ordersPersistentPort.findActiveById(id).orElseThrow(OrderNotFoundException::new);
+    public Order findActiveByUuid(UUID uuid) {
+        return ordersPersistentPort.findActiveByUuid(uuid).orElseThrow(OrderNotFoundException::new);
     }
 
     @Override

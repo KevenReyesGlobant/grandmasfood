@@ -33,6 +33,8 @@ public class OrdersController {
 
     }
 
+//    @PatchMapping("/order/{uuid}/deliverd/{timestamp}")
+
     @PutMapping("/order/signed_client/{id}")
     ResponseEntity<?> signedClient(@RequestBody Client client, @PathVariable @Valid Long id) {
         Optional<Client> client_msvc;

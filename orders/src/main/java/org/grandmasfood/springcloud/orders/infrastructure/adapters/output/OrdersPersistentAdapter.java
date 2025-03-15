@@ -72,13 +72,18 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
     }
 
     @Override
+    public Optional<Order> findActiveByUuid(UUID uuid) {
+        return Optional.ofNullable(orderMapper.toOrder(ordersRepository.findByUuidActive(uuid)));
+    }
+
+    @Override
     public Order deleteByDocument(String document) {
         return null;
     }
 
     @Override
     public Optional<Order> updateByUuidAndDocumentActive(String clientDocument, UUID productUuid) {
-        return Optional.ofNullable(orderMapper.toOrder(ordersRepository.findByUuidAndDocumentActive(clientDocument, productUuid)));
+        return null;
     }
 
     @Override

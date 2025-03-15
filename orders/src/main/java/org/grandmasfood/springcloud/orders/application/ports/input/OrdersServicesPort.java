@@ -21,7 +21,7 @@ public interface OrdersServicesPort {
 
     Order findActiveByDocument(String document);
 
-    Order findActiveById(Long id);
+    Order findActiveByUuid(UUID uuid);
 
     Order deleteByDocument(String document);
 
