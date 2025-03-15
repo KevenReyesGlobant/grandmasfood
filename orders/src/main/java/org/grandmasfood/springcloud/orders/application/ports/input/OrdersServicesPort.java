@@ -6,6 +6,7 @@ import org.grandmasfood.springcloud.orders.domain.model.Order;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,7 +20,8 @@ public interface OrdersServicesPort {
 
     Order update(String document, UUID productUuid, Order order);
 
-    Order updateDelivered(UUID uuid, Order order);
+    Order updateDelivered(UUID uuid, Order order, LocalDateTime timestamp);
+
 
     Order findActiveByDocument(String document);
 

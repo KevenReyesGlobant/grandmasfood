@@ -8,6 +8,7 @@ import org.grandmasfood.springcloud.orders.domain.model.Order;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -51,10 +52,10 @@ public class OrdersServices implements OrdersServicesPort {
     }
 
     @Override
-    public Order updateDelivered(UUID uuid, Order order) {
+    public Order updateDelivered(UUID uuid, Order order, LocalDateTime timestamp) {
         return ordersPersistentPort.findActiveByUuid(uuid).map(updateDelivered -> {
             order.setDelivered(true);
-            updateField(order.getDeliveryDate(), updateDelivered::setDeliveryDate);
+            order.setDeliveryDate(timestamp);
             return ordersPersistentPort.save(updateDelivered);
         }).orElseThrow(OrderNotFoundException::new);
     }

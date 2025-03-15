@@ -4,6 +4,7 @@ import feign.FeignException;
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.orders.application.ports.input.OrdersServicesPort;
 import org.grandmasfood.springcloud.orders.domain.model.Client;
+import org.grandmasfood.springcloud.orders.domain.model.Order;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.mapper.OrderRestMapper;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.model.request.OrdersCreateRequestDTO;
@@ -12,8 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class OrdersController {
@@ -33,7 +36,10 @@ public class OrdersController {
 
     }
 
-//    @PatchMapping("/order/{uuid}/deliverd/{timestamp}")
+    @PatchMapping("/order/{uuid}/deliverd/{timestamp}")
+    public ResponseEntity<OrdersResponseDTO> updateDelivered(@PathVariable @Valid UUID uuid, Order order, @PathVariable LocalDateTime timestamp) {
+        return ResponseEntity.status(HttpStatus.OK).body(orderRestMapper.toOrdersResponseDTO(ordersServicesPort.updateDelivered(uuid, order, timestamp)));
+    }
 
     @PutMapping("/order/signed_client/{id}")
     ResponseEntity<?> signedClient(@RequestBody Client client, @PathVariable @Valid Long id) {
