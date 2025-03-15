@@ -50,6 +50,16 @@ public class OrdersServices implements OrdersServicesPort {
                 .orElseThrow(OrderNotFoundException::new);
     }
 
+    @Override
+    public Order updateDelivered(UUID uuid, Order order) {
+        return ordersPersistentPort.findActiveByUuid(uuid).map(updateDelivered -> {
+            order.setDelivered(true);
+            updateField(order.getDeliveryDate(), updateDelivered::setDeliveryDate);
+            return ordersPersistentPort.save(updateDelivered);
+        }).orElseThrow(OrderNotFoundException::new);
+    }
+
+
     private <T> void updateField(T newValue, java.util.function.Consumer<T> setter) {
         if (newValue != null) {
             setter.accept(newValue);

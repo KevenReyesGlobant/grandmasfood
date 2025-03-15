@@ -19,6 +19,8 @@ public interface OrdersServicesPort {
 
     Order update(String document, UUID productUuid, Order order);
 
+    Order updateDelivered(UUID uuid, Order order);
+
     Order findActiveByDocument(String document);
 
     Order findActiveByUuid(UUID uuid);
@@ -44,7 +46,7 @@ public interface OrdersServicesPort {
 
     Optional<Client> designedClient(Client client, Long id);
 
-//    //    Comunication microservices Products
+    //    //    Comunication microservices Products
 //
     Optional<Product> signedProduct(Product product, Long id);
 
