@@ -20,7 +20,7 @@ public interface OrdersServicesPort {
 
     Order update(String document, UUID productUuid, Order order);
 
-    Order updateDelivered(UUID uuid, Order order, LocalDateTime timestamp);
+    Order updateDelivered(UUID uuid, LocalDateTime timestamp);
 
 
     Order findActiveByDocument(String document);

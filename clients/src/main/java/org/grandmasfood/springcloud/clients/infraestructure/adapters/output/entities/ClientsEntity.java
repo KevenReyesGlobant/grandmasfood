@@ -41,5 +41,12 @@ public class ClientsEntity {
     private String deliveryAddress;
     private Boolean active;
 
+    @PrePersist
+    public void generateUuid() {
+        if (uuid == null) {
+            uuid = UUID.randomUUID();
+        }
+    }
+
 
 }

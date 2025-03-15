@@ -31,5 +31,4 @@ public class OrdersResponseDTO {
     private double grandTotal;
     private boolean delivered;
     private LocalDateTime deliveryDate;
-    private Boolean active;
 }

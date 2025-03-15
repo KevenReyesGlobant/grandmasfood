@@ -37,8 +37,8 @@ public class OrdersController {
     }
 
     @PatchMapping("/order/{uuid}/deliverd/{timestamp}")
-    public ResponseEntity<OrdersResponseDTO> updateDelivered(@PathVariable @Valid UUID uuid, Order order, @PathVariable LocalDateTime timestamp) {
-        return ResponseEntity.status(HttpStatus.OK).body(orderRestMapper.toOrdersResponseDTO(ordersServicesPort.updateDelivered(uuid, order, timestamp)));
+    public ResponseEntity<OrdersResponseDTO> updateDelivered(@PathVariable @Valid UUID uuid, @PathVariable LocalDateTime timestamp) {
+        return ResponseEntity.status(HttpStatus.OK).body(orderRestMapper.toOrdersResponseDTO(ordersServicesPort.updateDelivered(uuid, timestamp)));
     }
 
     @PutMapping("/order/signed_client/{id}")

@@ -52,7 +52,7 @@ public class OrdersServices implements OrdersServicesPort {
     }
 
     @Override
-    public Order updateDelivered(UUID uuid, Order order, LocalDateTime timestamp) {
+    public Order updateDelivered(UUID uuid, LocalDateTime timestamp) {
         return ordersPersistentPort.findActiveByUuid(uuid).map(updateDelivered -> {
             updateField(true, updateDelivered::setDelivered);
             updateField(timestamp, updateDelivered::setDeliveryDate);

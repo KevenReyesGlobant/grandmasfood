@@ -14,7 +14,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ProductResponse {
 
-    private Long id;
     private UUID uuid;
     private String fantasyName;
     private Category category;

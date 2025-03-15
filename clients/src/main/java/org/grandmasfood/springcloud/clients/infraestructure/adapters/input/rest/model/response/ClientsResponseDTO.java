@@ -13,7 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ClientsResponseDTO {
 
-    private Long id;
     private UUID uuid;
     private String name;
     private String email;

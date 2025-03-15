@@ -1,6 +1,7 @@
 package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.request;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,7 +38,6 @@ public class ClientsCreateRequestDTO {
     @NotBlank(message = "Delivery address cannot be empty")
     @Size(max = 500, message = "Delivery address must be at most 500 characters")
     private String deliveryAddress;
-
 
     private Boolean active;
 

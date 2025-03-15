@@ -2,7 +2,6 @@ package org.grandmasfood.springcloud.clients.infraestructure.adapters.output;
 
 import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersistencePort;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.grandmasfood.springcloud.clients.domain.uuid.GeneratedUuId;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.mapper.ClientMapper;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.repository.ClientsReposity;
 import org.springframework.stereotype.Component;
@@ -13,19 +12,17 @@ import java.util.Optional;
 @Component
 public class ClientPersistenceAdapter implements ClientPersistencePort {
 
+
     private final ClientsReposity clientsReposity;
     private final ClientMapper clientMapper;
-    private final GeneratedUuId generatedUuId;
 
-    public ClientPersistenceAdapter(ClientsReposity clientsReposity, ClientMapper clientMapper, GeneratedUuId generatedUuId) {
+    public ClientPersistenceAdapter(ClientsReposity clientsReposity, ClientMapper clientMapper) {
         this.clientsReposity = clientsReposity;
         this.clientMapper = clientMapper;
-        this.generatedUuId = generatedUuId;
     }
 
     @Override
     public Client save(Client client) {
-        client.setUuid(generatedUuId.generateUuid());
         return clientMapper.toClient(clientsReposity.save(clientMapper.toClientEntity(client)));
     }
 
