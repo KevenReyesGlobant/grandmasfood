@@ -9,6 +9,8 @@ public enum ErrorCatalog {
 
     INVALID_CLIENT("INVALID_CLIENT", "Invalid client"),
 
+    DUPLICATED_CLIENT_DATA("DUPLICATED_CLIENT_DATA", "Duplicated client data"),
+
     GENERIC_ERROR("GENERIC_ERROR", "An error occurred");
 
     private final String code;
