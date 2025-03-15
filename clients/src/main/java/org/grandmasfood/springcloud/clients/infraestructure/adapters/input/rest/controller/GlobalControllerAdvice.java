@@ -1,5 +1,6 @@
 package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.controller;
 
+import org.grandmasfood.springcloud.clients.domain.exceptions.ClientNotFoundException;
 import org.grandmasfood.springcloud.clients.domain.model.ErrorResponseDTO;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,20 @@ import static org.grandmasfood.springcloud.clients.utils.ErrorCatalog.*;
 @RestControllerAdvice
 public class GlobalControllerAdvice {
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler({ClientNotFoundException.class, NullPointerException.class})
+    public ErrorResponseDTO handleNotFoundException() {
+        return ErrorResponseDTO.builder()
+                .code(CLIENT_NOT_FOUND.getCode())
+                .message(CLIENT_NOT_FOUND.getMessage())
+                .timestamp(LocalDateTime.now())
+                .exception(String.valueOf(NullPointerException.class).split("lang.")[1])
+                .build();
+    }
+
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ErrorResponseDTO handleStudentNotFoundException() {
+    public ErrorResponseDTO handleClientNotFoundException() {
         return ErrorResponseDTO.builder()
                 .code(DUPLICATED_CLIENT_DATA.getCode())
                 .message(DUPLICATED_CLIENT_DATA.getMessage())

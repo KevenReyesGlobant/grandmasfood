@@ -12,7 +12,7 @@ public class ErrorResponseDTO {
 
     private String code;
     private String message;
-    private List<String> details;
+    private String exception;
     private LocalDateTime timestamp;
 
 }

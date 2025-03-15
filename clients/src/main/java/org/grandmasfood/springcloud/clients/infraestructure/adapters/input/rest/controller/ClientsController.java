@@ -47,9 +47,10 @@ public class ClientsController {
 
 
     @PutMapping("/client/{document}")
-    public ClientsResponseDTO update(@PathVariable String document, @Valid @RequestBody ClientsCreateRequestDTO request) {
-        return clientRestMapper.toClientsResponseDTO(
+    public ResponseEntity<ClientsResponseDTO> update(@PathVariable String document, @Valid @RequestBody ClientsCreateRequestDTO request) {
+        clientRestMapper.toClientsResponseDTO(
                 iCreateClientUseCase.update(document, clientRestMapper.toClient(request)));
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
 

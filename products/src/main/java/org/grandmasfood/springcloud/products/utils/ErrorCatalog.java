@@ -7,6 +7,8 @@ public enum ErrorCatalog {
 
     PRODUCT_NOT_FOUND("PRODUCT_NOT_FOUND", "Product not found"),
 
+    DUPLICATED_PRODUCT_DATA("DUPLICATED_PRODUCT_DATA", "Duplicated product data"),
+
     INVALID_PRODUCT("INVALID_PRODUCT", "Invalid product"),
 
     GENERIC_ERROR("GENERIC_ERROR", "An error occurred");
