@@ -20,6 +20,6 @@ public interface OrdersRepository extends JpaRepository<OrderEntity, Long> {
     @Query("select o from OrderEntity o where o.id=:id and o.active=true")
     OrderEntity findOrdersActiveByd(Long id);
 
-    @Query("SELECT o FROM OrderEntity o WHERE o.productUuid = :productUuid AND o.active = true")
-    OrderEntity findByUuidActive(@Param("productUuid") UUID productUuid);
+    @Query("SELECT o FROM OrderEntity o WHERE o.uuid=:uuid and o.active=true")
+    OrderEntity findByUuidActive(UUID uuid);
 }

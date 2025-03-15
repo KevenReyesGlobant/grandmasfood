@@ -54,8 +54,8 @@ public class OrdersServices implements OrdersServicesPort {
     @Override
     public Order updateDelivered(UUID uuid, Order order, LocalDateTime timestamp) {
         return ordersPersistentPort.findActiveByUuid(uuid).map(updateDelivered -> {
-            order.setDelivered(true);
-            order.setDeliveryDate(timestamp);
+            updateField(true, updateDelivered::setDelivered);
+            updateField(timestamp, updateDelivered::setDeliveryDate);
             return ordersPersistentPort.save(updateDelivered);
         }).orElseThrow(OrderNotFoundException::new);
     }
