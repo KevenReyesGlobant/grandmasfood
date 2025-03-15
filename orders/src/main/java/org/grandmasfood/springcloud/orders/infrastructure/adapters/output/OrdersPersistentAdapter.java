@@ -4,10 +4,7 @@ import org.grandmasfood.springcloud.orders.application.ports.input.IClientClient
 import org.grandmasfood.springcloud.orders.application.ports.input.IProductClientRest;
 import org.grandmasfood.springcloud.orders.application.ports.output.OrdersPersistentPort;
 import org.grandmasfood.springcloud.orders.domain.model.*;
-import org.grandmasfood.springcloud.orders.domain.uuid.GeneratedUuId;
-import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderClientsMapper;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderMapper;
-import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.mapper.OrderProductsMapper;
 import org.grandmasfood.springcloud.orders.infrastructure.adapters.output.repository.OrdersRepository;
 import org.springframework.stereotype.Component;
 
@@ -20,15 +17,13 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
 
     private final OrdersRepository ordersRepository;
     private final OrderMapper orderMapper;
-    private final GeneratedUuId generatedUuId;
     private final IClientClientRest iClientClientRest;
     private final IProductClientRest iProductClientRest;
 
 
-    public OrdersPersistentAdapter(OrdersRepository ordersRepository, OrderMapper orderMapper, GeneratedUuId generatedUuId, IClientClientRest iClientClientRest, IProductClientRest iProductClientRest, OrderClientsMapper orderClientsMapper, OrderProductsMapper orderProductsMapper) {
+    public OrdersPersistentAdapter(OrdersRepository ordersRepository, OrderMapper orderMapper, IClientClientRest iClientClientRest, IProductClientRest iProductClientRest) {
         this.ordersRepository = ordersRepository;
         this.orderMapper = orderMapper;
-        this.generatedUuId = generatedUuId;
         this.iClientClientRest = iClientClientRest;
         this.iProductClientRest = iProductClientRest;
 
@@ -49,9 +44,7 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
         Client client_msv = iClientClientRest.listClientActiveByDocuments(order.getClientDocument());
         Product product_msv = iProductClientRest.findProductActiveByUuid(order.getProductUuid());
         order.setClientDocument(client_msv.getDocument());
-//        order.setCreationDateTime(order.getCreationDateTime());
         order.setProductUuid(product_msv.getUuid());
-        order.setUuid(generatedUuId.generateUuid());
         order.setSubTotal(product_msv.getPrice() * order.getQuantity());
         order.setGrandTotal(product_msv.getPrice() * order.getQuantity() + (product_msv.getPrice() * order.getQuantity()) * 0.19);
         order.setTax(product_msv.getPrice() * order.getQuantity() * 0.19);

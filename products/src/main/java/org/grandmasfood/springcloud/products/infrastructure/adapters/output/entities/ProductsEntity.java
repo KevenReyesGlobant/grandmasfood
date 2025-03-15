@@ -40,4 +40,10 @@ public class ProductsEntity {
 
     private Boolean active;
 
+    @PrePersist
+    public void generateUuid() {
+        if (uuid == null) {
+            uuid = UUID.randomUUID();
+        }
+    }
 }

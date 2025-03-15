@@ -53,4 +53,11 @@ public class OrderEntity {
 
     @JsonIgnore
     private Boolean active;
+
+    @PrePersist
+    public void generateUuid() {
+        if (uuid == null) {
+            uuid = UUID.randomUUID();
+        }
+    }
 }
