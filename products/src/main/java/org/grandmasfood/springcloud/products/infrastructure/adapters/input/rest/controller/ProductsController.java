@@ -28,7 +28,7 @@ public class ProductsController {
 
     @PostMapping("/product")
     public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductsCreateRequestDTO productsCreateRequestDTO) throws IOException {
-        GeneratedPdfBox.saveDocument();
+        generatedPdfBox.saveDocument();
         return ResponseEntity.status(HttpStatus.CREATED).body(productRestMapper.toProductResponseDTO(productServicesPort.save(productRestMapper.toProduct(productsCreateRequestDTO))));
 
     }
