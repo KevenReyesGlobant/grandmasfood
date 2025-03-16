@@ -2,6 +2,7 @@ package org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.products.application.ports.input.ProductServicesPort;
+import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.generated.GeneratedPdfBox;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.mapper.ProductRestMapper;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.request.ProductsCreateRequestDTO;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.response.ProductResponse;
@@ -9,20 +10,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
 public class ProductsController {
     private final ProductServicesPort productServicesPort;
     private final ProductRestMapper productRestMapper;
+    private final GeneratedPdfBox generatedPdfBox;
 
-    public ProductsController(ProductServicesPort productServicesPort, ProductRestMapper productRestMapper) {
+
+    public ProductsController(ProductServicesPort productServicesPort, ProductRestMapper productRestMapper, GeneratedPdfBox generatedPdfBox) {
         this.productServicesPort = productServicesPort;
         this.productRestMapper = productRestMapper;
+        this.generatedPdfBox = generatedPdfBox;
     }
 
     @PostMapping("/product")
-    public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductsCreateRequestDTO productsCreateRequestDTO) {
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductsCreateRequestDTO productsCreateRequestDTO) throws IOException {
+        GeneratedPdfBox.saveDocument();
         return ResponseEntity.status(HttpStatus.CREATED).body(productRestMapper.toProductResponseDTO(productServicesPort.save(productRestMapper.toProduct(productsCreateRequestDTO))));
 
     }
