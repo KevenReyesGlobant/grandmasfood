@@ -1,10 +1,11 @@
 package org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.controller;
 
-
 import org.grandmasfood.springcloud.products.domain.exceptions.ProductNotFoundException;
 import org.grandmasfood.springcloud.products.domain.model.ErrorResponseDTO;
+import org.hibernate.query.sqm.PathElementException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -22,26 +23,27 @@ import java.util.stream.Collectors;
 
 import static org.grandmasfood.springcloud.products.utils.ErrorCatalog.*;
 
+
 @RestControllerAdvice
 public class GlobalControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({ProductNotFoundException.class, NullPointerException.class})
-    public ErrorResponseDTO handleNotFoundException() {
+    public ErrorResponseDTO handleProductNotFoundException() {
         return ErrorResponseDTO.builder()
                 .code(PRODUCT_NOT_FOUND.getCode())
-                .message(PRODUCT_NOT_FOUND.getMessage())
-                .timestamp(LocalDateTime.now())
+                .message(Collections.singletonList(PRODUCT_NOT_FOUND.getMessage()))
                 .exception(String.valueOf(NullPointerException.class).split("lang.")[1])
+                .timestamp(LocalDateTime.now())
                 .build();
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ErrorResponseDTO handleClientNotFoundException() {
+    public ErrorResponseDTO handleProductNotConflictException() {
         return ErrorResponseDTO.builder()
                 .code(DUPLICATED_PRODUCT_DATA.getCode())
-                .message(DUPLICATED_PRODUCT_DATA.getMessage())
+                .message(Collections.singletonList(DUPLICATED_PRODUCT_DATA.getMessage()))
                 .timestamp(LocalDateTime.now())
                 .exception(String.valueOf(DataIntegrityViolationException.class).split("dao.")[1])
                 .build();
@@ -51,23 +53,30 @@ public class GlobalControllerAdvice {
     @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class, HttpRequestMethodNotSupportedException.class, NoResourceFoundException.class})
     public ErrorResponseDTO handleMethodArgumentNotValidException(
             MethodArgumentNotValidException exception) {
+        BindingResult result = exception.getBindingResult();
+
         return ErrorResponseDTO.builder()
                 .code(INVALID_PRODUCT.getCode())
-                .message(INVALID_PRODUCT.getMessage())
+                .message(result.getFieldErrors()
+                        .stream()
+                        .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                        .collect(Collectors.toList()))
                 .exception(MethodArgumentNotValidException.class.getName().split("bind.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(NoHandlerFoundException.class)
-    public ErrorResponseDTO notFoundException(
-            NoHandlerFoundException exception) {
-        return ErrorResponseDTO.builder()
-                .code(GENERIC_ERROR.getCode())
-                .message(GENERIC_ERROR.getMessage())
-                .exception(NoHandlerFoundException.class.getName().split("servlet.")[1])
-                .timestamp(LocalDateTime.now())
-                .build();
-    }
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ExceptionHandler({NoResourceFoundException.class})
+//    public ErrorResponseDTO handleMethodArgumentInternalServerException(
+//    ) {
+//
+//        return ErrorResponseDTO.builder()
+//                .code(GENERIC_ERROR.getCode())
+//                .exception(MethodArgumentNotValidException.class.getName().split("bind.")[1])
+//                .timestamp(LocalDateTime.now())
+//                .build();
+//    }
+
+
 }
