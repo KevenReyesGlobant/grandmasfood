@@ -5,10 +5,13 @@ import org.grandmasfood.springcloud.orders.domain.model.ErrorResponseDTO;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -22,27 +25,38 @@ public class GlobalControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(OrderNotFoundException.class)
-    public ErrorResponseDTO handleStudentNotFoundException() {
+    public ErrorResponseDTO handleOrderNotFoundException() {
         return ErrorResponseDTO.builder()
                 .code(ORDER_NOT_FOUND.getCode())
-                .message(ORDER_NOT_FOUND.getMessage())
+                .message(Collections.singletonList(ORDER_NOT_FOUND.getMessage()))
                 .timestamp(LocalDateTime.now())
                 .build();
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class, HttpRequestMethodNotSupportedException.class})
     public ErrorResponseDTO handleMethodArgumentNotValidException(
             MethodArgumentNotValidException exception) {
         BindingResult result = exception.getBindingResult();
 
         return ErrorResponseDTO.builder()
                 .code(INVALID_ORDER.getCode())
-                .message(INVALID_ORDER.getMessage())
-                .details(result.getFieldErrors()
+                .exception(MethodArgumentNotValidException.class.getName().split("bind.")[1])
+                .message(result.getFieldErrors()
                         .stream()
                         .map(DefaultMessageSourceResolvable::getDefaultMessage)
                         .collect(Collectors.toList()))
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ErrorResponseDTO handleNoResourceFoundException(NoResourceFoundException exception) {
+        return ErrorResponseDTO.builder()
+                .code(GENERIC_ERROR.getCode())
+                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
+                .exception(NoResourceFoundException.class.getName().split("resource.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }
@@ -52,10 +66,9 @@ public class GlobalControllerAdvice {
     public ErrorResponseDTO handleGenericError(Exception exception) {
         return ErrorResponseDTO.builder()
                 .code(GENERIC_ERROR.getCode())
-                .message(GENERIC_ERROR.getMessage())
-                .details(Collections.singletonList(exception.getMessage()))
+                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
+                .exception(NoResourceFoundException.class.getName().split("resource.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }
-
 }
