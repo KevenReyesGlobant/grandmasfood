@@ -50,7 +50,7 @@ public class GlobalControllerAdvice {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class, HttpRequestMethodNotSupportedException.class, NoResourceFoundException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class, HttpRequestMethodNotSupportedException.class})
     public ErrorResponseDTO handleMethodArgumentNotValidException(
             MethodArgumentNotValidException exception) {
         BindingResult result = exception.getBindingResult();
@@ -66,17 +66,14 @@ public class GlobalControllerAdvice {
                 .build();
     }
 
-//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    @ExceptionHandler({NoResourceFoundException.class})
-//    public ErrorResponseDTO handleMethodArgumentInternalServerException(
-//    ) {
-//
-//        return ErrorResponseDTO.builder()
-//                .code(GENERIC_ERROR.getCode())
-//                .exception(MethodArgumentNotValidException.class.getName().split("bind.")[1])
-//                .timestamp(LocalDateTime.now())
-//                .build();
-//    }
-
-
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ErrorResponseDTO handleNoResourceFoundException(NoResourceFoundException exception) {
+        return ErrorResponseDTO.builder()
+                .code(GENERIC_ERROR.getCode())
+                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
+                .exception(NoResourceFoundException.class.getName().split("resource.")[1])
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
 }
