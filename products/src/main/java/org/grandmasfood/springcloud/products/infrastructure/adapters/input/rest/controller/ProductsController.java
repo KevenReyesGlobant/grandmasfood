@@ -27,15 +27,23 @@ public class ProductsController {
     }
 
     @PostMapping("/product")
-    public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductsCreateRequestDTO productsCreateRequestDTO) throws IOException {
-        generatedPdfBox.saveDocument();
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductsCreateRequestDTO productsCreateRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(productRestMapper.toProductResponseDTO(productServicesPort.save(productRestMapper.toProduct(productsCreateRequestDTO))));
-
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> readProductActiveById(@PathVariable @Valid Long id) {
         return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findActiveById(id)));
+    }
+
+    @GetMapping("/product/menu")
+    public ResponseEntity<ProductResponse> generatedMenu() throws IOException {
+        try {
+            generatedPdfBox.saveDocument();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/product/{uuid}")

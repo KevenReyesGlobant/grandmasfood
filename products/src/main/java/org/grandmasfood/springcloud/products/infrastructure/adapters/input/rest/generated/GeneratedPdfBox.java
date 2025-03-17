@@ -38,7 +38,7 @@ public class GeneratedPdfBox implements PdfGenerator {
 
         List<Product> products = productMapper.toProductList(productsRepositoy.findAll());
         String[] details = products.stream()
-                .map(product -> product.getFantasyName() + "       ->     $" + product.getPrice())
+                .map(product -> product.getFantasyName() + "  ->  $" + product.getPrice())
                 .collect(Collectors.toList())
                 .toArray(new String[0]);
 
@@ -49,17 +49,13 @@ public class GeneratedPdfBox implements PdfGenerator {
 
         try {
             // Create the background of the page
-            PDImageXObject imageBack = PDImageXObject.createFromFile("C:\\Users\\keven.reyes\\Downloads\\Background.jpg", document);
+            PDImageXObject imageBack = PDImageXObject.createFromFile("C:\\Users\\keven.reyes\\Downloads\\Background.png", document);
             content.drawImage(imageBack, 0, 0, pageWidth, pageHeight+50);
 
             // Food image
-            PDImageXObject imageFood = PDImageXObject.createFromFile("C:\\Users\\keven.reyes\\Downloads\\Background.jpg", document);
-            content.drawImage(imageFood, pageWidth / 1, pageHeight - 468, 200, 200);
 
-
-            // Write text in two columns
             content.beginText();
-            content.setFont(fontType, 16);
+            content.setFont(fontType, 15);
             content.setNonStrokingColor(Color.BLACK);
             content.newLineAtOffset(50, pageHeight - 280);
             int half = details.length / 2;
@@ -70,7 +66,7 @@ public class GeneratedPdfBox implements PdfGenerator {
             content.endText();
 
             content.beginText();
-            content.setFont(fontType, 16);
+            content.setFont(fontType, 15);
             content.setNonStrokingColor(Color.BLACK);
             content.newLineAtOffset(pageWidth / 2 + 50, pageHeight - 280);
             for (int i = half; i < details.length; i++) {
