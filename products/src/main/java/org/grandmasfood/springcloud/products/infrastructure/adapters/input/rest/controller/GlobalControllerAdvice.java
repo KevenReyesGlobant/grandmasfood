@@ -5,6 +5,7 @@ import org.grandmasfood.springcloud.products.domain.model.ErrorResponseDTO;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.generated.GeneratedPdfBox;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -24,7 +25,7 @@ import static org.grandmasfood.springcloud.products.utils.ErrorCatalog.*;
 
 @RestControllerAdvice
 public class GlobalControllerAdvice {
-    
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({ProductNotFoundException.class, NullPointerException.class})
     public ErrorResponseDTO handleProductNotFoundException() {
@@ -65,7 +66,7 @@ public class GlobalControllerAdvice {
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(NoResourceFoundException.class)
+    @ExceptionHandler({NoResourceFoundException.class, InvalidDataAccessResourceUsageException.class})
     public ErrorResponseDTO handleNoResourceFoundException(NoResourceFoundException exception) {
         return ErrorResponseDTO.builder()
                 .code(GENERIC_ERROR.getCode())

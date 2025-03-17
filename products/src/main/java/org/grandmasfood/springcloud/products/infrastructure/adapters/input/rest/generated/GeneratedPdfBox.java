@@ -9,6 +9,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.grandmasfood.springcloud.products.application.ports.input.PdfGenerator;
 import org.grandmasfood.springcloud.products.domain.model.Product;
+import org.grandmasfood.springcloud.products.domain.model.enums.Category;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.output.mapper.ProductMapper;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.output.repository.ProductsRepositoy;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 import java.awt.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
@@ -37,10 +39,8 @@ public class GeneratedPdfBox implements PdfGenerator {
         document.addPage(myPage);
 
         List<Product> products = productMapper.toProductList(productsRepositoy.findAll());
-        String[] details = products.stream()
-                .map(product -> product.getFantasyName() + "  ->  $" + product.getPrice())
-                .collect(Collectors.toList())
-                .toArray(new String[0]);
+        Map<Category, List<Product>> productsByCategory = products.stream()
+                .collect(Collectors.groupingBy(Product::getCategory));
 
         int pageWidth = (int) myPage.getTrimBox().getWidth();
         int pageHeight = (int) myPage.getTrimBox().getHeight();
@@ -50,30 +50,50 @@ public class GeneratedPdfBox implements PdfGenerator {
         try {
             // Create the background of the page
             PDImageXObject imageBack = PDImageXObject.createFromFile("C:\\Users\\keven.reyes\\Downloads\\Background.png", document);
-            content.drawImage(imageBack, 0, 0, pageWidth, pageHeight+50);
+            content.drawImage(imageBack, 0, 0, pageWidth, pageHeight + 50);
 
-            // Food image
+            int yOffset = pageHeight - 160;
+            int columnWidth = pageWidth / 2 - 50;
 
-            content.beginText();
-            content.setFont(fontType, 15);
-            content.setNonStrokingColor(Color.BLACK);
-            content.newLineAtOffset(50, pageHeight - 280);
-            int half = details.length / 2;
-            for (int i = 0; i < half; i++) {
-                content.showText(details[i]);
-                content.newLineAtOffset(0, -20);
+            for (Map.Entry<Category, List<Product>> entry : productsByCategory.entrySet()) {
+                Category category = entry.getKey();
+                List<Product> categoryProducts = entry.getValue();
+
+                content.beginText();
+                content.setFont(fontType, 20);
+                if (isValidRGB(41, 161, 61)) {
+                    content.setNonStrokingColor(new Color(49, 75, 57));
+                } else {
+                    content.setNonStrokingColor(Color.BLACK);
+                }
+                content.newLineAtOffset((pageWidth - fontType.getStringWidth(category.name()) / 1000 * 20) / 2, yOffset);
+                content.showText(category.name());
+                content.endText();
+                yOffset -= 30;
+
+                int half = (categoryProducts.size() + 1) / 2;
+                int xOffset = 50;
+
+                for (int i = 0; i < categoryProducts.size(); i++) {
+                    if (i == half) {
+                        xOffset = columnWidth + 100;
+                        yOffset = pageHeight - 160 - 30;
+                    }
+                    Product product = categoryProducts.get(i);
+                    content.beginText();
+                    content.setFont(fontType, 16);
+                    if (isValidRGB(41, 161, 61)) {
+                        content.setNonStrokingColor(new Color(49, 75, 57));
+                    } else {
+                        content.setNonStrokingColor(Color.BLACK);
+                    }
+                    content.newLineAtOffset(xOffset, yOffset);
+                    content.showText(product.getFantasyName() + " -> $" + product.getPrice());
+                    content.endText();
+                    yOffset -= 20;
+                }
+                yOffset -= 40;
             }
-            content.endText();
-
-            content.beginText();
-            content.setFont(fontType, 15);
-            content.setNonStrokingColor(Color.BLACK);
-            content.newLineAtOffset(pageWidth / 2 + 50, pageHeight - 280);
-            for (int i = half; i < details.length; i++) {
-                content.showText(details[i]);
-                content.newLineAtOffset(0, -20);
-            }
-            content.endText();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -88,5 +108,13 @@ public class GeneratedPdfBox implements PdfGenerator {
                 document.close();
             }
         }
+    }
+
+    private boolean isValidRGB(int red, int green, int blue) {
+        return isValidColorValue(red) && isValidColorValue(green) && isValidColorValue(blue);
+    }
+
+    private boolean isValidColorValue(int value) {
+        return value >= 0 && value <= 255;
     }
 }
