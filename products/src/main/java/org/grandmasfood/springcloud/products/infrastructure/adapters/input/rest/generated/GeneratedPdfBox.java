@@ -34,7 +34,7 @@ public class GeneratedPdfBox implements PdfGenerator {
     @Override
     public void saveDocument() throws IOException {
         PDDocument document = new PDDocument();
-        PDRectangle pageSize = new PDRectangle(595, 842);  // A4 Size
+        PDRectangle pageSize = new PDRectangle(595, 842);
         PDPage myPage = new PDPage(pageSize);
         document.addPage(myPage);
 
@@ -48,7 +48,6 @@ public class GeneratedPdfBox implements PdfGenerator {
         PDPageContentStream content = new PDPageContentStream(document, myPage);
 
         try {
-            // Create the background of the page
             PDImageXObject imageBack = PDImageXObject.createFromFile("C:\\Users\\keven.reyes\\Downloads\\Background.png", document);
             content.drawImage(imageBack, 0, 0, pageWidth, pageHeight + 50);
 
@@ -58,41 +57,40 @@ public class GeneratedPdfBox implements PdfGenerator {
             for (Map.Entry<Category, List<Product>> entry : productsByCategory.entrySet()) {
                 Category category = entry.getKey();
                 List<Product> categoryProducts = entry.getValue();
-
                 content.beginText();
-                content.setFont(fontType, 20);
+                content.setFont(fontType, 14);
                 if (isValidRGB(41, 161, 61)) {
                     content.setNonStrokingColor(new Color(49, 75, 57));
                 } else {
-                    content.setNonStrokingColor(Color.BLACK);
+                    content.setNonStrokingColor(Color.BLACK);  // Fallback color
                 }
                 content.newLineAtOffset((pageWidth - fontType.getStringWidth(category.name()) / 1000 * 20) / 2, yOffset);
                 content.showText(category.name());
                 content.endText();
                 yOffset -= 30;
 
-                int half = (categoryProducts.size() + 1) / 2;
+                int half = (categoryProducts.size() + 1) / 2;  // Adjust for odd number of products
                 int xOffset = 50;
+                int initialYOffset = yOffset;
 
                 for (int i = 0; i < categoryProducts.size(); i++) {
                     if (i == half) {
                         xOffset = columnWidth + 100;
-                        yOffset = pageHeight - 160 - 30;
+                        yOffset = initialYOffset;
                     }
                     Product product = categoryProducts.get(i);
                     content.beginText();
-                    content.setFont(fontType, 16);
+                    content.setFont(fontType, 12);
                     if (isValidRGB(41, 161, 61)) {
                         content.setNonStrokingColor(new Color(49, 75, 57));
                     } else {
-                        content.setNonStrokingColor(Color.BLACK);
                     }
                     content.newLineAtOffset(xOffset, yOffset);
                     content.showText(product.getFantasyName() + " -> $" + product.getPrice());
                     content.endText();
                     yOffset -= 20;
                 }
-                yOffset -= 40;
+                yOffset -= 60;
             }
 
         } catch (IOException e) {
