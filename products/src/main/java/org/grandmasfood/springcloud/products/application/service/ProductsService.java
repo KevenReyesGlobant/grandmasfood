@@ -5,7 +5,7 @@ import org.grandmasfood.springcloud.products.application.ports.output.ProductPer
 import org.grandmasfood.springcloud.products.domain.exceptions.ProductNotFoundException;
 import org.grandmasfood.springcloud.products.domain.model.Product;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
 import java.util.UUID;
 
 
@@ -32,18 +32,6 @@ public class ProductsService implements ProductServicesPort {
     public Product findActiveById(Long id) {
         return productPersistentPort.findActiveById(id).orElseThrow(ProductNotFoundException::new);
     }
-
-
-    @Override
-    public Product findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<Product> findAll() {
-        return List.of();
-    }
-
 
     @Override
     public Product update(UUID uuid, Product product) {

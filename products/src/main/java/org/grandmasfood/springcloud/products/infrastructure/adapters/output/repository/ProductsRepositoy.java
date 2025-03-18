@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.UUID;
 
 public interface ProductsRepositoy extends JpaRepository<ProductsEntity, Long> {
-    @Query("select p from ProductsEntity p where p.id=:id and p.active=true")
-    ProductsEntity findProductsActiveById(Long id);
+    @Query("select p from ProductsEntity p where p.idProduct=:idProduct and p.active=true")
+    ProductsEntity findProductsActiveById(Long idProduct);
 
     @Query("select p from ProductsEntity p where p.uuid=:uuid and p.active=true")
     ProductsEntity findProductsActiveByUuId(UUID uuid);

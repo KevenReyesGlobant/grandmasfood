@@ -32,19 +32,8 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
     }
 
     @Override
-    public Optional<Client> findById(Long id) {
-        return clientsReposity.findById(id).map(clientMapper::toClient);
-    }
-
-
-    @Override
     public Optional<Client> findActiveById(Long id) {
         return Optional.ofNullable(clientMapper.toClient(clientsReposity.findClientsActiveById(id)));
-    }
-
-    @Override
-    public List<Client> findAll() {
-        return clientsReposity.findAll().stream().map(clientMapper::toClient).toList();
     }
 
 

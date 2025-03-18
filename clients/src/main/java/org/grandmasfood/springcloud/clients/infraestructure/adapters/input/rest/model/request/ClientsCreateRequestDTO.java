@@ -1,7 +1,6 @@
 package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.request;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

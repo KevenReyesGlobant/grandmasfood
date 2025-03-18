@@ -7,9 +7,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ProductPersistentPort {
-    Optional<Product> findById(Long id);
-
-    List<Product> findAll();
 
     Product save(Product product);
 

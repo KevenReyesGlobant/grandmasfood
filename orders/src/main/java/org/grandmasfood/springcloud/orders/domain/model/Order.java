@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Order {
 
-    private Long id;
+    private Long idOrder;
     private UUID uuid;
     private List<OrdersProducts> ordersProducts;
     private List<Product> product;

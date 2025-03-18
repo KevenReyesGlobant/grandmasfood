@@ -14,11 +14,11 @@ public interface OrdersRepository extends JpaRepository<OrderEntity, Long> {
     @Query("select o from OrderEntity o where o.active=true")
     Page<OrderEntity> findOrdersActive(Pageable pageable);
 
-    @Query("select o from OrderEntity o where o.id=:id and o.active=true")
-    OrderEntity findOrdersActiveById(Long id);
+    @Query("select o from OrderEntity o where o.idOrder=:idOrder and o.active=true")
+    OrderEntity findOrdersActiveById(Long idOrder);
 
-    @Query("select o from OrderEntity o where o.id=:id and o.active=true")
-    OrderEntity findOrdersActiveByd(Long id);
+    @Query("select o from OrderEntity o where o.idOrder=:idOrder and o.active=true")
+    OrderEntity findOrdersActiveByd(Long idOrder);
 
     @Query("SELECT o FROM OrderEntity o WHERE o.uuid=:uuid and o.active=true")
     OrderEntity findByUuidActive(UUID uuid);

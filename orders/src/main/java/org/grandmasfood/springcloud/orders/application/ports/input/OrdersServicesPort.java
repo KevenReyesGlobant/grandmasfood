@@ -12,9 +12,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface OrdersServicesPort {
-    Order findById(Long id);
-
-    List<Order> findAll();
+//    Order findById(Long id);
+//
+//    List<Order> findAll();
 
     Order save(Order order);
 
@@ -23,13 +23,13 @@ public interface OrdersServicesPort {
     Order updateDelivered(UUID uuid, LocalDateTime timestamp);
 
 
-    Order findActiveByDocument(String document);
-
-    Order findActiveByUuid(UUID uuid);
-
-    Order deleteByDocument(String document);
-
+//    Order findActiveByDocument(String document);
 //
+//    Order findActiveByUuid(UUID uuid);
+//
+//    Order deleteByDocument(String document);
+//
+////
 //    Orders createOrders(@Valid OrdersDTO ordersDTO);
 //
 //    Page<Orders> readOrders(Pageable pageable);
@@ -40,20 +40,20 @@ public interface OrdersServicesPort {
 //
 //
 
-    //    Comunication microservices CLients
-
-    Optional<Client> signedClient(Client client, Long id);
-
-    Optional<Client> createClient(Client client, Long id);
-
-    Optional<Client> designedClient(Client client, Long id);
-
-    //    //    Comunication microservices Products
+//    //    Comunication microservices CLients
 //
-    Optional<Product> signedProduct(Product product, Long id);
-
-    Optional<Product> createProduct(Product product, Long id);
-
-    Optional<Product> designedProduct(Product product, Long id);
+//    Optional<Client> signedClient(Client client, Long id);
+//
+//    Optional<Client> createClient(Client client, Long id);
+//
+//    Optional<Client> designedClient(Client client, Long id);
+//
+//    //    //    Comunication microservices Products
+////
+//    Optional<Product> signedProduct(Product product, Long id);
+//
+//    Optional<Product> createProduct(Product product, Long id);
+//
+//    Optional<Product> designedProduct(Product product, Long id);
 
 }

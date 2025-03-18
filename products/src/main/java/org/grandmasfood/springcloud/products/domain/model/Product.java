@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 
 public class Product {
-    private Long id;
+    private Long idProduct;
     private UUID uuid;
     private String fantasyName;
     private Category category;

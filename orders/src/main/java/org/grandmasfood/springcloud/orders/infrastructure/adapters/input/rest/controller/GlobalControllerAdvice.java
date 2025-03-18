@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 import static org.grandmasfood.springcloud.orders.utils.ErrorCatalog.*;
 
-
 @RestControllerAdvice
 public class GlobalControllerAdvice {
 
@@ -34,9 +33,8 @@ public class GlobalControllerAdvice {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class, HttpRequestMethodNotSupportedException.class})
-    public ErrorResponseDTO handleMethodArgumentNotValidException(
-            MethodArgumentNotValidException exception) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ErrorResponseDTO handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         BindingResult result = exception.getBindingResult();
 
         return ErrorResponseDTO.builder()
@@ -67,7 +65,18 @@ public class GlobalControllerAdvice {
         return ErrorResponseDTO.builder()
                 .code(GENERIC_ERROR.getCode())
                 .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
-                .exception(NoResourceFoundException.class.getName().split("resource.")[1])
+                .exception(exception.getClass().getName().split("resource.")[1])
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ErrorResponseDTO handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+        return ErrorResponseDTO.builder()
+                .code(GENERIC_ERROR.getCode())
+                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
+                .exception(HttpRequestMethodNotSupportedException.class.getName().split("web.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }

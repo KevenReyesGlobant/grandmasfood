@@ -1,11 +1,10 @@
 package org.grandmasfood.springcloud.clients.application.service;
 
-import org.grandmasfood.springcloud.clients.application.ports.input.*;
+import org.grandmasfood.springcloud.clients.application.ports.input.ClientsServicePort;
 import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersistencePort;
 import org.grandmasfood.springcloud.clients.domain.exceptions.ClientNotFoundException;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class ClientService implements ClientsServicePort {
@@ -36,18 +35,6 @@ public class ClientService implements ClientsServicePort {
     @Override
     public Client deleteByDocument(String document) {
         return persistencePort.deleteByDocument(document);
-    }
-
-
-    @Override
-    public Client findById(Long id) {
-        return persistencePort.findById(id)
-                .orElseThrow(ClientNotFoundException::new);
-    }
-
-    @Override
-    public List<Client> findAll() {
-        return persistencePort.findAll();
     }
 
 

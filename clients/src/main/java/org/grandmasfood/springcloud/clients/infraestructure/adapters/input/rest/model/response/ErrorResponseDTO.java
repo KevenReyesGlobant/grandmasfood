@@ -14,13 +14,10 @@ import java.util.List;
 @NoArgsConstructor
 public class ErrorResponseDTO {
 
-//    private String code;
-//    private String message;
-//    private List<String> details;
-//    private LocalDateTime timestamp;
     private String code;
-    private LocalDateTime timestamp;
-    private String description;
     private String exception;
+    private List<String> message;
+    private LocalDateTime timestamp;
+
 }
 

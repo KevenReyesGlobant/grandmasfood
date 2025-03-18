@@ -15,8 +15,8 @@ import java.util.List;
 public class ErrorResponseDTO {
 
     private String code;
-    private String message;
     private String exception;
+    private List<String> message;
     private LocalDateTime timestamp;
 
 }

@@ -19,7 +19,7 @@ public class ClientsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idClient;
     private UUID uuid;
     @NotEmpty(message = "Name cannot be empty")
     @Size(max = 255, message = "Name and surname must be at most 255 characters")

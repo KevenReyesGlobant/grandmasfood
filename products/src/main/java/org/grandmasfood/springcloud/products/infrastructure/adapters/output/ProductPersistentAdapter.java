@@ -6,7 +6,6 @@ import org.grandmasfood.springcloud.products.infrastructure.adapters.output.mapp
 import org.grandmasfood.springcloud.products.infrastructure.adapters.output.repository.ProductsRepositoy;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,17 +26,6 @@ public class ProductPersistentAdapter implements ProductPersistentPort {
         product.setFantasyName(product.getFantasyName().toUpperCase());
         return productMapper.toProduct(productsRepositoy.save(productMapper.toProductEntity(product)));
     }
-
-    @Override
-    public Optional<Product> findById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Product> findAll() {
-        return List.of();
-    }
-
 
     @Override
     public Optional<Product> findActiveByUuid(UUID uuid) {
