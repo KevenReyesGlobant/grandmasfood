@@ -2,7 +2,6 @@ package org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest
 
 import org.grandmasfood.springcloud.products.domain.exceptions.ProductNotFoundException;
 import org.grandmasfood.springcloud.products.domain.model.ErrorResponseDTO;
-import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.generated.GeneratedPdfBox;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
@@ -21,7 +20,6 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 import static org.grandmasfood.springcloud.products.utils.ErrorCatalog.*;
-
 
 @RestControllerAdvice
 public class GlobalControllerAdvice {
@@ -49,9 +47,8 @@ public class GlobalControllerAdvice {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class, HttpRequestMethodNotSupportedException.class})
-    public ErrorResponseDTO handleMethodArgumentNotValidException(
-            MethodArgumentNotValidException exception) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ErrorResponseDTO handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         BindingResult result = exception.getBindingResult();
 
         return ErrorResponseDTO.builder()
@@ -61,6 +58,39 @@ public class GlobalControllerAdvice {
                         .map(DefaultMessageSourceResolvable::getDefaultMessage)
                         .collect(Collectors.toList()))
                 .exception(MethodArgumentNotValidException.class.getName().split("bind.")[1])
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ErrorResponseDTO handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception) {
+        return ErrorResponseDTO.builder()
+                .code(INVALID_PRODUCT.getCode())
+                .message(Collections.singletonList(INVALID_PRODUCT.getMessage()))
+                .exception(MethodArgumentTypeMismatchException.class.getName().split("method.")[1])
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ErrorResponseDTO handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+        return ErrorResponseDTO.builder()
+                .code(GENERIC_ERROR.getCode())
+                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
+                .exception(HttpRequestMethodNotSupportedException.class.getName().split("web.")[1])
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ErrorResponseDTO handleGenericError(Exception exception) {
+        return ErrorResponseDTO.builder()
+                .code(GENERIC_ERROR.getCode())
+                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
+                .exception(NoResourceFoundException.class.getName().split("resource.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }

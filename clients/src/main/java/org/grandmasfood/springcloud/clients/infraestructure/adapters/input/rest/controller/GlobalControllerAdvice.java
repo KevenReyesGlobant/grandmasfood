@@ -25,7 +25,7 @@ public class GlobalControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ClientNotFoundException.class)
-    public ErrorResponseDTO handleOrderNotFoundException() {
+    public ErrorResponseDTO handleClientNotFoundException() {
         return ErrorResponseDTO.builder()
                 .code(CLIENT_NOT_FOUND.getCode())
                 .message(Collections.singletonList(CLIENT_NOT_FOUND.getMessage()))
@@ -35,7 +35,7 @@ public class GlobalControllerAdvice {
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ErrorResponseDTO handleClientNotFoundException() {
+    public ErrorResponseDTO handleDataIntegrityViolationException() {
         return ErrorResponseDTO.builder()
                 .code(DUPLICATED_CLIENT_DATA.getCode())
                 .message(Collections.singletonList(DUPLICATED_CLIENT_DATA.getMessage()))
@@ -45,9 +45,8 @@ public class GlobalControllerAdvice {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({MethodArgumentNotValidException.class, MethodArgumentTypeMismatchException.class, HttpRequestMethodNotSupportedException.class})
-    public ErrorResponseDTO handleMethodArgumentNotValidException(
-            MethodArgumentNotValidException exception) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ErrorResponseDTO handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         BindingResult result = exception.getBindingResult();
 
         return ErrorResponseDTO.builder()
@@ -61,13 +60,13 @@ public class GlobalControllerAdvice {
                 .build();
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(NoResourceFoundException.class)
-    public ErrorResponseDTO handleNoResourceFoundException(NoResourceFoundException exception) {
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ErrorResponseDTO handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception) {
         return ErrorResponseDTO.builder()
-                .code(GENERIC_ERROR.getCode())
-                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
-                .exception(NoResourceFoundException.class.getName().split("resource.")[1])
+                .code(INVALID_CLIENT.getCode())
+                .message(Collections.singletonList(INVALID_CLIENT.getMessage()))
+                .exception(MethodArgumentTypeMismatchException.class.getName().split("method.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }
@@ -79,6 +78,17 @@ public class GlobalControllerAdvice {
                 .code(GENERIC_ERROR.getCode())
                 .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
                 .exception(HttpRequestMethodNotSupportedException.class.getName().split("web.")[1])
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ErrorResponseDTO handleNoResourceFoundException(NoResourceFoundException exception) {
+        return ErrorResponseDTO.builder()
+                .code(GENERIC_ERROR.getCode())
+                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
+                .exception(NoResourceFoundException.class.getName().split("resource.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }
