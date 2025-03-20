@@ -11,6 +11,8 @@ public enum ErrorCatalog {
 
     DUPLICATED_CLIENT_DATA("DUPLICATED_CLIENT_DATA", "Duplicated client data"),
 
+    CLIENT_DOCUMENT_DATA("FORMAT_DOCUMENT_INVALID", "Invalid client data"),
+
     GENERIC_ERROR("GENERIC_ERROR", "An error occurred");
 
     private final String code;

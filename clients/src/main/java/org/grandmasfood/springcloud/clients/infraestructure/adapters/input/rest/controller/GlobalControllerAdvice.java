@@ -24,11 +24,23 @@ import static org.grandmasfood.springcloud.clients.utils.ErrorCatalog.*;
 public class GlobalControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ClientNotFoundException.class)
+    @ExceptionHandler({NoResourceFoundException.class, ClientNotFoundException.class})
     public ErrorResponseDTO handleClientNotFoundException() {
         return ErrorResponseDTO.builder()
                 .code(CLIENT_NOT_FOUND.getCode())
                 .message(Collections.singletonList(CLIENT_NOT_FOUND.getMessage()))
+                .exception(String.valueOf(NoResourceFoundException.class).split("lang.")[1])
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NullPointerException.class)
+    public ErrorResponseDTO handleClientBadRequestException() {
+        return ErrorResponseDTO.builder()
+                .code(CLIENT_DOCUMENT_DATA.getCode())
+                .message(Collections.singletonList(CLIENT_DOCUMENT_DATA.getMessage()))
+                .exception(String.valueOf(NullPointerException.class).split("lang.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }
@@ -78,17 +90,6 @@ public class GlobalControllerAdvice {
                 .code(GENERIC_ERROR.getCode())
                 .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
                 .exception(HttpRequestMethodNotSupportedException.class.getName().split("web.")[1])
-                .timestamp(LocalDateTime.now())
-                .build();
-    }
-
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(NoResourceFoundException.class)
-    public ErrorResponseDTO handleNoResourceFoundException(NoResourceFoundException exception) {
-        return ErrorResponseDTO.builder()
-                .code(GENERIC_ERROR.getCode())
-                .message(Collections.singletonList(GENERIC_ERROR.getMessage()))
-                .exception(NoResourceFoundException.class.getName().split("resource.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }
