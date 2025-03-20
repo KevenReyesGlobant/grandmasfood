@@ -38,6 +38,11 @@ public class ProductPersistentAdapter implements ProductPersistentPort {
     }
 
     @Override
+    public Optional<Product> findByFantasyName(String fantasyName) {
+        return Optional.ofNullable(productMapper.toProduct(productsRepositoy.findProductsByFantasyName(fantasyName)));
+    }
+
+    @Override
     public Product deleteByUuid(UUID uuid) {
         Product product = productMapper.toProduct(productsRepositoy.findProductsActiveByUuId(uuid));
         product.setActive(false);

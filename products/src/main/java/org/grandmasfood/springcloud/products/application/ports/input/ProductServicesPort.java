@@ -10,10 +10,13 @@ public interface ProductServicesPort {
 
     Product update(UUID uuid, Product product);
 
+    Product findByFantasyName(String fantasyName);
+
     Product findActiveByUuid(UUID Uuid);
 
     Product findActiveById(Long id);
 
     Product deleteByUuid(UUID uuid);
+
 
 }

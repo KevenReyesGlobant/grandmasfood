@@ -46,9 +46,15 @@ public class ProductsController {
         return ResponseEntity.ok().build();
     }
 
+
     @GetMapping("/product/{uuid}")
     public ResponseEntity<ProductResponse> findProductActiveByUuid(@PathVariable @Valid UUID uuid) {
         return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findActiveByUuid(uuid)));
+    }
+
+    @GetMapping("/product/search?q={fantasyName}")
+    public ResponseEntity<ProductResponse> findProductActiveByFantasyName(@PathVariable @Valid String fantasyName) {
+        return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findByFantasyName(fantasyName)));
     }
 
     @PutMapping("/product/{uuid}")

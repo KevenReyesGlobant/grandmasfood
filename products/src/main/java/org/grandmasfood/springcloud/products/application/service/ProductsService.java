@@ -29,6 +29,11 @@ public class ProductsService implements ProductServicesPort {
     }
 
     @Override
+    public Product findByFantasyName(String fantasyName) {
+        return productPersistentPort.findByFantasyName(fantasyName).orElseThrow(ProductNotFoundException::new);
+    }
+
+    @Override
     public Product findActiveById(Long id) {
         return productPersistentPort.findActiveById(id).orElseThrow(ProductNotFoundException::new);
     }
@@ -43,7 +48,6 @@ public class ProductsService implements ProductServicesPort {
             return productPersistentPort.save(saveProduct);
         }).orElseThrow(ProductNotFoundException::new);
     }
-
 
     private <T> void updateField(T newValue, java.util.function.Consumer<T> setter) {
         if (newValue != null) {
