@@ -14,7 +14,7 @@ public interface ProductPersistentPort {
 
     Optional<Product> findActiveById(Long id);
 
-    Optional<List<Product>> findByFantasyName(String fantasyName);
+    List<Product> findByFantasyName(String fantasyName);
 
 
     Product deleteByUuid(UUID uuid);

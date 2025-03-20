@@ -40,8 +40,8 @@ public class ProductPersistentAdapter implements ProductPersistentPort {
     }
 
     @Override
-    public Optional<List<Product>> findByFantasyName(String fantasyName) {
-        return Optional.of(Collections.singletonList((Product) productMapper.toProductList(productsRepositoy.findProductsByFantasyName(fantasyName))));
+    public List<Product> findByFantasyName(String fantasyName) {
+        return productMapper.toProductList(productsRepositoy.findProductsByFantasyName(fantasyName));
     }
 
     @Override

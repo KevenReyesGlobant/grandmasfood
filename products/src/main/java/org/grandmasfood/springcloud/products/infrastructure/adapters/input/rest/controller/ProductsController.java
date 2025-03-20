@@ -1,7 +1,9 @@
 package org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.grandmasfood.springcloud.products.application.ports.input.ProductServicesPort;
+import org.grandmasfood.springcloud.products.domain.model.Product;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.generated.GeneratedPdfBox;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.mapper.ProductRestMapper;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.request.ProductsCreateRequestDTO;
@@ -49,19 +51,20 @@ public class ProductsController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/product/search")
+    public ResponseEntity<List<ProductResponse>> findProductActiveByFantasyName(
+            @RequestParam(name = "q") @Valid @NotBlank String fantasyName) {
+        List<ProductResponse> products = productServicesPort.findByFantasyName(fantasyName).stream()
+                .map(productRestMapper::toProductResponseDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(products);
+    }
 
     @GetMapping("/product/{uuid}")
     public ResponseEntity<ProductResponse> findProductActiveByUuid(@PathVariable @Valid UUID uuid) {
         return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findActiveByUuid(uuid)));
     }
 
-    @GetMapping("/product/search")
-    public ResponseEntity<List<ProductResponse>> findProductActiveByFantasyName(@RequestParam @Valid String q) {
-        List<ProductResponse> products = productServicesPort.findByFantasyName(q).stream()
-                .map(productRestMapper::toProductResponseDTO)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(products);
-    }
 
     @PutMapping("/product/{uuid}")
     public ResponseEntity<ProductResponse> updateDataProductByUuid(@PathVariable @Valid UUID uuid, @RequestBody @Valid ProductsCreateRequestDTO productsCreateRequestDTO) {

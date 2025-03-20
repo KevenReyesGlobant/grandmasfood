@@ -31,7 +31,7 @@ public class ProductsService implements ProductServicesPort {
 
     @Override
     public List<Product> findByFantasyName(String fantasyName) {
-        return productPersistentPort.findByFantasyName(fantasyName).orElseThrow(ProductNotFoundException::new);
+        return productPersistentPort.findByFantasyName(fantasyName);
     }
 
     @Override
