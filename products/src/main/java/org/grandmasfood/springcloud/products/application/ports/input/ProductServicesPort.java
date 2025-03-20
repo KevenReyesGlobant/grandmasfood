@@ -2,6 +2,7 @@ package org.grandmasfood.springcloud.products.application.ports.input;
 
 import org.grandmasfood.springcloud.products.domain.model.Product;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ProductServicesPort {
@@ -10,7 +11,7 @@ public interface ProductServicesPort {
 
     Product update(UUID uuid, Product product);
 
-    Product findByFantasyName(String fantasyName);
+    List<Product> findByFantasyName(String fantasyName);
 
     Product findActiveByUuid(UUID Uuid);
 

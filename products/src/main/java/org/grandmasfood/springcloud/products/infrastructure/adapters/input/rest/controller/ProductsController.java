@@ -6,12 +6,15 @@ import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.mapper.ProductRestMapper;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.request.ProductsCreateRequestDTO;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.response.ProductResponse;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 public class ProductsController {
@@ -52,9 +55,12 @@ public class ProductsController {
         return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findActiveByUuid(uuid)));
     }
 
-    @GetMapping("/product/search?q={fantasyName}")
-    public ResponseEntity<ProductResponse> findProductActiveByFantasyName(@PathVariable @Valid String fantasyName) {
-        return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findByFantasyName(fantasyName)));
+    @GetMapping("/product/search")
+    public ResponseEntity<List<ProductResponse>> findProductActiveByFantasyName(@RequestParam @Valid String q) {
+        List<ProductResponse> products = productServicesPort.findByFantasyName(q).stream()
+                .map(productRestMapper::toProductResponseDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(products);
     }
 
     @PutMapping("/product/{uuid}")

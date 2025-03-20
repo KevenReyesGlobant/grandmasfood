@@ -6,6 +6,7 @@ import org.grandmasfood.springcloud.products.domain.exceptions.ProductNotFoundEx
 import org.grandmasfood.springcloud.products.domain.model.Product;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -29,7 +30,7 @@ public class ProductsService implements ProductServicesPort {
     }
 
     @Override
-    public Product findByFantasyName(String fantasyName) {
+    public List<Product> findByFantasyName(String fantasyName) {
         return productPersistentPort.findByFantasyName(fantasyName).orElseThrow(ProductNotFoundException::new);
     }
 

@@ -4,6 +4,7 @@ import org.grandmasfood.springcloud.products.infrastructure.adapters.output.enti
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ProductsRepositoy extends JpaRepository<ProductsEntity, Long> {
@@ -13,6 +14,6 @@ public interface ProductsRepositoy extends JpaRepository<ProductsEntity, Long> {
     @Query("select p from ProductsEntity p where p.uuid=:uuid and p.active=true")
     ProductsEntity findProductsActiveByUuId(UUID uuid);
 
-    @Query("select p from ProductsEntity p where lower(p.fantasyName) like lower(concat('%', :fantasyName, '%'))")
-    ProductsEntity findProductsByFantasyName(String fantasyName);
+    @Query("select p from ProductsEntity p where lower(p.fantasyName) like lower(concat('%', :fantasyName, '%')) and p.active=true")
+    List<ProductsEntity> findProductsByFantasyName(String fantasyName);
 }
