@@ -3,12 +3,10 @@ package org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.grandmasfood.springcloud.products.application.ports.input.ProductServicesPort;
-import org.grandmasfood.springcloud.products.domain.model.Product;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.generated.GeneratedPdfBox;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.mapper.ProductRestMapper;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.request.ProductsCreateRequestDTO;
 import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.response.ProductResponse;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +57,7 @@ public class ProductsController {
                 .collect(Collectors.toList());
         return ResponseEntity.ok(products);
     }
+
 
     @GetMapping("/product/{uuid}")
     public ResponseEntity<ProductResponse> findProductActiveByUuid(@PathVariable @Valid UUID uuid) {

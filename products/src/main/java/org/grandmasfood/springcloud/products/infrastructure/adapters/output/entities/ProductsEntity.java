@@ -23,6 +23,8 @@ public class ProductsEntity {
 
     private UUID uuid;
 
+    @Column(unique = true)
+    @Size(max = 255, message = "Fantasy name must be at most 255 characters")
     @NotEmpty(message = "Fantasy name cannot be empty")
     private String fantasyName;
 
@@ -30,6 +32,7 @@ public class ProductsEntity {
     private Category category;
 
     @NotNull(message = "Description cannot be null")
+    @Size(max = 511, message = "Fantasy name must be at most 511 characters")
     private String description;
 
     @NotNull(message = "Price cannot be null")

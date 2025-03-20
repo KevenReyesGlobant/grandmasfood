@@ -2,8 +2,7 @@ package org.grandmasfood.springcloud.orders.infrastructure.adapters.output.entit
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.grandmasfood.springcloud.orders.domain.model.Client;
 import org.grandmasfood.springcloud.orders.domain.model.Product;
@@ -35,14 +34,25 @@ public class OrderEntity {
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private List<OrdersClientsEntity> ordersClients;
+
     private UUID uuid;
+
+    @NotNull(message = "Creation date and time cannot be null")
     private LocalDateTime creationDateTime;
+
+    @NotEmpty(message = "Client document cannot be empty")
     private String clientDocument;
+
+    @NotNull(message = "Product UUID cannot be null")
     private UUID productUuid;
-    @Positive(message = "Quantity must be positive")
+
+    @Min(value = 1, message = "Quantity must be at least 1")
+    @Max(value = 99, message = "Quantity must be less than 100")
     private int quantity;
-    @NotEmpty(message = "Product extra info cannot be empty")
+
+    @Size(max = 511, message = "Product extra info must be at most 511 characters")
     private String extraInfo;
+
     private double subTotal;
     private double tax;
     private double grandTotal;

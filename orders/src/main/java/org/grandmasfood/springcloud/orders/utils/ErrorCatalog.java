@@ -9,7 +9,10 @@ public enum ErrorCatalog {
 
     INVALID_ORDER("INVALID_ORDER", "Invalid order"),
 
+    OVERFLOW_ORDER_DATA("OVERFLOW_ORDER_DATA", "Overflow data"),
+
     GENERIC_ERROR("GENERIC_ERROR", "An error occurred");
+
 
     private final String code;
     private final String message;
