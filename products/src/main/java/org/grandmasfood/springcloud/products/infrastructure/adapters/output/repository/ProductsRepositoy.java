@@ -12,4 +12,7 @@ public interface ProductsRepositoy extends JpaRepository<ProductsEntity, Long> {
 
     @Query("select p from ProductsEntity p where p.uuid=:uuid and p.active=true")
     ProductsEntity findProductsActiveByUuId(UUID uuid);
+
+    @Query("select p from ProductsEntity p where lower(p.fantasyName) like lower(concat('%', :fantasyName, '%'))")
+    ProductsEntity findProductsByFantasyName(String fantasyName);
 }
