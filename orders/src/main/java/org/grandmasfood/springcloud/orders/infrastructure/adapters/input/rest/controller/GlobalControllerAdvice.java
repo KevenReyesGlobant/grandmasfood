@@ -4,7 +4,6 @@ import jakarta.validation.ConstraintViolationException;
 import org.grandmasfood.springcloud.orders.domain.exceptions.OrderNotFoundException;
 import org.grandmasfood.springcloud.orders.domain.model.ErrorResponseDTO;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -18,7 +17,6 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-import static org.grandmasfood.springcloud.clients.utils.ErrorCatalog.DUPLICATED_CLIENT_DATA;
 import static org.grandmasfood.springcloud.orders.utils.ErrorCatalog.*;
 
 @RestControllerAdvice
