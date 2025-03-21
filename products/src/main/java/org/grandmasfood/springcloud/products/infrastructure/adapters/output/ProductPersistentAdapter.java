@@ -40,7 +40,7 @@ public class ProductPersistentAdapter implements ProductPersistentPort {
 
     @Override
     public List<Product> findByFantasyName(String fantasyName) {
-        return productMapper.toProductList(productsRepositoy.findProductsByFantasyName(fantasyName));
+        return productMapper.toProductList(productsRepositoy.findByFantasyNameContainingAndActiveTrue(fantasyName));
     }
 
     @Override
