@@ -69,7 +69,7 @@ public class GeneratedPdfBox implements PdfGenerator {
                 content.endText();
                 yOffset -= 30;
 
-                int half = (categoryProducts.size() + 1) / 2;  // Adjust for odd number of products
+                int half = (categoryProducts.size() + 1) / 2;
                 int xOffset = 50;
                 int initialYOffset = yOffset;
 
@@ -85,8 +85,9 @@ public class GeneratedPdfBox implements PdfGenerator {
                         content.setNonStrokingColor(new Color(49, 75, 57));
                     } else {
                     }
+                    double value = product.getPrice() + product.getPrice() * 0.19;
                     content.newLineAtOffset(xOffset, yOffset);
-                    content.showText(product.getFantasyName() + " -> $" + product.getPrice());
+                    content.showText(String.format("%s -> $%.1f", product.getFantasyName(), value));
                     content.endText();
                     yOffset -= 20;
                 }
