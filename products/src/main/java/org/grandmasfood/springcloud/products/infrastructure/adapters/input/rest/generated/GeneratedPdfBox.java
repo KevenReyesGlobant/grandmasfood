@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,7 +41,9 @@ public class GeneratedPdfBox implements PdfGenerator {
 
         List<Product> products = productMapper.toProductList(productsRepositoy.findAll());
         Map<Category, List<Product>> productsByCategory = products.stream()
+                .filter(Product::isAvailable)
                 .collect(Collectors.groupingBy(Product::getCategory));
+
 
         int pageWidth = (int) myPage.getTrimBox().getWidth();
         int pageHeight = (int) myPage.getTrimBox().getHeight();
