@@ -42,8 +42,8 @@ public class ClientService implements ClientsServicePort {
     }
 
     @Override
-    public List<Client> findOrderByValue(String orderBy, String direction) {
-        return persistencePort.findOrderByValue(orderBy, direction);
+    public List<Client> findClientByValue(String orderBy, String direction) {
+        return persistencePort.findClientByValue(orderBy, direction);
     }
 
 

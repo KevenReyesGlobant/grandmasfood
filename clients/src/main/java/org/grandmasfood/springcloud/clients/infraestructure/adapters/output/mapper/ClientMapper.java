@@ -10,6 +10,8 @@ import java.util.List;
 public interface ClientMapper {
     ClientsEntity toClientEntity(Client client);
 
+    List<ClientsEntity> toClientEntityList(List<Client> client);
+
     Client toClient(ClientsEntity clientsEntity);
 
     List<Client> toClientsList(List<ClientsEntity> clientsEntities);

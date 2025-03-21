@@ -3,6 +3,7 @@ package org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest
 
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.clients.application.ports.input.ClientsServicePort;
+import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.mapper.ClientRestMapper;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.request.ClientsCreateRequestDTO;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.model.response.ClientsResponseDTO;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -36,6 +38,15 @@ public class ClientsController {
 
         return ResponseEntity.status(HttpStatus.OK).body(clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.findActiveById(id)));
 
+    }
+
+    @GetMapping("/client")
+    public ResponseEntity<List<ClientsResponseDTO>> getAllClients(
+            @RequestParam(name = "orderBy") String orderValue,
+            @RequestParam(name = "direction") String directionValue) {
+        List<Client> clients = iCreateClientUseCase.findClientByValue(orderValue, directionValue);
+        List<ClientsResponseDTO> response = clientRestMapper.toClientResponseList(clients);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/client/{document}")

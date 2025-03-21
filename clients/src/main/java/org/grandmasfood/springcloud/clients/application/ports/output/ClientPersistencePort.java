@@ -15,6 +15,6 @@ public interface ClientPersistencePort {
 
     Client deleteByDocument(String document);
 
-    List<Client> findOrderByValue(String orderBy, String direction);
+    List<Client> findClientByValue(String orderBy, String direction);
 
 }
