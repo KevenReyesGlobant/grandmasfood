@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.UUID;
 
+//name query JPQL
 public interface ProductsRepositoy extends JpaRepository<ProductsEntity, Long> {
     @Query("select p from ProductsEntity p where p.idProduct=:idProduct and p.active=true")
     ProductsEntity findProductsActiveById(Long idProduct);
@@ -17,4 +18,5 @@ public interface ProductsRepositoy extends JpaRepository<ProductsEntity, Long> {
 
     @Query("select p from ProductsEntity p where p.fantasyName like concat('%', :fantasyName, '%') and p.active = true")
     List<ProductsEntity> findProductsByFantasyName(@Param("fantasyName") String fantasyName);
+
 }

@@ -5,7 +5,10 @@ import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersi
 import org.grandmasfood.springcloud.clients.domain.exceptions.ClientNotFoundException;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ClientService implements ClientsServicePort {
@@ -36,6 +39,11 @@ public class ClientService implements ClientsServicePort {
     @Override
     public Client deleteByDocument(String document) {
         return persistencePort.deleteByDocument(document);
+    }
+
+    @Override
+    public List<Client> findOrderByValue(String orderBy, String direction) {
+        return persistencePort.findOrderByValue(orderBy, direction);
     }
 
 

@@ -2,8 +2,10 @@ package org.grandmasfood.springcloud.clients.infraestructure.adapters.output;
 
 import org.grandmasfood.springcloud.clients.application.ports.output.ClientPersistencePort;
 import org.grandmasfood.springcloud.clients.domain.model.Client;
+import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.entities.ClientsEntity;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.mapper.ClientMapper;
 import org.grandmasfood.springcloud.clients.infraestructure.adapters.output.repository.ClientsReposity;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -42,5 +44,19 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
         Client client = clientMapper.toClient(clientsReposity.findClientsActiveByDocument(document));
         client.setActive(false);
         return clientMapper.toClient(clientsReposity.save(clientMapper.toClientEntity(client)));
+    }
+
+    @Override
+    public List<Client> findOrderByValue(String orderBy, String direction) {
+        Sort.Direction sortDirection = Sort.Direction.fromString(direction);
+        Sort sort = Sort.by(sortDirection, orderBy);
+//        return clientsReposity.findAll(sort);
+        return null;
+    }
+
+    public List<ClientsEntity> findAllClients(String orderBy, String direction) {
+        Sort.Direction sortDirection = Sort.Direction.fromString(direction);
+        Sort sort = Sort.by(sortDirection, orderBy);
+        return clientsReposity.findAll(sort);
     }
 }

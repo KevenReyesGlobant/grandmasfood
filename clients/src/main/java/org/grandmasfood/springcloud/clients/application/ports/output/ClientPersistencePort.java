@@ -1,7 +1,9 @@
 package org.grandmasfood.springcloud.clients.application.ports.output;
 
 import org.grandmasfood.springcloud.clients.domain.model.Client;
+import org.springframework.data.domain.Sort;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ClientPersistencePort {
@@ -12,4 +14,7 @@ public interface ClientPersistencePort {
     Optional<Client> findActiveById(Long id);
 
     Client deleteByDocument(String document);
+
+    List<Client> findOrderByValue(String orderBy, String direction);
+
 }

@@ -1,6 +1,9 @@
 package org.grandmasfood.springcloud.clients.application.ports.input;
 
 import org.grandmasfood.springcloud.clients.domain.model.Client;
+import org.springframework.data.domain.Sort;
+
+import java.util.List;
 
 
 public interface ClientsServicePort {
@@ -14,6 +17,8 @@ public interface ClientsServicePort {
     Client findActiveById(Long id);
 
     Client deleteByDocument(String document);
+
+    List<Client> findOrderByValue(String orderBy, String direction);
 
 
 }
