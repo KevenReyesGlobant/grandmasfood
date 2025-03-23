@@ -33,7 +33,7 @@ public class ClientsController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/client/{id}")
     public ResponseEntity<ClientsResponseDTO> findActiveClientById(@PathVariable @Valid Long id) {
 
         return ResponseEntity.status(HttpStatus.OK).body(clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.findActiveById(id)));
@@ -49,7 +49,7 @@ public class ClientsController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/client/{document}")
+    @GetMapping("/{document}")
     public ResponseEntity<ClientsResponseDTO> listClientActiveByDocument(@PathVariable @Valid String document) {
 
         return ResponseEntity.status(HttpStatus.OK).body(clientRestMapper.toClientsResponseDTO(iCreateClientUseCase.findActiveByDocument(document)));
