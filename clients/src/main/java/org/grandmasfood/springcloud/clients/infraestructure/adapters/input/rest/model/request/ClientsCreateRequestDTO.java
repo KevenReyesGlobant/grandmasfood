@@ -13,7 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ClientsCreateRequestDTO {
 
-
     private UUID uuid;
     @NotEmpty(message = "Name cannot be empty")
     @Size(max = 255, message = "Name and surname must be at most 255 characters")

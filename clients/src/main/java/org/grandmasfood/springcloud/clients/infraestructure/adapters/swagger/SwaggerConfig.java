@@ -1,28 +1,38 @@
 package org.grandmasfood.springcloud.clients.infraestructure.adapters.swagger;
 
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import org.springdoc.core.models.GroupedOpenApi;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.servers.Server;
 
-@Configuration
+@OpenAPIDefinition(
+        info = @Info(
+                title = "API GRANDMASFOOD_CLIENTS",
+                description = "This app microservices provides a clients management system",
+                version = "1.0.0",
+                contact = @Contact(
+                        name = "Keven Reyes",
+                        url = "https://portfoliothreekevenreyes.netlify.app/",
+                        email = "keven.reyes@globant.com"
+                ),
+                license = @License(
+                        name = "Standard Software Use License for Grandmasfood",
+                        url = "https://portfoliothreekevenreyes.netlify.app/"
+                )
+        ),
+        servers = {
+                @Server(
+                        description = "DEV SERVER",
+                        url = "http://localhost:3000"
+                ),
+                @Server(
+                        description = "PROD SERVER",
+                        url = "http://localhost:3000"
+                )
+        }
+)
+
 public class SwaggerConfig {
-    @Bean
-    public GroupedOpenApi clientsApi() {
-        return GroupedOpenApi.builder()
-                .group("client")
-                .pathsToMatch("/client/**", "/**")
-                .packagesToScan("org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.controller.ClientsController")
-                .build();
-    }
 
-    @Bean
-    public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .info(new Info()
-                        .title("GrandmasFood Clients API")
-                        .version("1.0")
-                        .description("Documentation API v1.0"));
-    }
 }

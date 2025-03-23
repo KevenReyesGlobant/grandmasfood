@@ -24,12 +24,22 @@ import static org.grandmasfood.springcloud.clients.utils.ErrorCatalog.*;
 public class GlobalControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler({NoResourceFoundException.class, ClientNotFoundException.class})
-    public ErrorResponseDTO handleClientNotFoundException() {
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ErrorResponseDTO handleNoResourceFoundException() {
         return ErrorResponseDTO.builder()
                 .code(CLIENT_NOT_FOUND.getCode())
                 .message(Collections.singletonList(CLIENT_NOT_FOUND.getMessage()))
                 .exception(String.valueOf(NoResourceFoundException.class).split("lang.")[1])
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ClientNotFoundException.class)
+    public ErrorResponseDTO handleClientNotFoundException() {
+        return ErrorResponseDTO.builder()
+                .code(CLIENT_NOT_FOUND.getCode())
+                .message(Collections.singletonList(CLIENT_NOT_FOUND.getMessage()))
+                .exception(String.valueOf(ClientNotFoundException.class).split("exceptions.")[1])
                 .timestamp(LocalDateTime.now())
                 .build();
     }

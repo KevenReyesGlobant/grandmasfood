@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.clients.infraestructure.adapters.swagger;
+package org.grandmasfood.springcloud.orders.infrastructure.adapters.swagger;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 public class SpringFoxConfig {
 
     @Bean
-    public GroupedOpenApi clientsApi() {
+    public GroupedOpenApi ordersApi() {
         return GroupedOpenApi.builder()
-                .group("clients")
-                .packagesToScan("org.grandmasfood.springcloud.clients.infraestructure.adapters.input.rest.controller.ClientsController")
+                .group("orders")
+                .packagesToScan("org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.controller.OrdersController")
                 .build();
     }
 
@@ -21,9 +21,9 @@ public class SpringFoxConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("GrandmasFood Clients API")
+                        .title("GrandmasFood Orders API")
                         .version("1.0")
-                        .description("Documentation for the microservice clients into GrandmasFood"));
+                        .description("Documentation for the microservice orders into GrandmasFood"));
     }
 
 }
