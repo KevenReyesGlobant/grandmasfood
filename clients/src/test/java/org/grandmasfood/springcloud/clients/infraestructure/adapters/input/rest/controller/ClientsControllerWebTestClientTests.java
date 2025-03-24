@@ -196,7 +196,7 @@ class ClientsControllerIntegrationTest {
         webTestClient.get()
                 .uri("/{document}", "CC-6677889900")
                 .exchange()
-                .expectStatus().is5xxServerError(); // Puedes personalizar si tienes manejo específico de "not found"
+                .expectStatus().isNotFound();
     }
 
 //    VALIDATIONS
@@ -217,7 +217,7 @@ class ClientsControllerIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(updatedRequest)
                 .exchange()
-                .expectStatus().is5xxServerError(); // o 404 si tu servicio lanza esa excepción
+                .expectStatus().isNotFound();
     }
 
     @Test
