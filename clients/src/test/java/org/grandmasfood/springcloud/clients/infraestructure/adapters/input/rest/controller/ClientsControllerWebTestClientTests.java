@@ -72,7 +72,7 @@ class ClientsControllerIntegrationTest {
 
         String document = "CC-9876543210";
         webTestClient.get()
-                .uri("/{document}", document)
+                .uri("/client/{document}", document)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
@@ -158,7 +158,7 @@ class ClientsControllerIntegrationTest {
                 .expectStatus().isNoContent();
 
         webTestClient.get()
-                .uri("/{document}", "CC-5544332211")
+                .uri("/client/{document}", "CC-5544332211")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(ClientsResponseDTO.class)
@@ -194,7 +194,7 @@ class ClientsControllerIntegrationTest {
                 .expectStatus().isOk();
 
         webTestClient.get()
-                .uri("/{document}", "CC-6677889900")
+                .uri("/client/{document}", "CC-6677889900")
                 .exchange()
                 .expectStatus().isNotFound();
     }

@@ -16,6 +16,6 @@ public interface IClientClientRest {
     @GetMapping("/{id}")
     Client readClientActiveById(@PathVariable @Valid Long id);
 
-    @GetMapping("/{document}")
+    @GetMapping("/client/{document}")
     Client listClientActiveByDocuments(@PathVariable @Valid String document);
 }
