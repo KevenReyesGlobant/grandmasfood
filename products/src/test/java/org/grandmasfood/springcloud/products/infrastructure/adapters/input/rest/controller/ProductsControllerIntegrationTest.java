@@ -62,7 +62,6 @@ class ProductsControllerIntegrationTest {
         requestDTO.setDescription("Product for search test");
         requestDTO.setAvailable(true);
 
-        // First create the product
         ProductResponse createdProduct = webTestClient.post()
                 .uri("/product")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -75,7 +74,6 @@ class ProductsControllerIntegrationTest {
 
         assertThat(createdProduct).isNotNull();
 
-        // Then search for the product
         webTestClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/product/search")
@@ -104,7 +102,6 @@ class ProductsControllerIntegrationTest {
         createRequestDTO.setPrice(10.0F);
         createRequestDTO.setDescription("Initial product description");
 
-        // Detailed product creation
         ProductResponse createdProduct = webTestClient.post()
                 .uri("/product")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -115,20 +112,17 @@ class ProductsControllerIntegrationTest {
                 .getResponseBody()
                 .blockFirst();
 
-        // Explicit assertions for created product
         assertThat(createdProduct).isNotNull();
         assertThat(createdProduct.getUuid()).isNotNull();
 
         UUID productUuid = createdProduct.getUuid();
 
-        // Prepare update request
         ProductsCreateRequestDTO updateRequestDTO = new ProductsCreateRequestDTO();
         updateRequestDTO.setFantasyName("UPDATED PRODUCT");
         updateRequestDTO.setCategory(Category.DESSERTS);
         updateRequestDTO.setPrice(15.0F);
         updateRequestDTO.setDescription("Updated product description");
 
-        // Perform update with detailed logging
         ProductResponse updatedProduct = webTestClient.put()
                 .uri("/product/{uuid}", productUuid)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -139,12 +133,10 @@ class ProductsControllerIntegrationTest {
                 .getResponseBody()
                 .blockFirst();
 
-        // Detailed assertions with logging
         System.out.println("Created Product UUID: " + createdProduct.getUuid());
         System.out.println("Update Request DTO: " + updateRequestDTO);
         System.out.println("Updated Product Response: " + updatedProduct);
 
-        // Comprehensive update assertions
         assertThat(updatedProduct).isNotNull();
         assertThat(updatedProduct.getUuid()).isEqualTo(productUuid);
         assertThat(updatedProduct.getFantasyName()).isEqualTo("UPDATED PRODUCT");
@@ -153,7 +145,6 @@ class ProductsControllerIntegrationTest {
         assertThat(updatedProduct.getDescription()).isEqualTo("Updated product description");
 
 
-        // Verify by fetching the product again
         ProductResponse fetchedProduct = webTestClient.get()
                 .uri("/product/{uuid}", productUuid)
                 .exchange()
@@ -162,7 +153,6 @@ class ProductsControllerIntegrationTest {
                 .getResponseBody()
                 .blockFirst();
 
-        // Additional verification
         System.out.println("Fetched Product: " + fetchedProduct);
         assertThat(fetchedProduct).isNotNull();
     }
@@ -187,13 +177,11 @@ class ProductsControllerIntegrationTest {
 
         assertThat(createdProduct).isNotNull();
 
-        // Delete the product
         webTestClient.delete()
                 .uri("/product/{uuid}", createdProduct.getUuid())
                 .exchange()
                 .expectStatus().isOk();
 
-        // Verify product is no longer findable
         webTestClient.get()
                 .uri("/product/{uuid}", createdProduct.getUuid())
                 .exchange()

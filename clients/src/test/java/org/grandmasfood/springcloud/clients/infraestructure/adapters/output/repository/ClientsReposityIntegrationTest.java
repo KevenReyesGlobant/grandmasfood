@@ -28,7 +28,7 @@ public class ClientsReposityIntegrationTest {
     public void createInsertData() {
         ClientsEntity activeClient = new ClientsEntity();
         activeClient.setDocument("CC-1234567890");
-        activeClient.setName("Test Active Client");
+        activeClient.setName("Juan");
         activeClient.setEmail("active.client@example.com");
         activeClient.setPhone("3001234567");
         activeClient.setDeliveryAddress("123 Main St");
@@ -38,7 +38,7 @@ public class ClientsReposityIntegrationTest {
 
         ClientsEntity inactiveClient = new ClientsEntity();
         inactiveClient.setDocument("CC-9876543210");
-        inactiveClient.setName("Test Inactive Client");
+        inactiveClient.setName("Juan");
         inactiveClient.setEmail("inactive.client@example.com");
         inactiveClient.setPhone("3109876543");
         inactiveClient.setDeliveryAddress("456 Oak Ave");
@@ -86,7 +86,7 @@ public class ClientsReposityIntegrationTest {
         // Create another active client for sorting test
         ClientsEntity anotherActiveClient = new ClientsEntity();
         anotherActiveClient.setDocument("CC-1111111111");
-        anotherActiveClient.setName("Another Test Client");
+        anotherActiveClient.setName("Juan");
         anotherActiveClient.setEmail("another.client@example.com");
         anotherActiveClient.setPhone("3211111111");
         anotherActiveClient.setDeliveryAddress("789 Test Ave");
