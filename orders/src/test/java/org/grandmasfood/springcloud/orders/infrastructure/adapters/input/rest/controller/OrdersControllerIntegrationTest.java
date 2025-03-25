@@ -60,7 +60,6 @@ class OrdersControllerIntegrationTest {
 
     @Test
     void testCreateOrder_WithValidData_ShouldCreateOrderSuccessfully() {
-        // Prepare order creation request
         OrdersCreateRequestDTO requestDTO = OrdersCreateRequestDTO.builder()
                 .productUuid(PRODUCT_UUID)
                 .clientDocument(CLIENT_DOCUMENT)
@@ -74,7 +73,6 @@ class OrdersControllerIntegrationTest {
                 .active(true)
                 .build();
 
-        // Perform the POST request and validate response
         OrdersResponseDTO createdOrder = webTestClient.post()
                 .uri("/order")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -85,14 +83,12 @@ class OrdersControllerIntegrationTest {
                 .returnResult()
                 .getResponseBody();
 
-        // Assert that the order was created successfully
         assertNotNull(createdOrder);
         assertNotNull(createdOrder.getUuid());
     }
 
     @Test
     void testUpdateOrderDelivered_WithExistingOrder_ShouldSucceed() {
-        // Primero crear una orden
         OrdersCreateRequestDTO requestDTO = OrdersCreateRequestDTO.builder()
                 .productUuid(PRODUCT_UUID)
                 .clientDocument(CLIENT_DOCUMENT)
@@ -106,7 +102,6 @@ class OrdersControllerIntegrationTest {
                 .active(true)
                 .build();
 
-        // Crear la orden
         OrdersResponseDTO createdOrder = webTestClient.post()
                 .uri("/order")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -117,10 +112,8 @@ class OrdersControllerIntegrationTest {
                 .returnResult()
                 .getResponseBody();
 
-        // Preparar fecha de entrega
         LocalDateTime deliveryTimestamp = LocalDateTime.now();
 
-        // Realizar la actualización de entrega
         webTestClient.patch()
                 .uri("/order/" + createdOrder.getUuid() + "/deliverd/" + deliveryTimestamp)
                 .exchange()
@@ -130,7 +123,6 @@ class OrdersControllerIntegrationTest {
                 .jsonPath("$.deliveryDate").isNotEmpty();
     }
 
-    // Los otros tests de escenarios de error permanecen igual
 
 
     @Test
@@ -156,7 +148,6 @@ class OrdersControllerIntegrationTest {
 
     @Test
     void testUpdateDelivered_WithFutureDeliveryDate() {
-        // Crear una orden primero
         OrdersCreateRequestDTO requestDTO = OrdersCreateRequestDTO.builder()
                 .productUuid(PRODUCT_UUID)
                 .clientDocument(CLIENT_DOCUMENT)
@@ -180,7 +171,6 @@ class OrdersControllerIntegrationTest {
                 .returnResult()
                 .getResponseBody();
 
-        // Probar con una fecha futura
         LocalDateTime futureTimestamp = LocalDateTime.now().plusDays(1);
 
         webTestClient.patch()
