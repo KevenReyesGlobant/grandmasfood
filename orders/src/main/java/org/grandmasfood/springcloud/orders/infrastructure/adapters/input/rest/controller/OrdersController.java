@@ -18,7 +18,6 @@ public class OrdersController {
     private final OrdersServicesPort ordersServicesPort;
     private final OrderRestMapper orderRestMapper;
 
-
     public OrdersController(OrdersServicesPort ordersServicesPort, OrderRestMapper orderRestMapper) {
         this.ordersServicesPort = ordersServicesPort;
         this.orderRestMapper = orderRestMapper;
@@ -26,13 +25,25 @@ public class OrdersController {
 
     @PostMapping("/order")
     public ResponseEntity<OrdersResponseDTO> createOrderRest(@RequestBody @Valid OrdersCreateRequestDTO ordersCreateRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderRestMapper.toOrdersResponseDTO(ordersServicesPort.save(orderRestMapper.toOrder(ordersCreateRequestDTO))));
-
+        try {
+            OrdersResponseDTO responseDTO = orderRestMapper.toOrdersResponseDTO(ordersServicesPort.save(orderRestMapper.toOrder(ordersCreateRequestDTO)));
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @PatchMapping("/order/{uuid}/deliverd/{timestamp}")
     public ResponseEntity<OrdersResponseDTO> updateDelivered(@PathVariable @Valid UUID uuid, @PathVariable LocalDateTime timestamp) {
-        return ResponseEntity.status(HttpStatus.OK).body(orderRestMapper.toOrdersResponseDTO(ordersServicesPort.updateDelivered(uuid, timestamp)));
+        try {
+            OrdersResponseDTO responseDTO = orderRestMapper.toOrdersResponseDTO(ordersServicesPort.updateDelivered(uuid, timestamp));
+            return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
-
 }
