@@ -20,6 +20,7 @@
     <module>clients</module>
     <module>orders</module>
     <module>products</module>
+    <module>users</module>
 </modules>
 
     <properties>
