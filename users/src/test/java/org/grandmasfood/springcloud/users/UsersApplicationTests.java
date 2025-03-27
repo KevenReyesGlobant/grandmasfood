@@ -1,4 +1,4 @@
-package users.users;
+package org.grandmasfood.springcloud.users;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

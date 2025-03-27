@@ -1,4 +1,4 @@
-package users.users;
+package org.grandmasfood.springcloud.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
