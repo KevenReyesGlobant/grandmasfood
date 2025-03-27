@@ -1,12 +1,10 @@
 package org.grandmasfood.springcloud.clients.infraestructure.adapters.output.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.grandmasfood.springcloud.clients.domain.model.Client;
 
 import java.util.UUID;
 
