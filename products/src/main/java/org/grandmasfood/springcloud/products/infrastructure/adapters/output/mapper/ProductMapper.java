@@ -11,7 +11,7 @@ public interface ProductMapper {
 
     ProductsEntity toProductEntity(Product product);
 
-    List<Product> toProductList(List<ProductsEntity> productsEntities);
-
     Product toProduct(ProductsEntity productsEntity);
+
+    List<Product> toProductList(List<ProductsEntity> productsEntities);
 }

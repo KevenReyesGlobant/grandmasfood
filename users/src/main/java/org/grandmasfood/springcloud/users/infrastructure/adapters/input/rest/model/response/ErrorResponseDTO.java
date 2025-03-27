@@ -4,18 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.grandmasfood.springcloud.users.domain.model.enums.RoleUser;
 
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.List;
 
-@Data
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseDTO {
+public class ErrorResponseDTO {
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
+    private String code;
+    private String exception;
+    private List<String> message;
+    private LocalDateTime timestamp;
+
 }
+
