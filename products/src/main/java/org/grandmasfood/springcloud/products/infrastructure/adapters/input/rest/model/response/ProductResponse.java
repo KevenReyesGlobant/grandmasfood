@@ -15,10 +15,12 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ProductResponse {
 
+    private Long idProduct;
     private UUID uuid;
     private String fantasyName;
     private Category category;
     private String description;
     private float price;
     private boolean available;
+    private Boolean active;
 }

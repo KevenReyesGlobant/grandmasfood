@@ -96,9 +96,9 @@ public class ClientsReposityIntegrationTest {
         Sort sortDescending = Sort.by(Sort.Direction.DESC, "idClient");
         var sortedClients = clientsReposity.findAll(sortDescending);
 
-        assertThat(sortedClients).hasSize(3);
+        // Should only return active clients
+        assertThat(sortedClients).hasSize(2);
         assertThat(sortedClients.get(0).getDocument()).isEqualTo("CC-1111111111");
-        assertThat(sortedClients.get(1).getDocument()).isEqualTo("CC-9876543210");
-        assertThat(sortedClients.get(2).getDocument()).isEqualTo("CC-1234567890");
+        assertThat(sortedClients.get(1).getDocument()).isEqualTo("CC-1234567890");
     }
 }

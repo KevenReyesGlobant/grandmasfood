@@ -1,6 +1,7 @@
 package org.grandmasfood.springcloud.users.infrastructure.adapters.input.rest.model.request;
 
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +22,6 @@ public class UserCreateRequestDTO {
     private String firstName;
     @Size(max = 100, message = "Last Name must be at most 255 characters")
     private String lastName;
-    @Column(unique = true)
     @Email(message = "Email should be valid")
     @NotEmpty(message = "Email cannot be empty")
     @Size(max = 255, message = "Email must be at most 255 characters")

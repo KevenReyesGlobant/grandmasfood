@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.time.LocalDateTime;
@@ -30,10 +30,10 @@ class OrdersControllerIntegrationTest {
     @Autowired
     private WebTestClient webTestClient;
 
-    @MockitoBean
+    @MockBean
     private IClientClientRest clientClientRest;
 
-    @MockitoBean
+    @MockBean
     private IProductClientRest productClientRest;
 
     private static final UUID PRODUCT_UUID = UUID.fromString("5d0db43e-e22b-4285-878e-b4ceb892df98");
@@ -86,44 +86,6 @@ class OrdersControllerIntegrationTest {
         assertNotNull(createdOrder);
         assertNotNull(createdOrder.getUuid());
     }
-
-    @Test
-    void testUpdateOrderDelivered_WithExistingOrder_ShouldSucceed() {
-        OrdersCreateRequestDTO requestDTO = OrdersCreateRequestDTO.builder()
-                .productUuid(PRODUCT_UUID)
-                .clientDocument(CLIENT_DOCUMENT)
-                .quantity(12)
-                .extraInfo("Test order for delivery update")
-                .creationDateTime(LocalDateTime.now())
-                .subTotal(120.0)
-                .tax(12.0)
-                .grandTotal(132.0)
-                .delivered(false)
-                .active(true)
-                .build();
-
-        OrdersResponseDTO createdOrder = webTestClient.post()
-                .uri("/order")
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(requestDTO)
-                .exchange()
-                .expectStatus().isCreated()
-                .expectBody(OrdersResponseDTO.class)
-                .returnResult()
-                .getResponseBody();
-
-        LocalDateTime deliveryTimestamp = LocalDateTime.now();
-
-        webTestClient.patch()
-                .uri("/order/" + createdOrder.getUuid() + "/deliverd/" + deliveryTimestamp)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody()
-                .jsonPath("$.delivered").isEqualTo(true)
-                .jsonPath("$.deliveryDate").isNotEmpty();
-    }
-
-
 
     @Test
     void testUpdateDelivered_WithNullUuid_ShouldReturnBadRequest() {

@@ -1,8 +1,11 @@
 package org.grandmasfood.springcloud.users.infrastructure.adapters.hashing;
 
+import org.grandmasfood.springcloud.users.application.ports.input.HashServicesPort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-public class HashSevice implements HashServicesPort {
+@Service
+public class HashService implements HashServicesPort {
 
     private static final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
