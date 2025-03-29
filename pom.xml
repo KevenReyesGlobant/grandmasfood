@@ -21,6 +21,7 @@
         <module>orders</module>
         <module>products</module>
         <module>users</module>
+        <module>login</module>
     </modules>
 
     <properties>
