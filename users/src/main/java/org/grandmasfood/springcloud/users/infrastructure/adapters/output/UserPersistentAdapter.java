@@ -1,6 +1,5 @@
 package org.grandmasfood.springcloud.users.infrastructure.adapters.output;
 
-import org.grandmasfood.springcloud.users.application.ports.input.HashServicesPort;
 import org.grandmasfood.springcloud.users.application.ports.output.UserPersistentPort;
 import org.grandmasfood.springcloud.users.domain.model.User;
 import org.grandmasfood.springcloud.users.infrastructure.adapters.hashing.HashService;
@@ -13,18 +12,17 @@ public class UserPersistentAdapter implements UserPersistentPort {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final HashServicesPort hashServicesPort;
+    private final HashService hashService;
 
-    public UserPersistentAdapter(UserRepository userRepository, UserMapper userMapper,
-            HashServicesPort hashServicesPort) {
+    public UserPersistentAdapter(UserRepository userRepository, UserMapper userMapper, HashService hashService) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
-        this.hashServicesPort = hashServicesPort;
+        this.hashService = hashService;
     }
 
     @Override
     public User save(User user) {
-        user.setPassword(hashServicesPort.hashPassword(user.getPassword()));
+        user.setPassword(hashService.hashPassword(user.getPassword()));
         return userMapper.toUser(userRepository.save(userMapper.toUserEntity(user)));
     }
 

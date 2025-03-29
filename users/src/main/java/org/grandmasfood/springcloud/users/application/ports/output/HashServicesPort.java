@@ -1,4 +1,4 @@
-package org.grandmasfood.springcloud.users.application.ports.input;
+package org.grandmasfood.springcloud.users.application.ports.output;
 
 public interface HashServicesPort {
 

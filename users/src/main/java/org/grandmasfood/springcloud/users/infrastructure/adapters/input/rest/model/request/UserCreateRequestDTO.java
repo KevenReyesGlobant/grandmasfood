@@ -26,8 +26,7 @@ public class UserCreateRequestDTO {
     @NotEmpty(message = "Email cannot be empty")
     @Size(max = 255, message = "Email must be at most 255 characters")
     private String email;
-    @NotBlank(message = "Password cannot be empty")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", message = "The password must be between 8 and 20 characters long, contain at least one uppercase letter, one lowercase letter, and one number")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,20}$", message = "The password must be between 8 and 20 characters long, contain at least one uppercase letter, one lowercase letter, and one number")
     private String password;
     @Enumerated(EnumType.STRING)
     private RoleUser roleUser;
@@ -37,6 +36,7 @@ public class UserCreateRequestDTO {
     public UserCreateRequestDTO() {
         verified = verified == null ? false : verified;
         active = active == null ? true : active;
-        roleUser= roleUser == null ? RoleUser.client : roleUser;
+        roleUser = roleUser == null ? RoleUser.client : roleUser;
     }
+
 }

@@ -30,8 +30,7 @@ public class UserEntity {
     @NotEmpty(message = "Email cannot be empty")
     @Size(max = 255, message = "Email must be at most 255 characters")
     private String email;
-    @NotBlank(message = "Password cannot be empty")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", message = "The password must be between 8 and 20 characters long, contain at least one uppercase letter, one lowercase letter, and one number")
+    @NotNull
     private String password;
     @Enumerated(EnumType.STRING)
     private RoleUser roleUser;
