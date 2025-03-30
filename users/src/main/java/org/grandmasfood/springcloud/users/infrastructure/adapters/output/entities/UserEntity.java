@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.grandmasfood.springcloud.users.domain.model.enums.RoleUser;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -34,8 +35,15 @@ public class UserEntity {
     private String password;
     @Enumerated(EnumType.STRING)
     private RoleUser roleUser;
-    private Boolean verified;
     private Boolean active;
+    private String verification;
+    private LocalDateTime token_expiry;
+    private Boolean email_verified;
+
+    public void verifyEmail() {
+        this.email_verified = true;
+    }
+
 
     @PrePersist
     public void generateUuid() {

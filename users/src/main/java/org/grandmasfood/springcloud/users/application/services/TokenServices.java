@@ -22,21 +22,20 @@ public class TokenServices implements TokenServicesPort {
     @Value("123456")
     private String apiSecret;
 
-    private Set<String> invalidatedTokens = ConcurrentHashMap.newKeySet();
+    private final Set<String> invalidatedTokens = ConcurrentHashMap.newKeySet();
 
 
     @Override
     public String generatedToken(User registerUser) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
-            String token = JWT.create()
+            return JWT.create()
                     .withIssuer("grandmasfood")
                     .withSubject(registerUser.getEmail())
                     .withClaim("id", registerUser.getIdUser())
                     .withExpiresAt(generateExpiration())
                     .withIssuedAt(Instant.now())
                     .sign(algorithm);
-            return token;
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Error generating token", exception);
         }

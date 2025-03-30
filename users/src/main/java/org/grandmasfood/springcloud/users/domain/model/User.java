@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -26,9 +27,11 @@ public class User implements UserDetails {
     private String email;
     private String username;
     private String password;
-    private Boolean verified;
     private RoleUser roleUser;
     private Boolean active;
+    private String verification;
+    private LocalDateTime token_expiry;
+    private Boolean email_verified;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -65,4 +68,9 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public void verifyEmail() {
+        this.email_verified = true;
+    }
+
 }

@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.grandmasfood.springcloud.users.domain.model.enums.RoleUser;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Builder
@@ -30,11 +31,13 @@ public class UserCreateRequestDTO {
     private String password;
     @Enumerated(EnumType.STRING)
     private RoleUser roleUser;
-    private Boolean verified;
     private Boolean active;
+    private String verification;
+    private LocalDateTime token_expiry;
+    private Boolean email_verified;
 
     public UserCreateRequestDTO() {
-        verified = verified == null ? false : verified;
+        email_verified = email_verified == null ? false : email_verified;
         active = active == null ? true : active;
         roleUser = roleUser == null ? RoleUser.client : roleUser;
     }
