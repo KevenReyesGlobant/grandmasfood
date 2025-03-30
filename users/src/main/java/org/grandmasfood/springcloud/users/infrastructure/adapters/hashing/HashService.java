@@ -1,6 +1,6 @@
 package org.grandmasfood.springcloud.users.infrastructure.adapters.hashing;
 
-import org.grandmasfood.springcloud.users.application.ports.output.HashServicesPort;
+import org.grandmasfood.springcloud.users.application.ports.input.HashServicesPort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
