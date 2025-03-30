@@ -10,7 +10,7 @@ public interface TokenServicesPort {
 
     String getSubject(String token);
 
-    void invalidateToken(String token);
+    void invalidatedToken(String token);
 
     boolean isTokenInvalidated(String token);
 
