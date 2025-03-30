@@ -22,7 +22,7 @@ public class UserController {
         this.userRestMapper = userRestMapper;
     }
 
-    @PostMapping("/user")
+    @PostMapping("/user/register")
     public ResponseEntity<UserResponseDTO> createProduct(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userRestMapper.toUserResponseDTO(userServicesPort.save(userRestMapper.toUser(userCreateRequestDTO))));
     }
