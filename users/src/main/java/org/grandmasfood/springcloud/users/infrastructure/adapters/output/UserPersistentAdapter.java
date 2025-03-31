@@ -14,20 +14,18 @@ public class UserPersistentAdapter implements UserPersistentPort {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final HashService hashService;
-    private final EmailSender emailSender;
 
-    public UserPersistentAdapter(UserRepository userRepository, UserMapper userMapper, HashService hashService, EmailSender emailSender) {
+    public UserPersistentAdapter(UserRepository userRepository, UserMapper userMapper, HashService hashService) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.hashService = hashService;
-        this.emailSender = emailSender;
     }
 
     @Override
     public User save(User user) {
-        emailSender.sendValidateEmail(user);
         user.setPassword(hashService.hashPassword(user.getPassword()));
         return userMapper.toUser(userRepository.save(userMapper.toUserEntity(user)));
     }
+
 
 }

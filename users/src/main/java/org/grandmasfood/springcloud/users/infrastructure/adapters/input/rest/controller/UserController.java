@@ -8,7 +8,6 @@ import org.grandmasfood.springcloud.users.domain.model.User;
 import org.grandmasfood.springcloud.users.infrastructure.adapters.config.EmailSender;
 import org.grandmasfood.springcloud.users.infrastructure.adapters.input.rest.mapper.UserRestMapper;
 import org.grandmasfood.springcloud.users.infrastructure.adapters.input.rest.model.request.UserCreateRequestDTO;
-import org.grandmasfood.springcloud.users.infrastructure.adapters.input.rest.model.response.UserResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,10 +32,26 @@ public class UserController {
         this.authenticationManager = authenticationManager;
         this.emailSender = emailSender;
     }
-
     @PostMapping("/user/register")
-    public ResponseEntity<UserResponseDTO> createProduct(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userRestMapper.toUserResponseDTO(userServicesPort.save(userRestMapper.toUser(userCreateRequestDTO))));
+    public ResponseEntity<?> createProduct(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
+        try {
+            User user = userRestMapper.toUser(userCreateRequestDTO);
+            User savedUser = userServicesPort.save(user);
+
+            emailSender.sendValidateEmail(savedUser);
+
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(userRestMapper.toUserResponseDTO(savedUser));
+        } catch (Exception e) {
+            if (e.getMessage() != null && e.getMessage().contains("Duplicate entry") &&
+                    e.getMessage().contains("email")) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body("User found in the database, please verify the registration or verify at email duplicated.");
+            }
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Register error: " + e.getMessage());
+        }
     }
 
     @GetMapping("/user/verify")
@@ -52,7 +67,7 @@ public class UserController {
                     .header("Location", "/verification-failed")
                     .build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en la verificación");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Verification error");
         }
     }
 

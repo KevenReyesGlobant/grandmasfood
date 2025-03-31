@@ -4,5 +4,4 @@ import org.grandmasfood.springcloud.users.domain.model.User;
 
 public interface UserPersistentPort {
     User save(User user);
-
 }

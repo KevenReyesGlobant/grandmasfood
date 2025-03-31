@@ -21,12 +21,11 @@ import java.util.UUID;
 public class EmailSender {
     private static final Logger logger = LoggerFactory.getLogger(EmailSender.class);
 
-    @Value("http://localhost:3300/")
+    @Value("http://localhost:3300/user/register")
     private String baseUrl;
 
     @Value("${spring.mail.username}")
     private String emailFrom;
-
 
     private final JavaMailSender mail;
     private final UserRepository userRepository;
@@ -38,22 +37,28 @@ public class EmailSender {
         this.userMapper = userMapper;
     }
 
-
     public void sendValidateEmail(User user) {
         logger.info("Initiating email validation process for: {}", user.getEmail());
+        logger.debug("User details: {}", user);
+
+        if (user.getIdUser() == null) {
+            logger.error("User ID is null, cannot send verification email.");
+            throw new IllegalArgumentException("User ID must not be null");
+        }
 
         try {
-            String token = UUID.randomUUID().toString();
-            logger.debug("Generated verification token: {}", token);
+            userRepository.findById(user.getIdUser()).ifPresent(existingUser -> {
+                String token = UUID.randomUUID().toString();
+                logger.debug("Generated verification token: {}", token);
 
-            user.setVerification(token);
-            user.setToken_expiry(LocalDateTime.now().plusDays(1));
-            userRepository.save(userMapper.toUserEntity(user));
-            logger.debug("User updated with verification token");
+                existingUser.setVerification(token);
+                existingUser.setToken_expiry(LocalDateTime.now().plusDays(1));
+                userRepository.save(existingUser);
+                logger.debug("User updated with verification token: {}", existingUser);
 
-            sendEmail(user.getEmail(), token);
-            logger.info("Verification email sent successfully");
-
+                sendEmail(user.getEmail(), token);
+                logger.info("Verification email sent successfully");
+            });
         } catch (Exception e) {
             logger.error("Failed to send verification email: ", e);
             throw new RuntimeException("Error sending verification email", e);
