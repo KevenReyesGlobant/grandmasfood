@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name="OrderEntity")
 @Table(name = "orders_entity")
 @Data
 public class OrderEntity {
