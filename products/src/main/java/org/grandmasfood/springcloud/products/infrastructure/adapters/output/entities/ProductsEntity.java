@@ -10,7 +10,7 @@ import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.
 
 import java.util.UUID;
 
-@Entity
+@Entity(name="ProductsEntity")
 @Table(name = "products_entity")
 @Data
 @NoArgsConstructor
