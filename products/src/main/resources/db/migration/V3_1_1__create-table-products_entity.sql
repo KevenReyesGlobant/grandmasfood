@@ -1,6 +1,6 @@
 CREATE TABLE products_entity(
     id_product BIGINT PRIMARY KEY AUTO_INCREMENT,
-    uuid VARCHAR(36) NOT NULL,
+    uuid BINARY(16) NOT NULL,
     fantasy_name VARCHAR(255) NOT NULL,
     category VARCHAR(50) NOT NULL CHECK (
         category IN (
@@ -10,6 +10,6 @@ CREATE TABLE products_entity(
     ),
     description VARCHAR(511) NOT NULL,
     price FLOAT NOT NULL CHECK (price > 0),
-    available BOOLEAN DEFAULT FALSE,
+    available BOOLEAN,
     active BOOLEAN DEFAULT TRUE
 );

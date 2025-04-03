@@ -1,9 +1,9 @@
 CREATE TABLE orders_entity (
     id_order BIGINT PRIMARY KEY AUTO_INCREMENT,
-    uuid VARCHAR(36) NOT NULL,
+    uuid BINARY(16) NOT NULL,
     creation_date_time TIMESTAMP NOT NULL,
     client_document VARCHAR(255) NOT NULL,
-    product_uuid VARCHAR(36) NOT NULL,
+    product_uuid BINARY(16) NOT NULL,
     quantity INT NOT NULL CHECK (quantity >= 1 AND quantity < 100),
     extra_info VARCHAR(511),
     sub_total DOUBLE PRECISION NOT NULL,
