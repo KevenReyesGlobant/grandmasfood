@@ -1,17 +1,15 @@
 package org.grandmasfood.springcloud.users.infrastructure.adapters.output.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.grandmasfood.springcloud.users.domain.model.enums.RoleUser;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-@Entity(name="UserEntity")
+@Entity(name = "UserEntity")
 @Table(name = "user_entity")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,29 +17,40 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_user")
     private Long idUser;
     private UUID uuid;
-    @NotEmpty(message = "Name cannot be empty")
-    @Size(max = 100, message = "First Name must be at most 255 characters")
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Size(max = 100, message = "Last Name must be at most 255 characters")
+
+    @Column(name = "last_name")
     private String lastName;
-    @Column(unique = true)
-    @Email(message = "Email should be valid")
-    @NotEmpty(message = "Email cannot be empty")
-    @Size(max = 255, message = "Email must be at most 255 characters")
+
+    @Column(nullable = false, unique = true)
     private String email;
-    @NotNull
+
+    @Column(nullable = false)
     private String password;
-    @Enumerated(EnumType.STRING)
-    private RoleUser roleUser;
-    private Boolean active;
+
+    @Column(name = "role_user", nullable = false)
+    private String roleUser;
+
+    @Column(nullable = false)
+    private Boolean active = false;
+
+    @Column
     private String verification;
-    private LocalDateTime token_expiry;
-    private Boolean email_verified;
+
+    @Column(name = "token_expiry")
+    private LocalDateTime tokenExpiry;
+
+    @Column(name = "email_verified", nullable = false)
+    private Boolean emailVerified = false;
+
 
     public void verifyEmail() {
-        this.email_verified = true;
+        this.emailVerified = true;
     }
 
 

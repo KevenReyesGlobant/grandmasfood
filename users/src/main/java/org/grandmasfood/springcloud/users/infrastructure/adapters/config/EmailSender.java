@@ -41,23 +41,21 @@ public class EmailSender {
         logger.info("Initiating email validation process for: {}", user.getEmail());
         logger.debug("User details: {}", user);
 
-        if (user.getIdUser() == null) {
-            logger.error("User ID is null, cannot send verification email.");
-            throw new IllegalArgumentException("User ID must not be null");
-        }
-
         try {
-            userRepository.findById(user.getIdUser()).ifPresent(existingUser -> {
+            userRepository.findUserEntityByEmail(user.getEmail()).ifPresentOrElse(existingUser -> {
                 String token = UUID.randomUUID().toString();
                 logger.debug("Generated verification token: {}", token);
 
                 existingUser.setVerification(token);
-                existingUser.setToken_expiry(LocalDateTime.now().plusDays(1));
+                existingUser.setTokenExpiry(LocalDateTime.now().plusDays(1));
                 userRepository.save(existingUser);
                 logger.debug("User updated with verification token: {}", existingUser);
 
                 sendEmail(user.getEmail(), token);
                 logger.info("Verification email sent successfully");
+            }, () -> {
+                logger.error("User not found with email: {}", user.getEmail());
+                throw new RuntimeException("User not found with email: " + user.getEmail());
             });
         } catch (Exception e) {
             logger.error("Failed to send verification email: ", e);
@@ -134,14 +132,14 @@ public class EmailSender {
 
         return userRepository.findByVerification(token)
                 .filter(user -> {
-                    boolean isValid = !user.getEmail_verified() &&
-                            user.getToken_expiry().isAfter(LocalDateTime.now());
+                    boolean isValid = !user.getEmailVerified() &&
+                            user.getTokenExpiry().isAfter(LocalDateTime.now());
 
                     if (!isValid) {
                         logger.warn("Invalid verification attempt for token: {}. Already verified: {}, Token expired: {}",
                                 token,
-                                user.getEmail_verified(),
-                                !user.getToken_expiry().isAfter(LocalDateTime.now()));
+                                user.getEmailVerified(),
+                                !user.getTokenExpiry().isAfter(LocalDateTime.now()));
                     }
 
                     return isValid;
