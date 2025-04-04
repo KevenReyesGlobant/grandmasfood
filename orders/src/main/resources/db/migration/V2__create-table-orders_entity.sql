@@ -1,6 +1,6 @@
 CREATE TABLE orders_entity (
     id_order BIGINT PRIMARY KEY AUTO_INCREMENT,
-    uuid BINARY(16) NOT NULL,
+    uuid BINARY(36) NOT NULL,
     creation_date_time TIMESTAMP NOT NULL,
     client_document VARCHAR(255) NOT NULL,
     product_uuid BINARY(16) NOT NULL,

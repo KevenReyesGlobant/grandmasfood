@@ -41,8 +41,13 @@ public class EmailSender {
         logger.info("Initiating email validation process for: {}", user.getEmail());
         logger.debug("User details: {}", user);
 
+        if (user.getIdUser() == null) {
+            logger.error("User ID is null, cannot send verification email.");
+            throw new IllegalArgumentException("User ID must not be null");
+        }
+
         try {
-            userRepository.findUserEntityByEmail(user.getEmail()).ifPresentOrElse(existingUser -> {
+            userRepository.findById(user.getIdUser()).ifPresent(existingUser -> {
                 String token = UUID.randomUUID().toString();
                 logger.debug("Generated verification token: {}", token);
 
@@ -53,9 +58,6 @@ public class EmailSender {
 
                 sendEmail(user.getEmail(), token);
                 logger.info("Verification email sent successfully");
-            }, () -> {
-                logger.error("User not found with email: {}", user.getEmail());
-                throw new RuntimeException("User not found with email: " + user.getEmail());
             });
         } catch (Exception e) {
             logger.error("Failed to send verification email: ", e);
