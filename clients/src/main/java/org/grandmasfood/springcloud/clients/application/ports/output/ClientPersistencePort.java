@@ -1,10 +1,9 @@
 package org.grandmasfood.springcloud.clients.application.ports.output;
 
-import org.grandmasfood.springcloud.clients.domain.model.Client;
-import org.springframework.data.domain.Sort;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.grandmasfood.springcloud.clients.domain.model.Client;
 
 public interface ClientPersistencePort {
     Client save(Client client);

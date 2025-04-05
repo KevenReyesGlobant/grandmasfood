@@ -1,13 +1,13 @@
 package org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.response;
 
+import java.util.UUID;
+
+import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.enums.Category;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.grandmasfood.springcloud.products.infrastructure.adapters.input.rest.model.enums.Category;
-
-import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder
