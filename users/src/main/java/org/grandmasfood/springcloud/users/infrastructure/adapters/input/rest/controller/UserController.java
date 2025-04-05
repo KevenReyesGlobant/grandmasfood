@@ -25,13 +25,15 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final EmailSender emailSender;
 
-    public UserController(UserServicesPort userServicesPort, UserRestMapper userRestMapper, TokenServices tokenServices, AuthenticationManager authenticationManager, EmailSender emailSender) {
+    public UserController(UserServicesPort userServicesPort, UserRestMapper userRestMapper, TokenServices tokenServices,
+            AuthenticationManager authenticationManager, EmailSender emailSender) {
         this.userServicesPort = userServicesPort;
         this.userRestMapper = userRestMapper;
         this.tokenServices = tokenServices;
         this.authenticationManager = authenticationManager;
         this.emailSender = emailSender;
     }
+
     @PostMapping("/user/register")
     public ResponseEntity<?> createProduct(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
         try {
@@ -72,7 +74,7 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity loginUser(@RequestBody @Valid User userdata) {
+    public ResponseEntity loginUser(@RequestBody @Valid UserCreateRequestDTO userdata) {
 
         try {
             Authentication token = new UsernamePasswordAuthenticationToken(userdata.getEmail(), userdata.getPassword());
@@ -89,5 +91,10 @@ public class UserController {
                     .body("User not found in the database, please verify the registration or verify at email");
 
         }
+    }
+
+    @GetMapping("/user/message")
+    public ResponseEntity<?> getMessage() {
+        return ResponseEntity.ok("Hello, this is a message from the UserController!");
     }
 }

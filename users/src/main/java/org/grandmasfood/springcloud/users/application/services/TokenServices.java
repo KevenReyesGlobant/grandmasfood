@@ -1,25 +1,26 @@
 package org.grandmasfood.springcloud.users.application.services;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTCreationException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import org.grandmasfood.springcloud.users.application.ports.input.TokenServicesPort;
-import org.grandmasfood.springcloud.users.domain.model.User;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.grandmasfood.springcloud.users.application.ports.input.TokenServicesPort;
+import org.grandmasfood.springcloud.users.domain.model.User;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
+
 @Service
 public class TokenServices implements TokenServicesPort {
 
-    @Value("123456")
+    @Value("${jwt.secret}")
     private String apiSecret;
 
     private final Set<String> invalidatedTokens = ConcurrentHashMap.newKeySet();
