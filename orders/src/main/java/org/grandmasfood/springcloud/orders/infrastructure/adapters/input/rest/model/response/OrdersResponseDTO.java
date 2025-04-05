@@ -1,17 +1,12 @@
 package org.grandmasfood.springcloud.orders.infrastructure.adapters.input.rest.model.response;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.grandmasfood.springcloud.orders.domain.model.Client;
-import org.grandmasfood.springcloud.orders.domain.model.OrdersClients;
-import org.grandmasfood.springcloud.orders.domain.model.OrdersProducts;
-import org.grandmasfood.springcloud.orders.domain.model.Product;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
 
 
 @Data

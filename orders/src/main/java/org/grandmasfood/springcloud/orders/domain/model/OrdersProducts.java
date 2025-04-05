@@ -1,13 +1,15 @@
 package org.grandmasfood.springcloud.orders.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.UUID;
 
-@Data
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,9 +20,11 @@ public class OrdersProducts {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o)
+            return true;
 
-        if (!(o instanceof OrdersProducts)) return false;
+        if (!(o instanceof OrdersProducts))
+            return false;
 
         OrdersProducts obj = (OrdersProducts) o;
 
