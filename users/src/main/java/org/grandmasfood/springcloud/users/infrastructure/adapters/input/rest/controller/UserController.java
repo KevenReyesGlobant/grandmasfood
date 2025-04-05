@@ -72,7 +72,7 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity loginUser(@RequestBody @Valid UserCreateRequestDTO userdata) {
+    public ResponseEntity loginUser(@RequestBody @Valid User userdata) {
 
         try {
             Authentication token = new UsernamePasswordAuthenticationToken(userdata.getEmail(), userdata.getPassword());
