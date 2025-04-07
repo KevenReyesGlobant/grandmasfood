@@ -30,9 +30,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         var token = request.getHeader("Authorization");
 
-        if (token != null) {
-            System.out.println("Notnull: " + token);
-            token = token.replace("Bearer ", "");
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.replace("Bearer ", "").trim();
             var subject = tokenServices.getSubject(token);
 
             if (subject != null) {
