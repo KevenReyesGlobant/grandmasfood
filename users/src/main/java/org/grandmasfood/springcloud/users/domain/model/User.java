@@ -30,13 +30,16 @@ public class User implements UserDetails {
     private RoleUser roleUser;
     private Boolean active;
     private String verification;
-    private LocalDateTime token_expiry;
-    private Boolean email_verified;
+    private LocalDateTime tokenExpiry;
+    private Boolean emailVerified;
+
+    private List<RoleUser> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + roleUser.name()));
     }
+
     @Override
     public String getUsername() {
         // TODO Auto-generated method stub
@@ -70,7 +73,7 @@ public class User implements UserDetails {
     }
 
     public void verifyEmail() {
-        this.email_verified = true;
+        this.emailVerified = true;
     }
 
 }

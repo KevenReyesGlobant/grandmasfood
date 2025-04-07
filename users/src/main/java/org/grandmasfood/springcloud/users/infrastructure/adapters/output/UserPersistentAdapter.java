@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class UserPersistentAdapter implements UserPersistentPort {
 
@@ -30,14 +32,16 @@ public class UserPersistentAdapter implements UserPersistentPort {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Long userId = userRepository.getNextUserId(email);
-        if (userId == null || !userRepository.findEmailVerifiedById(userId)) {
-            throw new UsernameNotFoundException("User not found with email: " + email);
-        }
-        UserDetails userDetails = userRepository.findByEmail(email);
-        if (userDetails == null) {
-            throw new UsernameNotFoundException("User not found with email: " + email);
-        }
-        return userDetails;
+        return userRepository.findVerifiedUserByEmail(email)
+                .map(userMapper::toUser)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found or not verified with email: " + email));
     }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findVerifiedUserByEmail(email)
+                .map(userMapper::toUser);
+    }
+
+
 }

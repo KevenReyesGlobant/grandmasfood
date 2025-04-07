@@ -8,6 +8,7 @@ import org.grandmasfood.springcloud.users.domain.model.User;
 import org.grandmasfood.springcloud.users.infrastructure.adapters.config.EmailSender;
 import org.grandmasfood.springcloud.users.infrastructure.adapters.input.rest.mapper.UserRestMapper;
 import org.grandmasfood.springcloud.users.infrastructure.adapters.input.rest.model.request.UserCreateRequestDTO;
+import org.grandmasfood.springcloud.users.infrastructure.adapters.input.rest.model.request.UserLoginRequestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,8 +26,8 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final EmailSender emailSender;
 
-    public UserController(UserServicesPort userServicesPort, UserRestMapper userRestMapper, TokenServices tokenServices,
-            AuthenticationManager authenticationManager, EmailSender emailSender) {
+    public UserController(UserServicesPort userServicesPort, UserRestMapper userRestMapper, TokenServices tokenServices, AuthenticationManager authenticationManager,
+                          EmailSender emailSender) {
         this.userServicesPort = userServicesPort;
         this.userRestMapper = userRestMapper;
         this.tokenServices = tokenServices;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public ResponseEntity<?> createProduct(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
+    public ResponseEntity<?> createUser(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
         try {
             User user = userRestMapper.toUser(userCreateRequestDTO);
             User savedUser = userServicesPort.save(user);
@@ -74,22 +75,25 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity loginUser(@RequestBody @Valid UserCreateRequestDTO userdata) {
-
+    public ResponseEntity<?> loginUser(@RequestBody @Valid UserLoginRequestDTO userdata) {
         try {
             Authentication token = new UsernamePasswordAuthenticationToken(userdata.getEmail(), userdata.getPassword());
 
             Authentication loginAuth = authenticationManager.authenticate(token);
 
-            String jwtToken = tokenServices.generatedToken((User) loginAuth.getPrincipal());
+            User user = (User) loginAuth.getPrincipal();
+
+            String jwtToken = tokenServices.generatedToken(user);
+            System.out.println("++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++");
+            System.out.println("JWT: " + jwtToken);
+            System.out.println("++++++++++++++++++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++++++++++++++++++");
 
             return ResponseEntity.ok(new DataJwtValidation(jwtToken));
-
         } catch (AuthenticationException e) {
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("User not found in the database, please verify the registration or verify at email");
-
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Invalid credentials or email not verified.");
         }
     }
 

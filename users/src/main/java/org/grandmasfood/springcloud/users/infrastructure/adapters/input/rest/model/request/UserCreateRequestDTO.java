@@ -33,11 +33,11 @@ public class UserCreateRequestDTO {
     private RoleUser roleUser;
     private Boolean active;
     private String verification;
-    private LocalDateTime token_expiry;
-    private Boolean email_verified;
+    private LocalDateTime tokenExpiry;
+    private Boolean emailVerified;
 
     public UserCreateRequestDTO() {
-        email_verified = email_verified == null ? false : email_verified;
+        emailVerified = emailVerified == null ? false : emailVerified;
         active = active == null ? true : active;
         roleUser = roleUser == null ? RoleUser.client : roleUser;
     }

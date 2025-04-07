@@ -3,20 +3,18 @@ package org.grandmasfood.springcloud.users.application.services;
 import org.grandmasfood.springcloud.users.application.ports.input.UserServicesPort;
 import org.grandmasfood.springcloud.users.application.ports.output.UserPersistentPort;
 import org.grandmasfood.springcloud.users.domain.model.User;
-import org.grandmasfood.springcloud.users.infrastructure.adapters.config.EmailSender;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServices implements UserServicesPort {
+public class UserServices implements UserServicesPort, UserDetailsService {
 
     private final UserPersistentPort userPersistentPort;
-    private final EmailSender emailSender;
 
-    public UserServices(UserPersistentPort userPersistentPort, EmailSender emailSender) {
+    public UserServices(UserPersistentPort userPersistentPort) {
         this.userPersistentPort = userPersistentPort;
-        this.emailSender = emailSender;
     }
 
     @Override
