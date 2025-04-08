@@ -84,17 +84,25 @@ public class UserController {
             User user = (User) loginAuth.getPrincipal();
 
             String jwtToken = tokenServices.generatedToken(user);
-            System.out.println("++++++++++++++++++++++++++++++++++++");
-            System.out.println("++++++++++++++++++++++++++++++++++++");
-            System.out.println("JWT: " + jwtToken);
-            System.out.println("++++++++++++++++++++++++++++++++++++");
-            System.out.println("++++++++++++++++++++++++++++++++++++");
 
             return ResponseEntity.ok(new DataJwtValidation(jwtToken));
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Invalid credentials or email not verified.");
         }
+    }
+
+    @PostMapping("/user/logged")
+    public ResponseEntity<?> loggedUser(@RequestHeader("Authorization") String token) {
+        try {
+            tokenServices.invalidatedToken(token);
+            return ResponseEntity.ok().body("Logged out successfully.");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Invalid token.");
+        }
+
     }
 
     @GetMapping("/user/message")
