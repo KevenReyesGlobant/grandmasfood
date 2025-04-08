@@ -5,38 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3aa95ddc-c67f-48c0-94bf-29ade2e612ad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/users/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/application/ports/input/UserServicesPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/application/ports/input/UserServicesPort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/application/ports/output/UserPersistentPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/application/ports/output/UserPersistentPort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/application/services/UserServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/application/services/UserServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/input/rest/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/input/rest/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/output/UserPersistentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/output/UserPersistentAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/output/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/output/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "kerpa9"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kerpa9&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KevenReyesGlobant/grandmasfood.git",
-    "accountId": "5f3730e4-ffdb-45da-91d0-125b1284bd36"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KevenReyesGlobant/grandmasfood.git&quot;,
+    &quot;accountId&quot;: &quot;5f3730e4-ffdb-45da-91d0-125b1284bd36&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2vJroJ1Pm9Gg5IXMo9ywrh2tZJO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -44,14 +46,57 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ClientsApplication.executor": "Run",
+    "Application.OrdersApplication.executor": "Run",
+    "Application.ProductsApplication.executor": "Run",
     "Application.UsersApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "ignore.preview.features.used": "true",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.UsersApplication">
+    <configuration name="ClientsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.clients.ClientsApplication" />
+      <module name="clients" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.grandmasfood.springcloud.clients.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrdersApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.orders.OrdersApplication" />
+      <module name="orders" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.grandmasfood.springcloud.orders.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.products.ProductsApplication" />
+      <module name="products" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.grandmasfood.springcloud.products.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UsersApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.users.UsersApplication" />
       <module name="users" />
@@ -68,6 +113,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.UsersApplication" />
+        <item itemvalue="Application.ProductsApplication" />
+        <item itemvalue="Application.OrdersApplication" />
+        <item itemvalue="Application.ClientsApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -81,5 +129,8 @@
       <updated>1743874193020</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
 </project>
