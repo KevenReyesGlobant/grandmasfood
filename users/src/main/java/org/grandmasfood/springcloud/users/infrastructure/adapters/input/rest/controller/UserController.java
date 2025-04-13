@@ -45,7 +45,9 @@ public class UserController {
 
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(userRestMapper.toUserResponseDTO(savedUser));
+
         } catch (Exception e) {
+
             if (e.getMessage() != null && e.getMessage().contains("Duplicate entry") &&
                     e.getMessage().contains("email")) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
@@ -86,7 +88,9 @@ public class UserController {
             String jwtToken = tokenServices.generatedToken(user);
 
             return ResponseEntity.ok(new DataJwtValidation(jwtToken));
+
         } catch (AuthenticationException e) {
+
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Invalid credentials or email not verified.");
         }
@@ -105,8 +109,4 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/message")
-    public ResponseEntity<?> getMessage() {
-        return ResponseEntity.ok("Hello, this is a message from the UserController!");
-    }
 }

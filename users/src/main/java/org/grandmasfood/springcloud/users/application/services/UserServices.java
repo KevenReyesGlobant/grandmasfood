@@ -21,18 +21,21 @@ public class UserServices implements UserServicesPort, UserDetailsService {
     public User save(User user) {
 
         if (user != null) {
+
             return userPersistentPort.save(user);
         }
+
         throw new IllegalArgumentException("User cannot be null");
 
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
         if (email == null || email.isEmpty()) {
             throw new UsernameNotFoundException("Email cannot be null or empty");
-
         }
+
         return userPersistentPort.loadUserByUsername(email);
     }
 }
