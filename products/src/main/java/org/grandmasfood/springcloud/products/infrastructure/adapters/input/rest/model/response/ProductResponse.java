@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductResponse {
 
-    private Long idProduct;
+//    private Long idProduct;
     private UUID uuid;
     private String fantasyName;
     private Category category;

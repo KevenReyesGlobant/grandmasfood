@@ -30,7 +30,8 @@ public class ClientsCreateRequestDTO {
     private String document;
 
     @NotBlank(message = "Phone cannot be empty")
-    @Pattern(regexp = "^\\d{10}$", message = "Phone number must be exactly 10 digits")
+    @Column(length = 10)
+    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
     private String phone;
 
     @NotBlank(message = "Delivery address cannot be empty")

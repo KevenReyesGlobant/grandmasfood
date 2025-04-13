@@ -1,4 +1,5 @@
 package org.grandmasfood.springcloud.clients.infraestructure.adapters.output.entities;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -6,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -39,7 +41,7 @@ public class ClientsEntity {
 
     @NotBlank(message = "Phone cannot be empty")
     @Column(length = 10)
-    @Pattern(regexp = "^\\d{10}$", message = "Phone number must be exactly 10 digits")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
     private String phone;
 
     @NotBlank(message = "Delivery address cannot be empty")
