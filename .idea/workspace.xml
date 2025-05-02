@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3aa95ddc-c67f-48c0-94bf-29ade2e612ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/infraestructure/adapters/input/rest/controller/ClientsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/infraestructure/adapters/input/rest/controller/ClientsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/application/ports/input/IClientClientRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/application/ports/input/IClientClientRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/application/ports/input/IProductClientRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/application/ports/input/IProductClientRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/input/rest/controller/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/input/rest/controller/OrdersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/infrastructure/adapters/input/rest/controller/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/infrastructure/adapters/input/rest/controller/ProductsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/EmailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/input/rest/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/input/rest/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +57,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.UsersApplication">
+  <component name="RunManager" selected="Application.ClientsApplication">
     <configuration name="ClientsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.clients.ClientsApplication" />
       <module name="clients" />
@@ -120,10 +112,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClientsApplication" />
         <item itemvalue="Application.UsersApplication" />
         <item itemvalue="Application.ProductsApplication" />
         <item itemvalue="Application.OrdersApplication" />
-        <item itemvalue="Application.ClientsApplication" />
       </list>
     </recent_temporary>
   </component>
