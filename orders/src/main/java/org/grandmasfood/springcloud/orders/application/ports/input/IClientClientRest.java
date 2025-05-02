@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "clients", url = "localhost:3000")
+@FeignClient(name = "clients", url = "localhost:3000/api/v1")
 public interface IClientClientRest {
     @PostMapping("/client")
     Client createClientRest(@RequestBody @Valid Client client);

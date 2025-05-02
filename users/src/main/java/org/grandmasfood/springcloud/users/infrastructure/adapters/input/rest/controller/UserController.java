@@ -35,7 +35,7 @@ public class UserController {
         this.emailSender = emailSender;
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/api/v1/user/register")
     public ResponseEntity<?> createUser(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
         try {
             User user = userRestMapper.toUser(userCreateRequestDTO);
@@ -59,7 +59,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/verify")
+    @GetMapping("/api/v1/user/verify")
     public ResponseEntity<?> verifyEmail(@RequestParam(required = true) String token) {
         try {
             boolean verified = emailSender.verifyEmail(token);
@@ -76,7 +76,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user/login")
+    @PostMapping("/api/v1/user/login")
     public ResponseEntity<?> loginUser(@RequestBody @Valid UserLoginRequestDTO userdata) {
         try {
             Authentication token = new UsernamePasswordAuthenticationToken(userdata.getEmail(), userdata.getPassword());
@@ -96,7 +96,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user/logged")
+    @PostMapping("/api/v1/user/logged")
     public ResponseEntity<?> loggedUser(@RequestHeader("Authorization") String token) {
         try {
             tokenServices.invalidatedToken(token);

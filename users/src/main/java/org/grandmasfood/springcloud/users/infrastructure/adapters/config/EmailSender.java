@@ -21,7 +21,7 @@ import java.util.UUID;
 public class EmailSender {
     private static final Logger logger = LoggerFactory.getLogger(EmailSender.class);
 
-    @Value("http://localhost:3300/user")
+    @Value("http://localhost:3300/api/v1/user")
     private String baseUrl;
 
     @Value("${spring.mail.username}")

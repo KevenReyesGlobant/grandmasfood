@@ -30,17 +30,17 @@ public class ProductsController {
         this.generatedPdfBox = generatedPdfBox;
     }
 
-    @PostMapping("/product")
+    @PostMapping("/api/v1/product")
     public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductsCreateRequestDTO productsCreateRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(productRestMapper.toProductResponseDTO(productServicesPort.save(productRestMapper.toProduct(productsCreateRequestDTO))));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/v1/{id}")
     public ResponseEntity<ProductResponse> readProductActiveById(@PathVariable @Valid Long id) {
         return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findActiveById(id)));
     }
 
-    @GetMapping("/product/menu")
+    @GetMapping("/api/v1/product/menu")
     public ResponseEntity<ProductResponse> generatedMenu() throws IOException {
         try {
             generatedPdfBox.saveDocument();
@@ -50,7 +50,7 @@ public class ProductsController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/product/search")
+    @GetMapping("/api/v1/product/search")
     public ResponseEntity<List<ProductResponse>> findProductActiveByFantasyName(
             @RequestParam(name = "q") @Valid @NotBlank String fantasyName) {
         List<ProductResponse> products = productServicesPort.findByFantasyName(fantasyName).stream()
@@ -61,18 +61,18 @@ public class ProductsController {
     }
 
 
-    @GetMapping("/product/{uuid}")
+    @GetMapping("/api/v1/product/{uuid}")
     public ResponseEntity<ProductResponse> findProductActiveByUuid(@PathVariable @Valid UUID uuid) {
         return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findActiveByUuid(uuid)));
     }
 
 
-    @PutMapping("/product/{uuid}")
+    @PutMapping("/api/v1/product/{uuid}")
     public ResponseEntity<ProductResponse> updateDataProductByUuid(@PathVariable @Valid UUID uuid, @RequestBody @Valid ProductsCreateRequestDTO productsCreateRequestDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(productRestMapper.toProductResponseDTO(productServicesPort.update(uuid, productRestMapper.toProduct(productsCreateRequestDTO))));
     }
 
-    @DeleteMapping("/product/{uuid}")
+    @DeleteMapping("/api/v1/product/{uuid}")
     public ResponseEntity<ProductResponse> softDeleteProductByUuid(@PathVariable @Valid UUID uuid) {
         ProductResponse productResponse = productRestMapper.toProductResponseDTO(productServicesPort.deleteByUuid(uuid));
         return ResponseEntity.ok().build();

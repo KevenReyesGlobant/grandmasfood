@@ -30,14 +30,14 @@ public class ClientsController {
         this.clientRestMapper = clientRestMapper;
     }
 
-    @PostMapping("/client")
+    @PostMapping("/api/v1/client")
     public ResponseEntity<ClientsResponseDTO> createClientRest(
             @RequestBody @Valid ClientsCreateRequestDTO clientsCreateRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clientRestMapper
                 .toClientsResponseDTO(iCreateClientUseCase.save(clientRestMapper.toClient(clientsCreateRequestDTO))));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/v1/{id}")
     public ResponseEntity<ClientsResponseDTO> findActiveClientById(@PathVariable @Valid Long id) {
 
         return ResponseEntity.status(HttpStatus.OK)
@@ -45,7 +45,7 @@ public class ClientsController {
 
     }
 
-    @GetMapping("/client/{document}")
+    @GetMapping("/api/v1/client/{document}")
     public ResponseEntity<ClientsResponseDTO> listClientActiveByDocument(@PathVariable @Valid String document) {
 
         return ResponseEntity.status(HttpStatus.OK)
@@ -53,7 +53,7 @@ public class ClientsController {
 
     }
 
-    @GetMapping("/client")
+    @GetMapping("/api/v1/client")
     public ResponseEntity<List<ClientsResponseDTO>> getAllClients(
             @RequestParam(name = "orderBy") String orderValue,
             @RequestParam(name = "direction") String directionValue) {
@@ -62,7 +62,7 @@ public class ClientsController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/client/{document}")
+    @PutMapping("/api/v1/client/{document}")
     public ResponseEntity<ClientsResponseDTO> update(@PathVariable String document,
             @Valid @RequestBody ClientsCreateRequestDTO request) {
         clientRestMapper.toClientsResponseDTO(
@@ -70,7 +70,7 @@ public class ClientsController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
-    @DeleteMapping("/client/{document}")
+    @DeleteMapping("/api/v1/client/{document}")
     public ResponseEntity<ClientsResponseDTO> deleteClientActiveByDocument(@PathVariable @Valid String document) {
         ClientsResponseDTO clientsResponseDTO = clientRestMapper
                 .toClientsResponseDTO(iCreateClientUseCase.deleteByDocument(document));

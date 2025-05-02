@@ -23,7 +23,7 @@ public class OrdersController {
         this.orderRestMapper = orderRestMapper;
     }
 
-    @PostMapping("/order")
+    @PostMapping("/api/v1/order")
     public ResponseEntity<OrdersResponseDTO> createOrderRest(@RequestBody @Valid OrdersCreateRequestDTO ordersCreateRequestDTO) {
         try {
             OrdersResponseDTO responseDTO = orderRestMapper.toOrdersResponseDTO(ordersServicesPort.save(orderRestMapper.toOrder(ordersCreateRequestDTO)));
@@ -35,7 +35,7 @@ public class OrdersController {
         }
     }
 
-    @PatchMapping("/order/{uuid}/deliverd/{timestamp}")
+    @PatchMapping("/api/v1/order/{uuid}/deliverd/{timestamp}")
     public ResponseEntity<OrdersResponseDTO> updateDelivered(@PathVariable @Valid UUID uuid, @PathVariable LocalDateTime timestamp) {
         try {
             OrdersResponseDTO responseDTO = orderRestMapper.toOrdersResponseDTO(ordersServicesPort.updateDelivered(uuid, timestamp));

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.UUID;
 
-@FeignClient(name = "products", url = "localhost:3200")
+@FeignClient(name = "products", url = "localhost:3200/api/v1")
 public interface IProductClientRest {
 
     @PostMapping("/product")
