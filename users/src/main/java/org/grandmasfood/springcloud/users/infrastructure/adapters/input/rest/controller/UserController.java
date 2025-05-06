@@ -18,6 +18,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+//ToDo
+//@Tag() nivel de clase
 public class UserController {
 
     private final UserServicesPort userServicesPort;
@@ -34,7 +36,8 @@ public class UserController {
         this.authenticationManager = authenticationManager;
         this.emailSender = emailSender;
     }
-
+//    ToDo
+//    @Operation summary
     @PostMapping("/api/v1/user/register")
     public ResponseEntity<?> createUser(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
         try {

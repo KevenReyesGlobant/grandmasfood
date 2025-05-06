@@ -39,7 +39,7 @@ public class ProductsController {
     public ResponseEntity<ProductResponse> readProductActiveById(@PathVariable @Valid Long id) {
         return ResponseEntity.ok(productRestMapper.toProductResponseDTO(productServicesPort.findActiveById(id)));
     }
-
+//    interface for api version ("interface apiVersion(){lastVersion(), version()}")
     @GetMapping("/api/v1/product/menu")
     public ResponseEntity<ProductResponse> generatedMenu() throws IOException {
         try {
