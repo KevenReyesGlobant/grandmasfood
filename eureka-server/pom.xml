@@ -53,12 +53,13 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
+				<version>2023.0.1</version> <!-- Compatible con Boot 3.2 -->
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
