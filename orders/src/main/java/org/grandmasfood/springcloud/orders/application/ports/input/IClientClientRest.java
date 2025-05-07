@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "clients", url = "localhost:3000/api/v1")
+@FeignClient(name = "clients")
 public interface IClientClientRest {
-    @PostMapping("/client")
+    @PostMapping("/api/v1/client")
     Client createClientRest(@RequestBody @Valid Client client);
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/v1/{id}")
     Client readClientActiveById(@PathVariable @Valid Long id);
 
-    @GetMapping("/client/{document}")
+    @GetMapping("/api/v1/client/{document}")
     Client listClientActiveByDocuments(@PathVariable @Valid String document);
 }
+

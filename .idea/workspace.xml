@@ -7,19 +7,9 @@
     <list default="true" id="3aa95ddc-c67f-48c0-94bf-29ade2e612ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clients/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clients/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/ClientsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/ClientsApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clients/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/clients/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/org/grandmasfood/springcloud/eureka_server/EurekaServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/java/org/grandmasfood/springcloud/eureka_server/EurekaServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/orders/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/products/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/ProductsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/ProductsApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/products/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/users/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/UsersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/UsersApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/application/ports/input/IClientClientRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/application/ports/input/IClientClientRest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +62,7 @@
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.OrdersApplication">
+  <component name="RunManager" selected="Application.ClientsApplication">
     <configuration name="ClientsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.clients.ClientsApplication" />
       <module name="clients" />
@@ -140,11 +130,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.OrdersApplication" />
-        <item itemvalue="Application.ProductsApplication" />
         <item itemvalue="Application.ClientsApplication" />
-        <item itemvalue="Application.UsersApplication" />
+        <item itemvalue="Application.OrdersApplication" />
         <item itemvalue="Application.EurekaServerApplication" />
+        <item itemvalue="Application.ProductsApplication" />
+        <item itemvalue="Application.UsersApplication" />
       </list>
     </recent_temporary>
   </component>
