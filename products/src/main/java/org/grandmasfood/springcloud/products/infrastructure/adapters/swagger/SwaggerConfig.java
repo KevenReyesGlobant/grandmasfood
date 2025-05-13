@@ -2,11 +2,9 @@ package org.grandmasfood.springcloud.products.infrastructure.adapters.swagger;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.servers.ServerVariable;
 import io.swagger.v3.oas.models.Components;
@@ -75,13 +73,13 @@ import org.springframework.context.annotation.Bean;
                 url = "https://github.com/KevenReyesGlobant/grandmasfood"
         )
 )
-@SecurityScheme(
-        name = "bearerAuth",
-        type = SecuritySchemeType.HTTP,
-        scheme = "bearer",
-        bearerFormat = "JWT",
-        description = "Use JWT token in Authorization header as: Bearer <token>"
-)
+//@SecurityScheme(
+//        name = "bearerAuth",
+//        type = SecuritySchemeType.HTTP,
+//        scheme = "bearer",
+//        bearerFormat = "JWT",
+//        description = "Use JWT token in Authorization header as: Bearer <token>"
+//)
 public class SwaggerConfig {
 
     @Bean

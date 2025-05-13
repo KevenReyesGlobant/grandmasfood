@@ -76,13 +76,13 @@ import org.springframework.context.annotation.Bean;
                 url = "https://github.com/KevenReyesGlobant/grandmasfood"
         )
 )
-@SecurityScheme(
-        name = "bearerAuth",
-        type = SecuritySchemeType.HTTP,
-        scheme = "bearer",
-        bearerFormat = "JWT",
-        description = "JWT Authorization header using Bearer scheme. Example: 'Bearer eyJhbGciOiJIUzI1NiIsIn...'"
-)
+//@SecurityScheme(
+//        name = "bearerAuth",
+//        type = SecuritySchemeType.HTTP,
+//        scheme = "bearer",
+//        bearerFormat = "JWT",
+//        description = "JWT Authorization header using Bearer scheme. Example: 'Bearer eyJhbGciOiJIUzI1NiIsIn...'"
+//)
 public class SwaggerConfig {
 
     @Bean

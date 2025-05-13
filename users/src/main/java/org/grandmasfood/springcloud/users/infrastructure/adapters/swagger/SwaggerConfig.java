@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Bean;
         info = @Info(
                 title = "GRANDMASFOOD API",
                 description = """
-                        # GRANDMASFOOD Microservices Platform
+                        # GRANDMASFOOD Microservices Platform - Users Services
                         
                         ## Architecture Overview
                         This platform implements a modern cloud-native architecture with the following characteristics:
