@@ -5,33 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3aa95ddc-c67f-48c0-94bf-29ade2e612ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/infraestructure/adapters/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/infrastructure/adapters/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clients/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/infraestructure/adapters/input/rest/controller/ClientsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/infraestructure/adapters/input/rest/controller/ClientsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/infraestructure/adapters/swagger/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/clients/src/main/java/org/grandmasfood/springcloud/clients/infraestructure/adapters/swagger/SwaggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/clients/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/orders/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/input/rest/controller/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/input/rest/controller/OrdersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/swagger/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/swagger/SwaggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/products/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/infrastructure/adapters/input/rest/controller/ProductsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/infrastructure/adapters/input/rest/controller/ProductsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/infrastructure/adapters/swagger/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/products/src/main/java/org/grandmasfood/springcloud/products/infrastructure/adapters/swagger/SwaggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/products/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/users/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/EmailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/input/rest/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/input/rest/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/input/rest/model/request/UserCreateRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/input/rest/model/request/UserCreateRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/output/entities/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/output/entities/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/output/swagger/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/swagger/SwaggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/swagger/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/users/src/main/java/org/grandmasfood/springcloud/users/infrastructure/adapters/swagger/SwaggerConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,8 +152,8 @@
         <item itemvalue="Application.UsersApplication" />
         <item itemvalue="Application.ClientsApplication" />
         <item itemvalue="Application.OrdersApplication" />
-        <item itemvalue="Application.GatewayApplication" />
         <item itemvalue="Application.ProductsApplication" />
+        <item itemvalue="Application.GatewayApplication" />
       </list>
     </recent_temporary>
   </component>
