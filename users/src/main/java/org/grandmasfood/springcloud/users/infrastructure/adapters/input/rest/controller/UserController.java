@@ -1,5 +1,10 @@
 package org.grandmasfood.springcloud.users.infrastructure.adapters.input.rest.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.grandmasfood.springcloud.users.application.ports.input.UserServicesPort;
 import org.grandmasfood.springcloud.users.application.services.TokenServices;
@@ -17,9 +22,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "User", description = "This microservice handles user registration, authentication, and verification, including account creation, JWT login, and email verification.")
 @RestController
-//ToDo
-//@Tag() nivel de clase
 public class UserController {
 
     private final UserServicesPort userServicesPort;
@@ -36,8 +40,16 @@ public class UserController {
         this.authenticationManager = authenticationManager;
         this.emailSender = emailSender;
     }
-//    ToDo
-//    @Operation summary
+
+    @Operation(
+            summary = "Register a new user",
+            description = "Creates a new user, saves it to the database, and sends an email verification."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "User successfully registered"),
+            @ApiResponse(responseCode = "409", description = "Email already exists in the database"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @PostMapping("/api/v1/user/register")
     public ResponseEntity<?> createUser(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
         try {
@@ -62,6 +74,14 @@ public class UserController {
         }
     }
 
+    @Operation(
+            summary = "Verify user email",
+            description = "Verifies the user's email using the provided token."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "302", description = "Redirect to verification status page"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @GetMapping("/api/v1/user/verify")
     public ResponseEntity<?> verifyEmail(@RequestParam(required = true) String token) {
         try {
@@ -79,6 +99,15 @@ public class UserController {
         }
     }
 
+
+    @Operation(
+            summary = "User login",
+            description = "Authenticates the user based on the provided credentials and returns a JWT token."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Login successful, JWT token returned"),
+            @ApiResponse(responseCode = "401", description = "Invalid credentials or email not verified")
+    })
     @PostMapping("/api/v1/user/login")
     public ResponseEntity<?> loginUser(@RequestBody @Valid UserLoginRequestDTO userdata) {
         try {
@@ -99,6 +128,15 @@ public class UserController {
         }
     }
 
+    @Operation(
+            summary = "Logout user",
+            description = "Invalidates the user's token and logs them out."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Logout successful"),
+            @ApiResponse(responseCode = "401", description = "Invalid token")
+    })
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/api/v1/user/logged")
     public ResponseEntity<?> loggedUser(@RequestHeader("Authorization") String token) {
         try {

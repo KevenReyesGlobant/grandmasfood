@@ -1,6 +1,8 @@
 package org.grandmasfood.springcloud.users.infrastructure.adapters.output.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,8 @@ public class UserEntity {
     private String lastName;
 
     @Column(nullable = false, unique = true)
+    @NotEmpty(message = "Email cannot be empty")
+    @Size(max = 255, message = "Email must be at most 255 characters")
     private String email;
 
     @Column(nullable = false)

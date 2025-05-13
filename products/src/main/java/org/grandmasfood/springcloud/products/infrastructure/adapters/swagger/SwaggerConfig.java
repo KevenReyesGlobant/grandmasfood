@@ -8,8 +8,8 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "API GRANDMASFOOD_PRODUCTS",
-                description = "This app microservices provides a clients management system",
+                title = "API GRANDMASFOOD",
+                description = "This application is built using a microservices architecture, enabling modular scalability, independent deployment, and efficient management of each component. It also implements a hexagonal architecture (Ports and Adapters), which decouples the business core from external technologies. The solution is orchestrated through an API Gateway based on Spring Cloud, providing dynamic routing, load balancing, and centralized request management to facilitate service integration and security.",
                 version = "1.0.0",
                 contact = @Contact(
                         name = "Keven Reyes",
@@ -18,17 +18,17 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 license = @License(
                         name = "Standard Software Use License for Grandmasfood",
-                        url = "https://portfoliothreekevenreyes.netlify.app/"
+                        url = "https://github.com/KevenReyesGlobant/grandmasfood"
                 )
         ),
         servers = {
                 @Server(
                         description = "DEV SERVER",
-                        url = "http://localhost:3000"
+                        url = "http://localhost:3200"
                 ),
                 @Server(
-                        description = "PROD SERVER",
-                        url = "http://localhost:3000"
+                        description = "GATEWAY",
+                        url = "http://localhost:3001"
                 )
         }
 )
