@@ -30,9 +30,11 @@ public class OrdersPersistentAdapter implements OrdersPersistentPort {
 
     }
 
+    //ToDo New endpoint GET orders
 
     @Override
     public Order save(Order order) {
+//        ToDo Facade
         Client client_msv = iClientClientRest.listClientActiveByDocuments(order.getClientDocument());
         Product product_msv = iProductClientRest.findProductActiveByUuid(order.getProductUuid());
         order.setClientDocument(client_msv.getDocument());

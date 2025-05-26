@@ -1,0 +1,48 @@
+```yaml
+title: "Maven Parent Overrides Issue"
+description: "Unwanted elements like <license> and <developers> are inherited from the parent POM in Maven, causing issues."
+priority: ""
+repo: ""
+expected_behavior: "The project POM should not inherit unwanted elements like <license> and <developers> from the parent POM."
+actual_behavior: "The project POM inherits unwanted elements like <license> and <developers> from the parent POM."
+steps_to_reproduce: "1. Use a parent POM in a Maven project. 2. Observe the inherited elements in the project POM. 3. Notice the unwanted <license> and <developers> elements."
+file_names: 
+  - path: "path/to/project/pom.xml"
+    comment: "The project POM file where the unwanted elements are inherited."
+traceback: ""
+code_and_symbols: |
+  <license>
+  <developers>
+environment_information: "Maven, Spring Boot"
+ticket_explanation: |
+  # Maven Parent Overrides Issue
+
+  ## Description
+  In a Maven project, unwanted elements such as `<license>` and `<developers>` are inherited from the parent POM. This can cause issues when these elements are not desired in the project POM.
+
+  ## Expected Behavior
+  The project POM should not inherit unwanted elements like `<license>` and `<developers>` from the parent POM.
+
+  ## Actual Behavior
+  The project POM inherits unwanted elements like `<license>` and `<developers>` from the parent POM.
+
+  ## Steps to Reproduce
+  1. Use a parent POM in a Maven project.
+  2. Observe the inherited elements in the project POM.
+  3. Notice the unwanted `<license>` and `<developers>` elements.
+
+  ## File Names
+  - `path/to/project/pom.xml`: The project POM file where the unwanted elements are inherited.
+
+  ## Environment Information
+  - Maven
+  - Spring Boot
+
+  ## Code and Symbols
+  ```xml
+  <license>
+  <developers>
+  ```
+
+  This issue requires attention to ensure that only the desired elements are inherited in the project POM.
+```
