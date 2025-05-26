@@ -38,6 +38,7 @@
         <module>eureka-server</module>
         <module>gateway</module>
         <module>configserver</module>
+        <module>manage</module>
     </modules>
 
     <properties>

@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3aa95ddc-c67f-48c0-94bf-29ade2e612ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/clients/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configserver/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/configserver/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/output/OrdersPersistentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/orders/src/main/java/org/grandmasfood/springcloud/orders/infrastructure/adapters/output/OrdersPersistentAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +50,7 @@
     "Application.ConfigserverApplication.executor": "Run",
     "Application.EurekaServerApplication.executor": "Run",
     "Application.GatewayApplication.executor": "Run",
+    "Application.ManageApplication.executor": "Run",
     "Application.OrdersApplication.executor": "Run",
     "Application.ProductsApplication.executor": "Run",
     "Application.UsersApplication.executor": "Run",
@@ -63,7 +59,7 @@
     "git-widget-placeholder": "main",
     "ignore.preview.features.used": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/keven.reyes/Documents/ProjectGlobant_KevenReyesCodeFixer/grandmasfood",
+    "last_opened_file_path": "C:/Users/keven.reyes/Documents/ProjectGlobant_KevenReyes/grandmasfood",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -83,7 +79,7 @@
       <recent name="org.grandmasfood.springcloud.users.infrastructure.adapters.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.OrdersApplication">
+  <component name="RunManager" selected="Application.ManageApplication">
     <configuration name="ClientsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.clients.ClientsApplication" />
       <module name="clients" />
@@ -97,12 +93,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.gateway.GatewayApplication" />
-      <module name="gateway" />
+    <configuration name="ManageApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.grandmasfood.springcloud.manage.ManageApplication" />
+      <module name="manage" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.grandmasfood.springcloud.gateway.*" />
+          <option name="PATTERN" value="org.grandmasfood.springcloud.manage.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -151,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ManageApplication" />
         <item itemvalue="Application.OrdersApplication" />
         <item itemvalue="Application.ProductsApplication" />
         <item itemvalue="Application.UsersApplication" />
         <item itemvalue="Application.ClientsApplication" />
-        <item itemvalue="Application.GatewayApplication" />
       </list>
     </recent_temporary>
   </component>
