@@ -10,6 +10,7 @@ target/
 .idea/libraries/
 *.iws
 *.iml
+application-dev.properties
 *.ipr
 
 ### Eclipse ###

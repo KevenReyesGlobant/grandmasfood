@@ -1,5 +1,8 @@
 package org.grandmasfood.springcloud.manage.config;
 
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.prometheusmetrics.PrometheusConfig;
+import io.micrometer.prometheusmetrics.PrometheusMeterRegistry;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
@@ -9,10 +12,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaProducerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +49,14 @@ public class KafkaConfig {
     }
 
     @Bean
+    public MeterRegistry meterRegistry() {
+        PrometheusMeterRegistry prometheusMeterRegistry=new
+                PrometheusMeterRegistry (PrometheusConfig.DEFAULT);
+        return prometheusMeterRegistry;
+    }
+
+
+    @Bean
     public KafkaTemplate<String, String> createTemplate() {
         Map<String, Object> senderProps = producerProps();
         DefaultKafkaProducerFactory<String, String> defaultKafkaProducerFactory = new DefaultKafkaProducerFactory<>(producerProps());
@@ -66,7 +74,19 @@ public class KafkaConfig {
     public ConcurrentKafkaListenerContainerFactory<Integer, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
+        factory.setConcurrency(3);
         factory.setBatchListener(true);
         return factory;
+    }
+
+    @Bean
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        DefaultKafkaProducerFactory<String, String>
+                producerFactory= new DefaultKafkaProducerFactory<>(producerProps());
+        producerFactory.addListener(new MicrometerProducerListener<String,String>
+                (meterRegistry()));
+        KafkaTemplate<String, String> template = new
+                KafkaTemplate<>(producerFactory);
+        return template;
     }
 }
