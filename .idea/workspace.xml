@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3aa95ddc-c67f-48c0-94bf-29ade2e612ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/clients/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/org/grandmasfood/springcloud/gateway/filters/CookieGatewayFilterFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/org/grandmasfood/springcloud/gateway/filters/GatewayGlobalFilters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clients/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/clients/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/manage/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage/src/main/java/org/grandmasfood/springcloud/manage/ManageApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/manage/src/main/java/org/grandmasfood/springcloud/manage/ManageApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage/src/main/java/org/grandmasfood/springcloud/manage/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/manage/src/main/java/org/grandmasfood/springcloud/manage/config/KafkaConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,31 +45,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClientsApplication.executor": "Run",
-    "Application.ConfigserverApplication.executor": "Run",
-    "Application.EurekaServerApplication.executor": "Run",
-    "Application.GatewayApplication.executor": "Run",
-    "Application.ManageApplication.executor": "Run",
-    "Application.OrdersApplication.executor": "Run",
-    "Application.ProductsApplication.executor": "Run",
-    "Application.UsersApplication.executor": "Run",
-    "Maven.clients [clean].executor": "Run",
-    "Maven.clients [org.apache.maven.plugins:maven-deploy-plugin:3.1.3:deploy].executor": "Run",
-    "Maven.clients [validate].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.preview.features.used": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/keven.reyes/Documents/ProjectGlobant_KevenReyes/grandmasfood/clients/src/main/resources",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClientsApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ConfigserverApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ManageApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrdersApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductsApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UsersApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.clients [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.clients [org.apache.maven.plugins:maven-deploy-plugin:3.1.3:deploy].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.clients [validate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/keven.reyes/Documents/ProjectGlobant_KevenReyes/grandmasfood/clients/src/main/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\keven.reyes\Documents\ProjectGlobant_KevenReyes\grandmasfood\clients\src\main\resources" />
